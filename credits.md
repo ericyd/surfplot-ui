@@ -10,9 +10,9 @@
 
 ## Essential packages
 
-1. [plotly.js](plot.ly): This is basically the entire reason the application exists, 
+1. [plotly.js](https://plot.ly/javascript/): This is basically the entire reason the application exists, 
     so thanks folks at Plotly
-2. [math.js](mathjs.org): Handles all the math formula parsing.
+2. [math.js](http://mathjs.org/): Handles all the math formula parsing.
 3. [react](https://facebook.github.io/react/), [babel](https://babeljs.io/), 
     [eslint](http://eslint.org/), [mocha](https://mochajs.org/), [webpack](https://webpack.github.io/): 
     basically, everything else in the app
