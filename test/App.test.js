@@ -2,10 +2,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../src/js/App';
+import App from '../src/App';
 import jsdom from 'mocha-jsdom';
 
-describe('basic test', function() {
+describe('Application', function() {
     // give extra time for jsdom to iniatialize
     this.timeout(4000);
     jsdom();

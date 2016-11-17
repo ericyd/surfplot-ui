@@ -6,7 +6,7 @@ import { describe, it, beforeEach } from 'mocha';
 //necessary in order to call `should` on any object 
 should();
 
-describe('santity test', function() {
+describe('Sanity', function() {
     it('should be able to run a test', function() {
         const bool = true;
         bool.should.be.true;

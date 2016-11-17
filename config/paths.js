@@ -18,6 +18,6 @@ function resolveApp(relativePath) {
 module.exports = {
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
-  appIndexJs: resolveApp('src/js/index.js'),
+  appIndexJs: resolveApp('src/index.js'),
   appSrc: resolveApp('src'),
 };
