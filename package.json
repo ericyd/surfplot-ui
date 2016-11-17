@@ -1,0 +1,72 @@
+{
+  "name": "SurfPlotJS",
+  "version": "0.0.1",
+  "description": "boilerplate for basic app setup",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register --require ignore-styles",
+    "build": "node scripts/build  --compilers js:babel-core/register"
+  },
+  "author": "ericyd",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "latest",
+      "react"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react",
+    "plugins": [
+      "import"
+    ],
+    "env": {
+      "browser": true
+    }
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.0",
+    "babel-loader": "^6.2.7",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "chai": "^3.5.0",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.9.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.1",
+    "eslint-plugin-react": "^6.6.0",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^9.8.3",
+    "mocha": "^3.1.2",
+    "mocha-jsdom": "^1.1.0",
+    "node-sass": "^3.11.2",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "mathjs": "^3.7.0",
+    "plotly.js": "^1.20.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ericyd/surfplotjs.git"
+  },
+  "keywords": [
+    "surface",
+    "plot",
+    "calc",
+    "calculus"
+  ],
+  "author": "Eric Dauenhauer",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ericyd/surfplotjs/issues"
+  }
+}
