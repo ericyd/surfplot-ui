@@ -1,0 +1,13 @@
+.header {
+    width: 100%;
+    background:#ddd;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #aaa;
+
+    .header__logo {
+        height: 80px;
+        display: inline-block;
+
+    }
+}
