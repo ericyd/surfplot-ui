@@ -1,13 +1,16 @@
+@import '../global-style-variables';
+
 .header {
     width: 100%;
-    background:#ddd;
+    background:#eee;
     margin: 0;
-    padding: 0;
-    border-bottom: 1px solid #aaa;
+    padding: 0.5em;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
 
     .header__logo {
-        height: 80px;
+        height: $header-height;
         display: inline-block;
-
+        margin: 0 1em 0 0;
     }
 }
