@@ -1,0 +1,31 @@
+@import '../global-style-variables';
+
+.nav {
+    
+    // thanks to https://github.com/tylerchilds/cutestrap/blob/master/src/sass/components/_buttons.scss
+    .nav__btn {
+        background-color: $primary;
+        border: none;
+        border-radius: .2rem;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        height: 4.8rem;
+        line-height: 4.8rem;
+        max-width: 100%;
+        transition-property: background-color;
+        transition-duration: 200ms;
+        margin: 0 auto;
+        padding: 0 3rem;
+        text-align: center;
+        user-select: none;
+        width: auto;
+    }
+
+    [type=button],
+    [type=submit],
+    button{
+        @extend .nav__btn;
+    }
+}
