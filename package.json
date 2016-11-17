@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ignore-styles",
-    "build": "node scripts/build  --compilers js:babel-core/register"
+    "build": "node scripts/build --compilers js:babel-core/register",
+    "copy-public": "node scripts/copy-public --compilers js:babel-core/register"
   },
   "author": "ericyd",
   "license": "ISC",
@@ -21,7 +22,12 @@
       "import"
     ],
     "env": {
-      "browser": true
+      "browser": true,
+      "mocha": true
+    },
+    "rules": {
+      "jsx-quotes": ["error", "prefer-double"],
+      "quotes": ["error", "single"]
     }
   },
   "devDependencies": {
