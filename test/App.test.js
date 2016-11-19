@@ -7,7 +7,7 @@ import jsdom from 'mocha-jsdom';
 
 describe('Application', function() {
     // give extra time for jsdom to iniatialize
-    this.timeout(4000);
+    this.timeout(10000);
     jsdom();
     
     it('renders without crashing', () => {

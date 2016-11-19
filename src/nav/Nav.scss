@@ -4,11 +4,11 @@ $btn-size:     2em;
 
 .nav {
     height: $header-height;
-    position:relative;
+    position: relative;
     bottom: $btn-size / 4;
     margin-bottom: -($btn-size / 4);
     display: inline-block;
-    
+
     // thanks to https://github.com/tylerchilds/cutestrap/blob/master/src/sass/components/_buttons.scss
     .nav__btn {
         font-size: $body-font-size;
@@ -37,7 +37,7 @@ $btn-size:     2em;
 
     [type=button],
     [type=submit],
-    button{
+    button {
         @extend .nav__btn;
     }
 }

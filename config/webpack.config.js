@@ -5,6 +5,7 @@
  */
 
 const paths = require('./paths');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -15,6 +16,13 @@ module.exports = {
   },
   devtool: 'eval',
   // devtool: 'source-map',
+  plugins: [
+    new StyleLintPlugin({
+      configFile: './config/stylelint.config.js',
+      syntax: 'scss',
+      failOnError: true
+    }),
+  ],
   module: {
     preLoaders: [
       {
