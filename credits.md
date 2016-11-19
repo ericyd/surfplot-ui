@@ -16,3 +16,9 @@
 3. [react](https://facebook.github.io/react/), [babel](https://babeljs.io/), 
     [eslint](http://eslint.org/), [mocha](https://mochajs.org/), [webpack](https://webpack.github.io/): 
     basically, everything else in the app
+
+## Inspiration
+
+This was fully inspired by [Calc Plot 3D](http://web.monroecc.edu/manila/webfiles/pseeburger/CalcPlot3D/).  
+Indeed, the primary goal of this app is to emulate the functionality of Calc Plot 3D using a fully
+JavaScript implementation for the UI and plotting tools.
