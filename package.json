@@ -8,8 +8,8 @@
     "build": "node scripts/build --compilers js:babel-core/register",
     "copy-public": "node scripts/copy-public --compilers js:babel-core/register"
   },
-  "author": "ericyd",
-  "license": "ISC",
+  "author": "Eric Dauenhauer",
+  "license": "GPL-3.0",
   "babel": {
     "presets": [
       "latest",
@@ -26,8 +26,14 @@
       "mocha": true
     },
     "rules": {
-      "jsx-quotes": ["error", "prefer-double"],
-      "quotes": ["error", "single"]
+      "jsx-quotes": [
+        "error",
+        "prefer-double"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ]
     }
   },
   "devDependencies": {
@@ -54,6 +60,8 @@
     "react-dom": "^15.3.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "stylelint-config-standard": "^15.0.0",
+    "stylelint-webpack-plugin": "^0.4.0",
     "webpack": "^1.13.3"
   },
   "dependencies": {
@@ -70,8 +78,6 @@
     "calc",
     "calculus"
   ],
-  "author": "Eric Dauenhauer",
-  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/ericyd/surfplotjs/issues"
   }
