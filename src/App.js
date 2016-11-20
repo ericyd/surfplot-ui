@@ -11,6 +11,7 @@ class App extends Component {
                 <Header />
                 <p className="App-intro">
                     To get started, edit <code>src/App.js</code> and save to reload.
+                    and then have fun!. Lots of fun. <br/>so much fun.
                 </p>
             </div>
         );

@@ -14,14 +14,6 @@ function build() {
             process.exit(1);
         }
         console.log(`√ Bundle Complete!\nBundling took ${(stats.endTime - stats.startTime)/1000} seconds to bundle with Webpack`);
-
-        console.log(`
-Run the app:
-
-1. npm install -g pushstate-server
-2. pushstate-server build
-3. Open your browser and go to localhost:9000`)
-        });
 }
 
 

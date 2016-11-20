@@ -5,14 +5,20 @@
  */
 
 const paths = require('./paths');
+const path = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
-  entry: [
-    paths.appIndexJs
-  ],
+  entry: {
+    app: [paths.appIndexJs]
+  },
   output: {
-    filename: `${paths.appBuild}/bundle.js`,
+    filename: `bundle.js`,
+    path: paths.appBuild,
+    publicPath: "/",
+  },
+  devServer: { 
+    inline: true 
   },
   devtool: 'eval',
   // devtool: 'source-map',

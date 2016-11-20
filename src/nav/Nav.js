@@ -4,11 +4,15 @@ import React from 'react';
 import './Nav.scss';
 
 export default function Nav () {
+    const buttons = ['Main', 'About', 'Credits'];
+
     return (
         <nav className="nav">
-            <button type="button" className="nav__btn">Main</button>
-            <button type="button" className="nav__btn">About</button>
-            <button type="button" className="nav__btn">Credits</button>
+            {
+                buttons.map((btn) => {
+                    return <button type="button" className="nav__btn">{btn}</button>;
+                })
+            }
         </nav>
     );
 }

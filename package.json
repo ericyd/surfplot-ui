@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ignore-styles",
     "build": "node scripts/build --compilers js:babel-core/register",
-    "copy-public": "node scripts/copy-public --compilers js:babel-core/register"
+    "copy-public": "node scripts/copy-public --compilers js:babel-core/register",
+    "start": "node scripts/start"
   },
   "author": "Eric Dauenhauer",
   "license": "GPL-3.0",
@@ -56,13 +57,15 @@
     "mocha": "^3.1.2",
     "mocha-jsdom": "^1.1.0",
     "node-sass": "^3.11.2",
+    "open": "0.0.5",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "stylelint-config-standard": "^15.0.0",
     "stylelint-webpack-plugin": "^0.4.0",
-    "webpack": "^1.13.3"
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
     "mathjs": "^3.7.0",
