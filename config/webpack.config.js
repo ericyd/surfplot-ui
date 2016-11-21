@@ -26,7 +26,7 @@ module.exports = {
     new StyleLintPlugin({
       configFile: './config/stylelint.config.js',
       syntax: 'scss',
-      failOnError: true
+      failOnError: false
     }),
   ],
   module: {
