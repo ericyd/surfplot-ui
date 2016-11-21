@@ -1,14 +1,14 @@
 'use strict';
 
 import React from 'react';
-import Nav from '../nav/Nav';
+import Nav from './nav/Nav';
 import './Header.scss';
 
-export default function Header () {
+export default function Header (props) {
     return (
         <header className="header">
             <img src="img/open_surface.svg" className="header__logo" alt="Surf Plot JS logo" />
-            <Nav />
+            <Nav handleViewChange={props.handleViewChange} />
         </header>
     );
 }

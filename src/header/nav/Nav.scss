@@ -1,0 +1,48 @@
+@import '../../global-style-variables';
+
+$btn-size:     2em;
+
+%btn {
+    font-size: $body-font-size;
+    font-family: $sans-serif;
+    background-color: $header-bg;
+    border: none;
+    border-radius: $border-radius;
+    box-sizing: border-box;
+    color: $body-color;
+    cursor: pointer;
+    display: inline-block;
+    max-width: 100%;
+    transition-property: border;
+    transition-duration: 200ms;
+    margin: 0 1em 0 0;
+    padding: 0 $btn-size / 2;
+    text-align: center;
+    user-select: none;
+    width: auto;
+}
+
+%btn--active {
+    @extend %btn;
+
+    border-bottom: 1px solid $primary;
+}
+
+.nav {
+    height: $header-height;
+    display: inline-block;
+
+    .nav__btn {
+        @extend %btn;
+
+        &:hover {
+            @extend %btn--active;
+        }
+    }
+
+    [type=button],
+    [type=submit],
+    button {
+        @extend .nav__btn;
+    }
+}

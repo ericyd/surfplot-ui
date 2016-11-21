@@ -2,17 +2,32 @@
 
 import React, { Component } from 'react';
 import Header from './header/Header';
+import ViewContainer from './views/ViewContainer';
 
 
 class App extends Component {
+    constructor () {
+        super();
+
+        this.state = {
+            view: 'Plotter',
+            test: 'testing'
+        };
+
+        this.handleViewChange = this.handleViewChange.bind(this);
+    }
+
+    handleViewChange (view) {
+        this.setState({
+            view: view
+        });
+    }
+
     render () {
         return (
             <div className="App">
-                <Header />
-                <p className="App-intro">
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                    and then have fun!. Lots of fun. <br/>so much fun.
-                </p>
+                <Header handleViewChange={this.handleViewChange} />
+                <ViewContainer view={this.state.view} />
             </div>
         );
     }
