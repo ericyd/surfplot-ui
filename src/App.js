@@ -25,8 +25,9 @@ class App extends Component {
 
     render () {
         return (
-            <div className="App">
-                <Header handleViewChange={this.handleViewChange} />
+            <div className='App'>
+                <Header handleViewChange={this.handleViewChange}
+                    view={this.state.view} />
                 <ViewContainer view={this.state.view} />
             </div>
         );
