@@ -18,5 +18,5 @@ var server = new WebpackDevServer(compiler, {
 server.listen(8080, 'localhost', function() {
     console.log('Your browser should open automatically to http://localhost:8080');
     console.log('When you make changes, the app will recompile automatically, but you may have to manually refresh the page');
-    open('http://localhost:8080');
+    open('http://localhost:8080/webpack-dev-server/index.html');
 });
