@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Plotter from './plotter/Plotter';
-import About from './about/About';
-import Credits from './credits/Credits';
+import About from './About';
+import Credits from './Credits';
 
 export default function ViewContainer (props) {
     if (props.view === 'Credits') {
