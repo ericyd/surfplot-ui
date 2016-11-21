@@ -10,6 +10,9 @@ $body-font-size:    30px;
 /// Colors
 $primary:           #63a8bf;
 $secondary:         #b891c4;
+$body-bg:           rgb(240, 240, 240);
+$header-bg:           darken($body-bg, 5%);
+$body-color:        rgb(40, 40, 40);
 
 /// Global properties
 $border-radius:     0;
