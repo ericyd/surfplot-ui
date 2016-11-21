@@ -11,13 +11,13 @@ export default function Nav (props) {
     }
 
     return (
-        <nav className="nav">
+        <nav className='nav'>
             {
                 buttons.map((btn) => {
-                    return (<button type="button"
+                    return (<button type='button'
                                 key={btn}
                                 name={btn}
-                                className="nav__btn"
+                                className={props.view === btn ? 'nav__btn--active' : 'nav__btn'}
                                 onClick={handleViewChange}>
                                     {btn}
                             </button>);
@@ -26,3 +26,8 @@ export default function Nav (props) {
         </nav>
     );
 }
+
+Nav.propTypes = {
+    handleViewChange: React.PropTypes.func.isRequired,
+    view: React.PropTypes.string.isRequired
+};
