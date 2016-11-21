@@ -14,6 +14,7 @@ function build() {
             process.exit(1);
         }
         console.log(`√ Bundle Complete!\nBundling took ${(stats.endTime - stats.startTime)/1000} seconds to bundle with Webpack`);
+    });
 }
 
 
