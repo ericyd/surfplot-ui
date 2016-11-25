@@ -2,9 +2,9 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../src/App';
 import { mount, render, shallow } from 'enzyme';
 import { should } from 'chai';
+import App from '../src/App';
 
 should();
 
