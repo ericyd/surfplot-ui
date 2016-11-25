@@ -30,13 +30,20 @@ export default function Credits () {
                 <li><a href='https://plot.ly/javascript/' target='_blank'>plotly.js</a>: This is basically the entire reason the application exists,
                  so thanks folks at Plotly</li>
                 <li><a href='http://mathjs.org/' target='_blank'>math.js</a>: Handles all the math formula parsing.</li>
-                <li><a href='https://facebook.github.io/react/' target='_blank'>React</a>
-                , <a href='https://babeljs.io/' target='_blank'>babel</a>
-                , <a href='http://eslint.org/' target='_blank'>eslint</a>
-                , <a href='https://mochajs.org/' target='_blank'>mocha</a>
-                , <a href='https://webpack.github.io/' target='_blank'>webpack</a>
-                , <a href='http://stylelint.io/' target='_blank'>stylelint</a>
-                : basically, everything else in the app</li>
+                <li><a href='https://facebook.github.io/react/' target='_blank'>React</a>: UI framework</li>
+                <li><a href='https://babeljs.io/' target='_blank'>Babel</a>
+                    , <a href='https://webpack.github.io/' target='_blank'>Webpack</a>
+                    : Build tools
+                </li>
+                <li><a href='http://eslint.org/' target='_blank'>ESlint</a>
+                    , <a href='http://stylelint.io/' target='_blank'>Stylelint</a>
+                    : Style linting for JS and SCSS
+                </li>
+                <li><a href='https://mochajs.org/' target='_blank'>Mocha</a>
+                    , <a href='http://airbnb.io/enzyme/' target='_blank'>Enzyme</a>
+                    , <a href='http://chaijs.com/' target='_blank'>Chai</a>
+                    : Testing
+                </li>
             </ol>
         </main>
     );
