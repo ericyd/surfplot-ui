@@ -1,19 +1,18 @@
 'use strict';
 
 import { should } from 'chai';
-import { describe, it, beforeEach } from 'mocha';
 
-//necessary in order to call `should` on any object 
+//necessary in order to call `should` on any object
 should();
 
-describe('Sanity', function() {
-    it('should be able to run a test', function() {
+describe('Sanity', function () {
+    it('should be able to run a test', () => {
         const bool = true;
-        bool.should.be.true;
-    })
+        bool.should.equal(true);
+    });
 
-    it('should be able to do basic math', function() {
+    it('should be able to do basic math', () => {
         let m = 5;
-        (m + 5).should.be.equal(10);
-    })
-})
+        (m + 5).should.equal(10);
+    });
+});

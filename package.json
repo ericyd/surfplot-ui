@@ -4,7 +4,7 @@
   "description": "boilerplate for basic app setup",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require ignore-styles --require test/setup.js",
+    "test": "eslint -c config/.eslintrc \"test/**\" && mocha --compilers js:babel-core/register --require ignore-styles --require test/setup.js",
     "build": "node scripts/build --compilers js:babel-core/register",
     "copy-public": "node scripts/copy-public --compilers js:babel-core/register",
     "start": "node scripts/start"
@@ -42,6 +42,7 @@
     "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.3.2",
     "sass-loader": "^4.0.2",
+    "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
     "stylelint-config-standard": "^15.0.0",
     "stylelint-webpack-plugin": "^0.4.0",
