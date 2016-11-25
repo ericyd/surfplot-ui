@@ -9,10 +9,15 @@ export default class ViewContainer extends Component {
     constructor () {
         super();
 
-        // this contains the initialization for the Plotly plot
-        this.state = {
-            test: 'this is a test'
-        };
+        // this will contain the Plotter state when it unmounts,
+        // and send it back to Plotter when it re-mounts
+        this.state = {};
+
+        this.handlePlotterUnmount = this.handlePlotterUnmount.bind(this);
+    }
+
+    handlePlotterUnmount (state) {
+        this.setState(state);
     }
 
     render () {
@@ -21,7 +26,14 @@ export default class ViewContainer extends Component {
         } else if (this.props.view === 'About') {
             return <About />;
         } else {
-            return <Plotter />;
+            return (
+                <Plotter handleUnmount={this.handlePlotterUnmount}
+                    initialState={this.state} />
+            );
         }
     }
 }
+
+ViewContainer.propTypes = {
+    view: React.PropTypes.string
+};
