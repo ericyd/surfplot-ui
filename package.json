@@ -4,7 +4,7 @@
   "description": "boilerplate for basic app setup",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require ignore-styles",
+    "test": "mocha --compilers js:babel-core/register --require ignore-styles --require test/setup.js",
     "build": "node scripts/build --compilers js:babel-core/register",
     "copy-public": "node scripts/copy-public --compilers js:babel-core/register",
     "start": "node scripts/start"
@@ -36,7 +36,6 @@
     "ignore-styles": "^5.0.1",
     "jsdom": "^9.8.3",
     "mocha": "^3.1.2",
-    "mocha-jsdom": "^1.1.0",
     "node-sass": "^3.11.2",
     "open": "0.0.5",
     "react": "^15.3.2",

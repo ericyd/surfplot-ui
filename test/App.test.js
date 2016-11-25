@@ -3,15 +3,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../src/App';
-import jsdom from 'mocha-jsdom';
+import { mount, render, shallow } from 'enzyme';
+import { should } from 'chai';
 
-describe('Application', function() {
-    // give extra time for jsdom to iniatialize
-    this.timeout(10000);
-    jsdom();
+should();
+
+describe('<App />', function() {
     
     it('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<App />, div);
+        const wrapper = mount(<App />);
+        wrapper.state('view').should.equal('Plotter');
     });
 })
