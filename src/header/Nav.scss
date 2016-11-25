@@ -16,11 +16,13 @@ $btn-size:     2em;
     max-width: 100%;
     transition-property: border;
     transition-duration: 200ms;
-    margin: 0 1em 0 0;
+    margin: -1em 1em 2em 0;
     padding: 0 $btn-size / 2;
     text-align: center;
     user-select: none;
     width: auto;
+    position: relative;
+    top: -($btn-size / 4);
 
     &:focus,
     &:active,

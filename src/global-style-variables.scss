@@ -18,4 +18,5 @@ $body-color:        rgb(40, 40, 40);
 $border-radius:     0;
 
 /// Layout
-$header-height:     2em;
+$header-height:     10vh;
+$body-height:       100vh - $header-height;
