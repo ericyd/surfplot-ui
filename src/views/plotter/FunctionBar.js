@@ -10,7 +10,11 @@ export default class FunctionBar extends Component {
 
     render () {
         return (
-            <div className={this.props.isCollapsed ? 'hide' : 'show'}>
+            <div className={[
+                this.props.isCollapsed ? 'hide' : 'show',
+                'sidebar',
+                'left'
+            ].join(' ')}>
                 here I am, Function Bar
             </div>
         );

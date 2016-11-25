@@ -10,7 +10,11 @@ export default class OptionBar extends Component {
 
     render () {
         return (
-            <div className={this.props.isCollapsed ? 'hide' : 'show'}>
+            <div className={[
+                this.props.isCollapsed ? 'hide' : 'show',
+                'sidebar',
+                'right'
+            ].join(' ')}>
                 here I am, Option Bar
             </div>
         );
