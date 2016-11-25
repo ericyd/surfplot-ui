@@ -3,6 +3,8 @@
 import React, { Component } from 'react';
 import FunctionBar from './FunctionBar';
 import OptionBar from './OptionBar';
+import Plot from './Plot';
+import './plotter.scss';
 
 export default class Plotter extends Component {
     constructor () {
@@ -45,20 +47,24 @@ export default class Plotter extends Component {
 
     render () {
         return (
-            <div>
+            <div className='plotter'>
                 <button type='button'
                     name='functionBarToggle'
-                    onClick={this.handleSidebarToggle}>
+                    onClick={this.handleSidebarToggle}
+                    className='toggleButton left'>
                     Toggle the FunctionBar
                 </button>
                 <FunctionBar isCollapsed={this.state.isFunctionBarCollapsed} />
 
                 <button type='button'
                     name='optionBarToggle'
-                    onClick={this.handleSidebarToggle}>
+                    onClick={this.handleSidebarToggle}
+                    className='toggleButton right'>
                     Toggle the OptionBar
                 </button>
                 <OptionBar isCollapsed={this.state.isOptionBarCollapsed} />
+
+                <Plot />
             </div>
         );
     }
