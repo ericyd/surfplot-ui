@@ -1,7 +1,23 @@
+@import '../../global-style-variables';
+
 .show {
     display: block;
 }
 
 .hide {
     display: none;
+}
+
+.sidebar {
+    width: 200px;
+    height: $body-height;
+    border: 1px solid $primary;
+
+    &.left {
+        float: left;
+    }
+
+    &.right {
+        float: right;
+    }
 }
