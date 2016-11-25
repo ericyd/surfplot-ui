@@ -29,6 +29,9 @@ module.exports = {
       failOnError: false
     }),
   ],
+  eslint: {
+    configFile: 'config/.eslintrc'
+  },
   module: {
     preLoaders: [
       {
