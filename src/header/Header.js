@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Nav from './nav/Nav';
+import Nav from './Nav';
 import './Header.scss';
 
 export default function Header (props) {
