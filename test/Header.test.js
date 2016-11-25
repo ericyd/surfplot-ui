@@ -11,7 +11,8 @@ should();
 describe('<Header />', function () {
     it('should contain a logo', () => {
         const wrapper = shallow(<Header />);
-        wrapper.contains(<img src='img/open_surface.svg' className='header__logo' alt='Surf Plot JS logo' />).should.equal(true);
+        wrapper.contains(<img src='img/open_surface.svg' className='header__logo' alt='Surf Plot JS logo' />)
+            .should.equal(true);
         wrapper.find('img.header__logo').should.have.length(1);
     });
 
