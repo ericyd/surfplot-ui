@@ -1,7 +1,7 @@
 @import '../../global-style-variables';
 
 .plot {
-    border: 1px solid $primary;
-    width: 100%;
+    width: calc(100% - 2em);
     height: $body-height;
+    padding: 1em;
 }
