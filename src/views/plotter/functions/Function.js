@@ -11,7 +11,7 @@ export default class FunctionBar extends Component {
     render () {
         return (
             <div className='function'>
-                <input type='text' value={this.props.value} className='function__input' />
+                <input type='text' defaultValue={this.props.value} className='function__input' />
             </div>
         );
     }

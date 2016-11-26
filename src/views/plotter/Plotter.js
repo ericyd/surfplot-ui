@@ -20,6 +20,7 @@ export default class Plotter extends Component {
         };
 
         this.handleSidebarToggle = this.handleSidebarToggle.bind(this);
+        this.addFunction = this.addFunction.bind(this);
     }
 
     componentWillMount () {
@@ -49,6 +50,14 @@ export default class Plotter extends Component {
         }
     }
 
+    addFunction () {
+        const functions = this.state.functions;
+        functions.push({ value: '' });
+        this.setState({
+            functions: functions
+        });
+    }
+
     render () {
         return (
             <div className='plotter'>
@@ -61,6 +70,7 @@ export default class Plotter extends Component {
                 <FunctionBar
                     isCollapsed={this.state.isFunctionBarCollapsed}
                     functions={this.state.functions}
+                    addFunction={this.addFunction}
                     />
 
                 <button type='button'
