@@ -13,7 +13,9 @@ export default class Plotter extends Component {
             isFunctionBarCollapsed: true,
             isOptionBarCollapsed: true,
             functions: [
-                value: 'cos(x)-sin(y)'
+                {
+                    value: 'cos(x)-sin(y)'
+                }
             ]
         };
 
@@ -56,7 +58,7 @@ export default class Plotter extends Component {
                     className='toggleButton left'>
                     Toggle the FunctionBar
                 </button>
-                <FunctionBar 
+                <FunctionBar
                     isCollapsed={this.state.isFunctionBarCollapsed}
                     functions={this.state.functions}
                     />

@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
+import Function from './Function';
 import '../sidebar.scss';
 
 export default class FunctionBar extends Component {
@@ -15,12 +16,17 @@ export default class FunctionBar extends Component {
                 'sidebar',
                 'left'
             ].join(' ')}>
-                here I am, Function Bar
+                {
+                    this.props.functions.map((func) => {
+                        return <Function value={func.value} />;
+                    })
+                }
             </div>
         );
     }
 }
 
 FunctionBar.propTypes = {
-    isCollapsed: React.PropTypes.bool.isRequired
+    isCollapsed: React.PropTypes.bool.isRequired,
+    functions: React.PropTypes.array.isRequired
 };
