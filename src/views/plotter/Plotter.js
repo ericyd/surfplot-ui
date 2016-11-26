@@ -1,8 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react';
-import FunctionBar from './FunctionBar';
-import OptionBar from './OptionBar';
+import FunctionBar from './functions/FunctionBar';
+import OptionBar from './options/OptionBar';
 import Plot from './Plot';
 import './plotter.scss';
 
@@ -12,7 +12,9 @@ export default class Plotter extends Component {
         this.state = {
             isFunctionBarCollapsed: true,
             isOptionBarCollapsed: true,
-            test: true
+            functions: [
+                value: 'cos(x)-sin(y)'
+            ]
         };
 
         this.handleSidebarToggle = this.handleSidebarToggle.bind(this);
@@ -54,7 +56,10 @@ export default class Plotter extends Component {
                     className='toggleButton left'>
                     Toggle the FunctionBar
                 </button>
-                <FunctionBar isCollapsed={this.state.isFunctionBarCollapsed} />
+                <FunctionBar 
+                    isCollapsed={this.state.isFunctionBarCollapsed}
+                    functions={this.state.functions}
+                    />
 
                 <button type='button'
                     name='optionBarToggle'

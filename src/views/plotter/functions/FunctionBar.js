@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import './sidebar.scss';
+import '../sidebar.scss';
 
 export default class FunctionBar extends Component {
     constructor () {

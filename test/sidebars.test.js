@@ -3,8 +3,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { should } from 'chai';
-import FunctionBar from '../src/views/plotter/FunctionBar';
-import OptionBar from '../src/views/plotter/OptionBar';
+import FunctionBar from '../src/views/plotter/functions/FunctionBar';
+import OptionBar from '../src/views/plotter/options/OptionBar';
 
 should();
 
