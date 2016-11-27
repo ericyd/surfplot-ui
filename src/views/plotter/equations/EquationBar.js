@@ -18,8 +18,15 @@ export default class EquationBar extends Component {
             ].join(' ')}>
 
                 {
-                    this.props.equations.map((func) => {
-                        return <Equation value={func.value} key={Math.random()} />;
+                    this.props.equations.map((eq) => {
+                        return (
+                            <Equation
+                                value={eq.value}
+                                key={eq.id}
+                                id={eq.id}
+                                handleChange={this.props.handleEQChange}
+                                handleDelete={this.props.handleEQDelete} />
+                        );
                     })
                 }
 

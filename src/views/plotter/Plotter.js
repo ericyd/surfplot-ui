@@ -22,6 +22,8 @@ export default class Plotter extends Component {
 
         this.handleSidebarToggle = this.handleSidebarToggle.bind(this);
         this.addEquation = this.addEquation.bind(this);
+        this.handleEQChange = this.handleEQChange.bind(this);
+        this.handleEQDelete = this.handleEQDelete.bind(this);
     }
 
     componentWillMount () {
@@ -54,10 +56,38 @@ export default class Plotter extends Component {
     addEquation () {
         const equations = this.state.equations;
         // get max id for next id
-        equations.push({ value: '' });
+        const ids = equations.map((value) => {
+            return value.id;
+        });
+        equations.push({ id: Math.max(...ids) + 1, value: '' });
         this.setState({
             equations: equations
         });
+    }
+
+    handleEQChange (id, value) {
+        const equations = this.state.equations;
+        const newEquations = equations.map((eq) => {
+            if (eq.id === id) {
+                eq.value = value;
+                return eq;
+            }
+            return eq;
+        });
+        this.setState({ equations: newEquations });
+    }
+
+    handleEQDelete (id) {
+        if (this.state.equations.length === 1) {
+            console.log('Must have at least one function');
+            return;
+        }
+        const equations = this.state.equations;
+        const newEquations = equations.filter((eq) => {
+            if (eq.id !== id) return eq;
+        });
+        console.log(newEquations);
+        this.setState({ equations: newEquations });
     }
 
     render () {
@@ -73,6 +103,8 @@ export default class Plotter extends Component {
                     isCollapsed={this.state.isEquationBarCollapsed}
                     equations={this.state.equations}
                     addEquation={this.addEquation}
+                    handleEQChange={this.handleEQChange}
+                    handleEQDelete={this.handleEQDelete}
                     />
 
                 <button type='button'
