@@ -38,5 +38,7 @@ export default class Equation extends Component {
 }
 
 Equation.propTypes = {
-    value: React.PropTypes.string.isRequired
+    value: React.PropTypes.string.isRequired,
+    handleChange: React.PropTypes.func,
+    handleDelete: React.PropTypes.func,
 };
