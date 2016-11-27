@@ -15,7 +15,6 @@ export default class Equation extends Component {
     }
 
     handleDelete (e) {
-        console.log(parseInt(e.target.getAttribute('data-forEQ'), 10));
         this.props.handleDelete(parseInt(e.target.getAttribute('data-forEQ'), 10));
     }
 

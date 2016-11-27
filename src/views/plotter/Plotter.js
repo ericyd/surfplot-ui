@@ -86,7 +86,6 @@ export default class Plotter extends Component {
         const newEquations = equations.filter((eq) => {
             if (eq.id !== id) return eq;
         });
-        console.log(newEquations);
         this.setState({ equations: newEquations });
     }
 
@@ -115,7 +114,7 @@ export default class Plotter extends Component {
                 </button>
                 <OptionBar isCollapsed={this.state.isOptionBarCollapsed} />
 
-                <Plot />
+                <Plot eq={this.state.equations[0].value} />
             </div>
         );
     }
