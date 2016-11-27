@@ -4,4 +4,8 @@
     width: calc(100% - 2em);
     height: $body-height;
     padding: 1em;
+
+    #plot {
+        width: 80%;
+    }
 }
