@@ -1,8 +1,9 @@
 'use strict';
 
 import React, { Component } from 'react';
-// for some reason, mocha throws an error when this line is included in this file
-// import Plotly from 'plotly.js';
+// for some reason, mocha throws an error unless you import this path
+// https://github.com/plotly/plotly.js/issues/891
+import Plotly from 'plotly.js/dist/plotly.js';
 import mathjs from 'mathjs';
 import './plot.scss';
 
