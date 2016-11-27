@@ -10,7 +10,7 @@ should();
 describe('<Plotter />', function () {
     it('should initialize with the correct state', () => {
         const wrapper = shallow(<Plotter handleUnmount={(e) => e} initialState={{}} />);
-        wrapper.state('isFunctionBarCollapsed').should.equal(true);
+        wrapper.state('isEquationBarCollapsed').should.equal(true);
         wrapper.state('isOptionBarCollapsed').should.equal(true);
     });
 
@@ -19,14 +19,14 @@ describe('<Plotter />', function () {
         const buttons = wrapper.find('.toggleButton');
 
         buttons.at(0).simulate('click', { target: { name: buttons.at(0).prop('name') } });
-        wrapper.state('isFunctionBarCollapsed').should.equal(false);
+        wrapper.state('isEquationBarCollapsed').should.equal(false);
 
         buttons.at(1).simulate('click', { target: { name: buttons.at(1).prop('name') } });
         wrapper.state('isOptionBarCollapsed').should.equal(false);
 
         buttons.at(0).simulate('click', { target: { name: buttons.at(0).prop('name') } });
         buttons.at(1).simulate('click', { target: { name: buttons.at(1).prop('name') } });
-        wrapper.state('isFunctionBarCollapsed').should.equal(true);
+        wrapper.state('isEquationBarCollapsed').should.equal(true);
         wrapper.state('isOptionBarCollapsed').should.equal(true);
     });
 });

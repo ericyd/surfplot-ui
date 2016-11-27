@@ -3,49 +3,49 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { should } from 'chai';
-import FunctionBar from '../src/views/plotter/functions/FunctionBar';
+import EquationBar from '../src/views/plotter/equations/EquationBar';
 import OptionBar from '../src/views/plotter/options/OptionBar';
 
 should();
 
-const functions = [
+const equations = [
     {
         value: 'cos(x)-sin(y)'
     }
 ];
 
-describe('<FunctionBar />', function () {
+describe('<EquationBar />', function () {
     it('should default to hidden', () => {
-        const wrapper = shallow(<FunctionBar isCollapsed functions={functions} />);
+        const wrapper = shallow(<EquationBar isCollapsed equations={equations} />);
         wrapper.prop('className').indexOf('hide').should.equal(0);
         wrapper.prop('className').indexOf('show').should.equal(-1);
     });
 
     it('should change classes based on isCollapsed property', () => {
-        const wrapper = shallow(<FunctionBar isCollapsed={false} functions={functions} />);
+        const wrapper = shallow(<EquationBar isCollapsed={false} equations={equations} />);
         wrapper.prop('className').indexOf('hide').should.equal(-1);
         wrapper.prop('className').indexOf('show').should.equal(0);
     });
 
-    it('should render one function <div> for each function in functions', () => {
-        let wrapper = mount(<FunctionBar isCollapsed={false} functions={functions} />);
-        wrapper.find('.function').should.have.length(1);
+    it('should render one equation <div> for each equation in equations', () => {
+        let wrapper = mount(<EquationBar isCollapsed={false} equations={equations} />);
+        wrapper.find('.equation').should.have.length(1);
 
-        functions.push({ value: 'sin(y)+x' });
-        wrapper = mount(<FunctionBar isCollapsed={false} functions={functions} />);
-        wrapper.find('.function').should.have.length(2);
+        equations.push({ value: 'sin(y)+x' });
+        wrapper = mount(<EquationBar isCollapsed={false} equations={equations} />);
+        wrapper.find('.equation').should.have.length(2);
 
-        functions.unshift({ value: 'cos(x^2 + y^2)' });
-        wrapper = mount(<FunctionBar isCollapsed={false} functions={functions} />);
-        wrapper.find('.function').should.have.length(3);
+        equations.unshift({ value: 'cos(x^2 + y^2)' });
+        wrapper = mount(<EquationBar isCollapsed={false} equations={equations} />);
+        wrapper.find('.equation').should.have.length(3);
 
-        functions.pop();
-        wrapper = mount(<FunctionBar isCollapsed={false} functions={functions} />);
-        wrapper.find('.function').should.have.length(2);
+        equations.pop();
+        wrapper = mount(<EquationBar isCollapsed={false} equations={equations} />);
+        wrapper.find('.equation').should.have.length(2);
 
-        functions.shift();
-        wrapper = mount(<FunctionBar isCollapsed={false} functions={functions} />);
-        wrapper.find('.function').should.have.length(1);
+        equations.shift();
+        wrapper = mount(<EquationBar isCollapsed={false} equations={equations} />);
+        wrapper.find('.equation').should.have.length(1);
     });
 });
 

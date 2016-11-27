@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import FunctionBar from './functions/FunctionBar';
+import EquationBar from './equations/EquationBar';
 import OptionBar from './options/OptionBar';
 import Plot from './Plot';
 import './plotter.scss';
@@ -10,17 +10,18 @@ export default class Plotter extends Component {
     constructor () {
         super();
         this.state = {
-            isFunctionBarCollapsed: true,
+            isEquationBarCollapsed: true,
             isOptionBarCollapsed: true,
-            functions: [
+            equations: [
                 {
+                    id: 1,
                     value: 'cos(x)-sin(y)'
                 }
             ]
         };
 
         this.handleSidebarToggle = this.handleSidebarToggle.bind(this);
-        this.addFunction = this.addFunction.bind(this);
+        this.addEquation = this.addEquation.bind(this);
     }
 
     componentWillMount () {
@@ -37,8 +38,8 @@ export default class Plotter extends Component {
 
     handleSidebarToggle (e) {
         switch (e.target.name) {
-            case 'functionBarToggle':
-                this.setState({ isFunctionBarCollapsed: !this.state.isFunctionBarCollapsed });
+            case 'equationBarToggle':
+                this.setState({ isEquationBarCollapsed: !this.state.isEquationBarCollapsed });
                 break;
 
             case 'optionBarToggle':
@@ -50,11 +51,12 @@ export default class Plotter extends Component {
         }
     }
 
-    addFunction () {
-        const functions = this.state.functions;
-        functions.push({ value: '' });
+    addEquation () {
+        const equations = this.state.equations;
+        // get max id for next id
+        equations.push({ value: '' });
         this.setState({
-            functions: functions
+            equations: equations
         });
     }
 
@@ -62,15 +64,15 @@ export default class Plotter extends Component {
         return (
             <div className='plotter'>
                 <button type='button'
-                    name='functionBarToggle'
+                    name='equationBarToggle'
                     onClick={this.handleSidebarToggle}
                     className='toggleButton left'>
-                    Toggle the FunctionBar
+                    Toggle the EquationBar
                 </button>
-                <FunctionBar
-                    isCollapsed={this.state.isFunctionBarCollapsed}
-                    functions={this.state.functions}
-                    addFunction={this.addFunction}
+                <EquationBar
+                    isCollapsed={this.state.isEquationBarCollapsed}
+                    equations={this.state.equations}
+                    addEquation={this.addEquation}
                     />
 
                 <button type='button'

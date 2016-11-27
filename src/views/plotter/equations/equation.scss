@@ -1,11 +1,11 @@
 @import '../../../global-style-variables';
 
-.function {
+.equation {
     display: block;
     padding: 1em;
     background-color: lighten($primary, 20%);
 
-    .function__input {
+    .equation__input {
         height: 1em;
         border: 1px solid $primary;
         border-radius: $border-radius;

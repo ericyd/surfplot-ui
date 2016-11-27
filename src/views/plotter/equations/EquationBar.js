@@ -1,10 +1,10 @@
 'use strict';
 
 import React, { Component } from 'react';
-import Function from './Function';
+import Equation from './Equation';
 import '../sidebar.scss';
 
-export default class FunctionBar extends Component {
+export default class EquationBar extends Component {
     constructor () {
         super();
     }
@@ -18,14 +18,14 @@ export default class FunctionBar extends Component {
             ].join(' ')}>
 
                 {
-                    this.props.functions.map((func) => {
-                        return <Function value={func.value} key={Math.random()} />;
+                    this.props.equations.map((func) => {
+                        return <Equation value={func.value} key={Math.random()} />;
                     })
                 }
 
                 <button type='button'
-                    className='addFunction'
-                    onClick={this.props.addFunction}>
+                    className='addEquation'
+                    onClick={this.props.addEquation}>
                     +
                 </button>
 
@@ -34,8 +34,8 @@ export default class FunctionBar extends Component {
     }
 }
 
-FunctionBar.propTypes = {
+EquationBar.propTypes = {
     isCollapsed: React.PropTypes.bool.isRequired,
-    functions: React.PropTypes.array.isRequired,
-    addFunction: React.PropTypes.func.isRequired
+    equations: React.PropTypes.array.isRequired,
+    addEquation: React.PropTypes.func.isRequired
 };

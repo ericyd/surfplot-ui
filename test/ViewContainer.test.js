@@ -46,37 +46,37 @@ describe('<ViewContainer />', function () {
 
     it('should update state when <Plotter /> unmounts', () => {
         const viewWrapper = mount(<ViewContainer />);
-        expect(viewWrapper.state('isFunctionBarCollapsed')).to.equal(undefined);
+        expect(viewWrapper.state('isEquationBarCollapsed')).to.equal(undefined);
         viewWrapper.setProps({ view: 'About' });
-        expect(viewWrapper.state('isFunctionBarCollapsed')).to.equal(true);
+        expect(viewWrapper.state('isEquationBarCollapsed')).to.equal(true);
         viewWrapper.setProps({ view: 'Credits' });
-        expect(viewWrapper.state('isFunctionBarCollapsed')).to.equal(true);
+        expect(viewWrapper.state('isEquationBarCollapsed')).to.equal(true);
     });
 
     it('should match the Plotter state when it unmounts', () => {
         const viewWrapper = mount(<ViewContainer />);
-        let functionBarButton = viewWrapper.find('[name="functionBarToggle"]');
+        let equationBarButton = viewWrapper.find('[name="equationBarToggle"]');
         let optionBarButton = viewWrapper.find('[name="optionBarToggle"]');
 
-        functionBarButton.simulate('click');
+        equationBarButton.simulate('click');
         viewWrapper.setProps({ view: 'About' });
-        expect(viewWrapper.state('isFunctionBarCollapsed')).to.equal(false);
+        expect(viewWrapper.state('isEquationBarCollapsed')).to.equal(false);
         expect(viewWrapper.state('isOptionBarCollapsed')).to.equal(true);
 
         viewWrapper.setProps({ view: 'Plotter' });
         optionBarButton = viewWrapper.find('[name="optionBarToggle"]');
         optionBarButton.simulate('click');
         viewWrapper.setProps({ view: 'Credits' });
-        expect(viewWrapper.state('isFunctionBarCollapsed')).to.equal(false);
+        expect(viewWrapper.state('isEquationBarCollapsed')).to.equal(false);
         expect(viewWrapper.state('isOptionBarCollapsed')).to.equal(false);
 
         viewWrapper.setProps({ view: 'Plotter' });
-        functionBarButton = viewWrapper.find('[name="functionBarToggle"]');
+        equationBarButton = viewWrapper.find('[name="equationBarToggle"]');
         optionBarButton = viewWrapper.find('[name="optionBarToggle"]');
-        functionBarButton.simulate('click');
+        equationBarButton.simulate('click');
         optionBarButton.simulate('click');
         viewWrapper.setProps({ view: 'Credits' });
-        expect(viewWrapper.state('isFunctionBarCollapsed')).to.equal(true);
+        expect(viewWrapper.state('isEquationBarCollapsed')).to.equal(true);
         expect(viewWrapper.state('isOptionBarCollapsed')).to.equal(true);
     });
 });
