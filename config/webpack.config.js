@@ -9,9 +9,10 @@ const path = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
-  entry: {
-    app: [paths.appIndexJs]
-  },
+  entry: [
+    require.resolve('./polyfills'),
+    paths.appIndexJs
+  ],
   output: {
     filename: `bundle.js`,
     path: paths.appBuild,
