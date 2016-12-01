@@ -27,8 +27,8 @@ export default function Credits () {
             <h2>Essential packages</h2>
 
             <ol>
-                <li><a href='https://plot.ly/javascript/' target='_blank'>plotly.js</a>: This is basically the entire reason the application exists,
-                 so thanks folks at Plotly</li>
+                <li><a href='http://visjs.org/' target='_blank'>vis.js</a>: This is basically the entire reason the application exists,
+                 so thanks folks at Vis.js</li>
                 <li><a href='http://mathjs.org/' target='_blank'>math.js</a>: Handles all the math formula parsing.</li>
                 <li><a href='https://facebook.github.io/react/' target='_blank'>React</a>: UI framework</li>
                 <li><a href='https://babeljs.io/' target='_blank'>Babel</a>
