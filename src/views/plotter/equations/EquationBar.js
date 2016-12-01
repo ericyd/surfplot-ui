@@ -44,5 +44,7 @@ export default class EquationBar extends Component {
 EquationBar.propTypes = {
     isCollapsed: React.PropTypes.bool.isRequired,
     equations: React.PropTypes.array.isRequired,
-    addEquation: React.PropTypes.func.isRequired
+    addEquation: React.PropTypes.func.isRequired,
+    handleEQChange: React.PropTypes.func,
+    handleEQDelete: React.PropTypes.func
 };
