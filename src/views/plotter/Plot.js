@@ -1,9 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-// for some reason, mocha throws an error unless you import this path
-// https://github.com/plotly/plotly.js/issues/891
-import Plotly from 'plotly.js/dist/plotly.js';
+import vis from 'vis';
 import mathjs from 'mathjs';
 import './plot.scss';
 
@@ -15,71 +13,50 @@ export default class Plot extends Component {
     }
 
     componentDidMount () {
-        // this.process(this.props.eq);
+        this.process(this.props.eq);
     }
 
     process (eq) {
-        const max = 10;
-        const min = -10;
-        const span = max - min;
-        const granularity = 10;
-        const scope = {
-            x: Array(granularity).fill(1).map((item, i) => {
-                return (i / granularity * span) - 0.5 * (span);
-            }),
-            y: Array(granularity).fill(1).map((item, i) => {
-                return (i / granularity * span) - 0.5 * (span);
-            })
-        };
-
-        this.plot(eq, scope);
+        this.plot(eq);
     }
 
-    plot (eq, scope) {
-        const z1 = [];
-        for (let i = 0; i < scope.x.length; i++) {
-            const row = [];
-            for (let j = 0; j < scope.y.length; j++) {
-                const pointScope = {
-                    x: scope.x[i],
-                    y: scope.y[j]
-                };
-                const value = mathjs.eval(eq, pointScope);
-                row.push(value);
+    plot (eq) {
+        // Create and populate a data table.
+        var data = new vis.DataSet();
+        // create some nice looking data with sin/cos
+        var counter = 0;
+        var steps = 50;  // number of datapoints will be steps*steps
+        var axisMax = 10;
+        var axisStep = axisMax / steps;
+        for (var x = 0; x < axisMax; x += axisStep) {
+            for (var y = 0; y < axisMax; y += axisStep) {
+                var value = mathjs.eval(eq, { x: x, y: y });
+                data.add({
+                    id: counter++,
+                    x: x,
+                    y: y,
+                    z: value,
+                    style: value
+                });
             }
-            z1.push(row);
         }
 
-        const z1Data = {
-            x: scope.x,
-            y: scope.y,
-            z: z1,
-            type: 'surface'
-            // type: 'mesh3d'
+        // specify options
+        var options = {
+            width: '500px',
+            height: '552px',
+            style: 'surface',
+            showPerspective: true,
+            showGrid: true,
+            showShadow: false,
+            keepAspectRatio: true,
+            verticalRatio: 0.5
         };
 
-        const layout = {
-            autosize: false,
-            margin: {
-                // defaults = b:80, l:80, r:80, t:100
-                b: 200, l: 260, r: 260, t: 260
-            },
-            scene: {
-                xaxis: {
-                    type: 'linear',
-                    range: [-10, 10]
-                },
-                yaxis: {
-                    type: 'linear',
-                    range: [-10, 10]
-                },
-                zaxis: {
-                    type: 'linear',
-                    range: [-10, 10]
-                }
-            }
-        };
-        Plotly.newPlot('plot', [z1Data], layout);
+        // Instantiate our graph object.
+        var container = document.getElementById('plot');
+        /*eslint no-unused-vars: "off" */
+        var graph3d = new vis.Graph3d(container, data, options);
     }
 
     render () {
