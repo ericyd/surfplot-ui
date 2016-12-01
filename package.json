@@ -7,7 +7,8 @@
     "test": "eslint -c config/.eslintrc \"test/**\" && mocha --compilers js:babel-core/register --require ignore-styles --require test/setup.js",
     "build": "node scripts/build --compilers js:babel-core/register",
     "copy-public": "node scripts/copy-public --compilers js:babel-core/register",
-    "start": "node scripts/start"
+    "start": "node scripts/start",
+    "lint": "eslint -c config/.eslintrc \"test/**/*.js\" \"src/**/*.js\" "
   },
   "author": "Eric Dauenhauer",
   "license": "GPL-3.0",
