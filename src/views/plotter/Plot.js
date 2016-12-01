@@ -9,28 +9,38 @@ export default class Plot extends Component {
     constructor () {
         super();
         this.plot = this.plot.bind(this);
-        this.process = this.process.bind(this);
     }
 
     componentDidMount () {
-        this.process(this.props.eq);
+        this.plot(this.props.eq);
     }
 
-    process (eq) {
-        this.plot(eq);
+    shouldComponentUpdate (nextProps) {
+        console.log(`shouldPlotUpdate = ${nextProps.eq !== this.props.eq}, ` +
+            `new EQ: ${nextProps.eq}, old EQ: ${this.props.eq}`);
+        if (nextProps.eq !== this.props.eq) {
+            return true;
+        }
+        return false;
+    }
+
+    componentDidUpdate () {
+        this.plot(this.props.eq);
     }
 
     plot (eq) {
         // Create and populate a data table.
-        var data = new vis.DataSet();
+        const data = new vis.DataSet();
         // create some nice looking data with sin/cos
-        var counter = 0;
-        var steps = 50;  // number of datapoints will be steps*steps
-        var axisMax = 10;
-        var axisStep = axisMax / steps;
-        for (var x = 0; x < axisMax; x += axisStep) {
-            for (var y = 0; y < axisMax; y += axisStep) {
-                var value = mathjs.eval(eq, { x: x, y: y });
+        let counter = 0;
+        const steps = 50;  // number of datapoints will be steps*steps
+        const axisMax = 10;
+        const axisStep = axisMax / steps;
+        // compile once, evaluate for each point
+        const compiledEQ = mathjs.compile(eq);
+        for (let x = 0; x < axisMax; x += axisStep) {
+            for (let y = 0; y < axisMax; y += axisStep) {
+                const value = compiledEQ.eval({ x: x, y: y });
                 data.add({
                     id: counter++,
                     x: x,
@@ -42,7 +52,7 @@ export default class Plot extends Component {
         }
 
         // specify options
-        var options = {
+        const options = {
             width: '500px',
             height: '552px',
             style: 'surface',
@@ -54,9 +64,9 @@ export default class Plot extends Component {
         };
 
         // Instantiate our graph object.
-        var container = document.getElementById('plot');
+        const container = document.getElementById('plot');
         /*eslint no-unused-vars: "off" */
-        var graph3d = new vis.Graph3d(container, data, options);
+        const graph3d = new vis.Graph3d(container, data, options);
     }
 
     render () {
