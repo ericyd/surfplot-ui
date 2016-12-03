@@ -8,7 +8,7 @@
     "build": "node scripts/build --compilers js:babel-core/register",
     "copy-public": "node scripts/copy-public --compilers js:babel-core/register",
     "start": "node scripts/start",
-    "lint": "eslint -c config/.eslintrc \"test/**/*.js\" \"src/**/*.js\" "
+    "lint": "eslint -c config/.eslintrc \"test/**/*.js src/**/*.js\" && stylelint \"src/**/*.scss\" --config config/stylelint.config.js --syntax scss"
   },
   "author": "Eric Dauenhauer",
   "license": "GPL-3.0",
