@@ -1,5 +1,11 @@
 @import 'global-style-variables';
 
+* {
+    font-family: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
 body {
     margin: 0;
     padding: 0;
