@@ -7,22 +7,6 @@ import '../sidebar.scss';
 export default class OptionBar extends Component {
     constructor () {
         super();
-        this.groups = [
-            {
-                title: 'Axes',
-                options: [
-                    'X',
-                    'Y',
-                    'Z'
-                ]
-            },
-            {
-                title: 'Style',
-                options: [
-                    'graph type'
-                ]
-            }
-        ];
     }
 
     render () {
@@ -34,12 +18,13 @@ export default class OptionBar extends Component {
             ].join(' ')}>
 
                 {
-                    this.groups.map((group, i) => {
+                    Object.keys(this.props.options).map((group, i) => {
                         return (
-                            <OptionGroup title={group.title}
+                            <OptionGroup title={group}
                                 index={i}
-                                key={group.title}
-                                options={group.options} />
+                                key={group}
+                                options={this.props.options[group]}
+                                handleChange={this.props.handleChange} />
                         );
                     })
                 }
@@ -50,5 +35,7 @@ export default class OptionBar extends Component {
 }
 
 OptionBar.propTypes = {
-    isCollapsed: React.PropTypes.bool.isRequired
+    isCollapsed: React.PropTypes.bool.isRequired,
+    options: React.PropTypes.object,
+    handleChange: React.PropTypes.func
 };

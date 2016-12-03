@@ -38,9 +38,14 @@ export default class OptionGroup extends Component {
                     this.state.isCollapsed ? 'hide' : 'show'].join(' ')}>
                     <ul>
                         {
-                            this.props.options.map((option, i) => {
+                            Object.keys(this.props.options).map((option, i, opts) => {
                                 return (
-                                    <li key={option}><Option name={option} /></li>
+                                    <li key={option}>
+                                        <Option name={option}
+                                            parent={this.props.title}
+                                            value={this.props.options[option]}
+                                            handleChange={this.props.handleChange} />
+                                    </li>
                                 );
                             })
                         }
@@ -54,5 +59,6 @@ export default class OptionGroup extends Component {
 
 OptionGroup.propTypes = {
     title: React.PropTypes.string.isRequired,
-    options: React.PropTypes.array.isRequired
+    options: React.PropTypes.object.isRequired,
+    handleChange: React.PropTypes.func
 };

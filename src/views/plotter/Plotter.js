@@ -17,13 +17,24 @@ export default class Plotter extends Component {
                     id: 1,
                     value: 'cos(x)-sin(y)'
                 }
-            ]
+            ],
+            options: {
+                Axes: {
+                    x: true,
+                    y: true,
+                    z: true
+                },
+                Style: {
+                    type: 'surface'
+                }
+            }
         };
 
         this.handleSidebarToggle = this.handleSidebarToggle.bind(this);
         this.addEquation = this.addEquation.bind(this);
         this.handleEQChange = this.handleEQChange.bind(this);
         this.handleEQDelete = this.handleEQDelete.bind(this);
+        this.handleOptionChange = this.handleOptionChange.bind(this);
     }
 
     componentWillMount () {
@@ -63,6 +74,12 @@ export default class Plotter extends Component {
         this.setState({
             equations: equations
         });
+    }
+
+    handleOptionChange (parent, option, value) {
+        const options = this.state.options;
+        options[parent][option] = value;
+        this.setState({ options: options });
     }
 
     handleEQChange (id, value) {
@@ -112,7 +129,9 @@ export default class Plotter extends Component {
                     className='toggleButton right'>
                     Toggle the OptionBar
                 </button>
-                <OptionBar isCollapsed={this.state.isOptionBarCollapsed} />
+                <OptionBar isCollapsed={this.state.isOptionBarCollapsed}
+                    options={this.state.options}
+                    handleChange={this.handleOptionChange} />
 
                 <Plot eq={this.state.equations[0].value} />
             </div>
