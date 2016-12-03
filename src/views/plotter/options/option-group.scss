@@ -28,7 +28,9 @@
     }
 
     .option-group__options {
-        list-style-type: square;
+        li {
+            list-style-type: none;
+        }
 
         &.hide {
             display: none;
