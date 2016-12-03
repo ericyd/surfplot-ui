@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
+import Option from './Option';
 import './option-group.scss';
 import '../../../icon.scss';
 
@@ -39,7 +40,7 @@ export default class OptionGroup extends Component {
                         {
                             this.props.options.map((option, i) => {
                                 return (
-                                    <li key={option}>{option}</li>
+                                    <li key={option}><Option name={option} /></li>
                                 );
                             })
                         }
