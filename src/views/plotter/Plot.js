@@ -53,8 +53,8 @@ export default class Plot extends Component {
 
         // specify options
         const options = {
-            width: '500px',
-            height: '552px',
+            width: 'auto',
+            height: '80%',
             style: 'surface',
             showPerspective: true,
             showGrid: true,
