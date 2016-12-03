@@ -2,8 +2,17 @@
 
 .option-group {
     .option-group__header {
+        font-size: 0.6em;
+        text-transform: uppercase;
         background-color: $primary;
         cursor: pointer;
+        border: 1px solid $primary--dark;
+        border-left: 0;
+        border-right: 0;
+
+        .icon {
+            margin: 0 0.5em 0 0.25em;
+        }
 
         .is-collapsed {
             -ms-transform: rotate(90deg); /* IE 9 */
