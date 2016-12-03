@@ -8,7 +8,7 @@
     "build": "node scripts/build --compilers js:babel-core/register",
     "copy-public": "node scripts/copy-public --compilers js:babel-core/register",
     "start": "node scripts/start",
-    "lint": "eslint -c config/.eslintrc \"test/**/*.js\" \"src/**/*.js\" "
+    "lint": "eslint -c config/.eslintrc \"test/**/*.js src/**/*.js\" && stylelint \"src/**/*.scss\" --config config/stylelint.config.js --syntax scss"
   },
   "author": "Eric Dauenhauer",
   "license": "GPL-3.0",
@@ -28,7 +28,6 @@
     "css-loader": "^0.25.0",
     "enzyme": "^2.6.0",
     "eslint": "^3.9.1",
-    "eslint-config-airbnb": "^13.0.0",
     "eslint-config-react": "^1.1.7",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-import": "^2.2.0",
@@ -39,9 +38,7 @@
     "mocha": "^3.1.2",
     "node-sass": "^3.11.2",
     "open": "0.0.5",
-    "react": "^15.3.2",
     "react-addons-test-utils": "^15.4.1",
-    "react-dom": "^15.3.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "stylelint-config-standard": "^15.0.0",
@@ -51,7 +48,9 @@
   },
   "dependencies": {
     "mathjs": "^3.7.0",
-    "plotly.js": "^1.20.1"
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "vis": "^4.17.0"
   },
   "repository": {
     "type": "git",
