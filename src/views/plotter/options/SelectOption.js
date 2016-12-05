@@ -19,7 +19,7 @@ export default class SelectOption extends Component {
 
     handleChange (e) {
         const value = e.target.value;
-        const id = e.target.name;
+        const id = e.target.id;
         const newValue = {};
         newValue[id] = value;
         console.log(newValue);
@@ -30,12 +30,12 @@ export default class SelectOption extends Component {
     render () {
         return (
             <select onChange={this.handleChange}
-                value={this.state.selected}>}>
+                id='selected'
+                value={this.state.selected}>
                 {
                     this.props.data.values.map((value) => {
                         return (
                             <option key={value}
-                                name='selected'
                                 value={value}>
                                 {value}
                             </option>
