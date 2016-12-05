@@ -98,9 +98,9 @@ export default class Plotter extends Component {
         });
     }
 
-    handleOptionChange (parent, option, value) {
+    handleOptionChange (parent, idx, key, value) {
         const options = this.state.options;
-        options[parent][option] = value;
+        options[parent][idx][key] = value;
         this.setState({ options: options });
     }
 
