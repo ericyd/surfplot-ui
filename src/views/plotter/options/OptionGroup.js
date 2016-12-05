@@ -1,7 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react';
-import OptionFactory from './OptionFactory';
+// import OptionFactory from './OptionFactory';
+import Option from './Option';
 import './option-group.scss';
 import '../../../icon.scss';
 
