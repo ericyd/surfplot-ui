@@ -18,33 +18,41 @@ export default class Plotter extends Component {
                     value: 'cos(x)-sin(y)'
                 }
             ],
+            // id must be equivalent to the options[key]
             options: {
                 xMin: {
-                    displayName: 'min',
+                    name: 'X min',
+                    id: 'xMin',
                     value: -5
                 },
                 xMax: {
-                    displayName: 'max',
+                    name: 'X max',
+                    id: 'xMax',
                     value: 5
                 },
                 yMin: {
-                    displayName: 'min',
+                    name: 'Y min',
+                    id: 'yMin',
                     value: -5
                 },
                 yMax: {
-                    displayName: 'max',
+                    name: 'Y max',
+                    id: 'yMax',
                     value: 5
                 },
                 zMin: {
-                    displayName: 'min',
+                    name: 'Z min',
+                    id: 'zMin',
                     value: -5
                 },
                 zMax: {
-                    displayName: 'max',
+                    name: 'Z max',
+                    id: 'zMax',
                     value: 5
                 },
                 surfaceType: {
-                    displayName: 'Plot Type',
+                    name: 'Plot Type',
+                    id: 'surfaceType',
                     value: 'surface',
                     values: [
                         'surface',
@@ -52,7 +60,8 @@ export default class Plotter extends Component {
                     ]
                 }
                 plotWidth: {
-                    displayName: 'width',
+                    name: 'Width',
+                    id: 'plotWidth',
                     value: 'auto',
                     values: [
                         'auto'
@@ -62,7 +71,8 @@ export default class Plotter extends Component {
                     ]
                 },
                 plotHeight: {
-                    displayName: 'height',
+                    name: 'Height',
+                    id: 'plotHeight',
                     value: '80%',
                     values: [
                         'auto',
@@ -74,7 +84,7 @@ export default class Plotter extends Component {
             }
             this.groups = {
                 axes: {
-                    displayName: 'Axes',
+                    name: 'Axes',
                     children: [
                         this.state.xMin,
                         this.state.xMax,
@@ -85,13 +95,13 @@ export default class Plotter extends Component {
                     ]
                 },
                 style: {
-                    displayName: 'Style',
+                    name: 'Style',
                     children: [
                         this.state.surfaceType
                     ]
                 },
                 plot: {
-                    displayName: 'Plot',
+                    name: 'Plot',
                     children: [
                         this.state.plotWidth,
                         this.state.plotHeight
@@ -146,9 +156,9 @@ export default class Plotter extends Component {
         });
     }
 
-    handleOptionChange (parent, idx, key, value) {
+    handleOptionChange (key, value) {
         const options = this.state.options;
-        options[parent][idx][key] = value;
+        options[key].value = value;
         this.setState({ options: options });
     }
 
