@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import Option from './Option';
+import OptionFactory from './OptionFactory';
 import './option-group.scss';
 import '../../../icon.scss';
 
@@ -38,12 +38,13 @@ export default class OptionGroup extends Component {
                     this.state.isCollapsed ? 'hide' : 'show'].join(' ')}>
                     <ul>
                         {
-                            Object.keys(this.props.options).map((option, i, opts) => {
+                            this.props.options.map((option, i, opts) => {
                                 return (
-                                    <li key={option}>
-                                        <Option name={option}
+                                    <li key={option.name}>
+                                        <OptionFactory name={option.name}
                                             parent={this.props.title}
-                                            value={this.props.options[option]}
+                                            index={i}
+                                            data={option}
                                             handleChange={this.props.handleChange} />
                                     </li>
                                 );
@@ -59,6 +60,6 @@ export default class OptionGroup extends Component {
 
 OptionGroup.propTypes = {
     title: React.PropTypes.string.isRequired,
-    options: React.PropTypes.object.isRequired,
+    options: React.PropTypes.array.isRequired,
     handleChange: React.PropTypes.func
 };
