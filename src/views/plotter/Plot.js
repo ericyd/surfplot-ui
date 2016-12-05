@@ -15,10 +15,10 @@ export default class Plot extends Component {
 
     componentWillMount () {
         const options = this.formatOptions(this.props.options);
-        const data = this.generateData();
-        this.setState({ 
+        const data = this.generateData(this.props.eq);
+        this.setState({
             options: options,
-            data: data 
+            data: data
         });
     }
 
@@ -42,9 +42,9 @@ export default class Plot extends Component {
     // takes an `options` object and turns it into a format accepted by vis.Graph3d
     formatOptions (options) {
         const newOptions = {
-            width: options.Plot[0].selected,
-            height: options.Plot[1].selected,
-            style: options.Style[0].selected,
+            width: options.plotWidth.value,
+            height: options.plotHeight.value,
+            style: options.surfaceType.value,
             showPerspective: true,
             showGrid: true,
             showShadow: false,
@@ -55,7 +55,7 @@ export default class Plot extends Component {
         return newOptions;
     }
 
-    generateData () {
+    generateData (eq) {
         // Create and populate a data table.
         const data = new vis.DataSet();
         // create some nice looking data with sin/cos
