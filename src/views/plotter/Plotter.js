@@ -49,6 +49,29 @@ export default class Plotter extends Component {
                         ],
                         selected: 'surface'
                     }
+                ],
+                Plot: [
+                    {
+                        name: 'width',
+                        type: 'select',
+                        values: [
+                            'auto',
+                            '100%',
+                            '50%'
+                        ],
+                        selected: 'auto'
+                    },
+                    {
+                        name: 'height',
+                        type: 'select',
+                        values: [
+                            'auto',
+                            '100%',
+                            '80%',
+                            '50%'
+                        ],
+                        selected: '80%'
+                    }
                 ]
             }
         };
@@ -156,7 +179,8 @@ export default class Plotter extends Component {
                     options={this.state.options}
                     handleChange={this.handleOptionChange} />
 
-                <Plot eq={this.state.equations[0].value} />
+                <Plot eq={this.state.equations[0].value}
+                    options={this.state.options} />
             </div>
         );
     }

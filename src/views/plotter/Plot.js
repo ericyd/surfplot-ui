@@ -8,7 +8,14 @@ import './plot.scss';
 export default class Plot extends Component {
     constructor () {
         super();
+        this.state = {};
         this.plot = this.plot.bind(this);
+        this.formatOptions = this.formatOptions.bind(this);
+    }
+
+    componentWillMount () {
+        const options = this.formatOptions(this.props.options);
+        this.setState({ options: options });
     }
 
     componentDidMount () {
@@ -26,6 +33,22 @@ export default class Plot extends Component {
 
     componentDidUpdate () {
         this.plot(this.props.eq);
+    }
+
+    // takes an `options` object and turns it into a format accepted by vis.Graph3d
+    formatOptions (options) {
+        const newOptions = {
+            width: options.Plot[0].selected,
+            height: options.Plot[1].selected,
+            style: options.Style[0].selected,
+            showPerspective: true,
+            showGrid: true,
+            showShadow: false,
+            keepAspectRatio: true,
+            verticalRatio: 0.5
+        };
+
+        return newOptions;
     }
 
     plot (eq) {
@@ -51,22 +74,10 @@ export default class Plot extends Component {
             }
         }
 
-        // specify options
-        const options = {
-            width: 'auto',
-            height: '80%',
-            style: 'surface',
-            showPerspective: true,
-            showGrid: true,
-            showShadow: false,
-            keepAspectRatio: true,
-            verticalRatio: 0.5
-        };
-
         // Instantiate our graph object.
         const container = document.getElementById('plot');
         /*eslint no-unused-vars: "off" */
-        const graph3d = new vis.Graph3d(container, data, options);
+        const graph3d = new vis.Graph3d(container, data, this.state.options);
     }
 
     render () {
