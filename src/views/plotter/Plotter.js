@@ -58,13 +58,13 @@ export default class Plotter extends Component {
                         'surface',
                         'mesh'
                     ]
-                }
+                },
                 plotWidth: {
                     name: 'Width',
                     id: 'plotWidth',
                     value: 'auto',
                     values: [
-                        'auto'
+                        'auto',
                         '100%',
                         '80%',
                         '50%'
@@ -82,31 +82,31 @@ export default class Plotter extends Component {
                     ]
                 }
             }
-            this.groups = {
-                axes: {
-                    name: 'Axes',
-                    children: [
-                        this.state.xMin,
-                        this.state.xMax,
-                        this.state.yMin,
-                        this.state.yMax,
-                        this.state.zMin,
-                        this.state.zMax
-                    ]
-                },
-                style: {
-                    name: 'Style',
-                    children: [
-                        this.state.surfaceType
-                    ]
-                },
-                plot: {
-                    name: 'Plot',
-                    children: [
-                        this.state.plotWidth,
-                        this.state.plotHeight
-                    ]
-                }
+        };
+        this.groups = {
+            axes: {
+                name: 'Axes',
+                children: [
+                    this.state.options.xMin,
+                    this.state.options.xMax,
+                    this.state.options.yMin,
+                    this.state.options.yMax,
+                    this.state.options.zMin,
+                    this.state.options.zMax
+                ]
+            },
+            style: {
+                name: 'Style',
+                children: [
+                    this.state.options.surfaceType
+                ]
+            },
+            plot: {
+                name: 'Plot',
+                children: [
+                    this.state.options.plotWidth,
+                    this.state.options.plotHeight
+                ]
             }
         };
 
