@@ -19,14 +19,36 @@ export default class Plotter extends Component {
                 }
             ],
             options: {
-                Axes: {
-                    x: true,
-                    y: true,
-                    z: true
-                },
-                Style: {
-                    type: 'surface'
-                }
+                Axes: [
+                    {
+                        name: 'x',
+                        type: 'range',
+                        min: -10,
+                        max: 10
+                    },
+                    {
+                        name: 'y',
+                        type: 'range',
+                        min: -10,
+                        max: 10
+                    },
+                    {
+                        name: 'z',
+                        type: 'range',
+                        min: -10,
+                        max: 10
+                    }
+                ],
+                Style: [
+                    {
+                        name: 'Surface type',
+                        type: 'select',
+                        values: [
+                            'surface',
+                            'mesh'
+                        ]
+                    }
+                ]
             }
         };
 
