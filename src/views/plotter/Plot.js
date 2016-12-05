@@ -15,7 +15,11 @@ export default class Plot extends Component {
 
     componentWillMount () {
         const options = this.formatOptions(this.props.options);
-        this.setState({ options: options });
+        const data = this.generateData();
+        this.setState({ 
+            options: options,
+            data: data 
+        });
     }
 
     componentDidMount () {
@@ -51,7 +55,7 @@ export default class Plot extends Component {
         return newOptions;
     }
 
-    plot (eq) {
+    generateData () {
         // Create and populate a data table.
         const data = new vis.DataSet();
         // create some nice looking data with sin/cos
@@ -73,11 +77,14 @@ export default class Plot extends Component {
                 });
             }
         }
+        return data;
+    }
 
+    plot (eq) {
         // Instantiate our graph object.
         const container = document.getElementById('plot');
         /*eslint no-unused-vars: "off" */
-        const graph3d = new vis.Graph3d(container, data, this.state.options);
+        const graph3d = new vis.Graph3d(container, this.state.data, this.state.options);
     }
 
     render () {
