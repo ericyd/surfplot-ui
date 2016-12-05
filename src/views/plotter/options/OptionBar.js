@@ -20,7 +20,7 @@ export default class OptionBar extends Component {
                 {
                     Object.keys(this.props.groups).map((group, i) => {
                         return (
-                            <OptionGroup title={this.props.groups[group].displayName}
+                            <OptionGroup title={this.props.groups[group].name}
                                 index={i}
                                 key={group}
                                 options={this.props.groups[group].children}

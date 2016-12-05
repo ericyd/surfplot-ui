@@ -41,11 +41,8 @@ export default class OptionGroup extends Component {
                             this.props.options.map((option, i, opts) => {
                                 return (
                                     <li key={option.name}>
-                                        <OptionFactory name={option.name}
-                                            parent={this.props.title}
-                                            index={i}
-                                            data={option}
-                                            handleChange={this.props.handleChange} />
+                                        <Option name={option.name}
+                                            data={option} />
                                     </li>
                                 );
                             })
