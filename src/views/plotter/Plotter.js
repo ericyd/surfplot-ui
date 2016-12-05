@@ -19,60 +19,84 @@ export default class Plotter extends Component {
                 }
             ],
             options: {
-                Axes: [
-                    {
-                        name: 'x',
-                        type: 'range',
-                        min: -10,
-                        max: 10
-                    },
-                    {
-                        name: 'y',
-                        type: 'range',
-                        min: -10,
-                        max: 10
-                    },
-                    {
-                        name: 'z',
-                        type: 'range',
-                        min: -10,
-                        max: 10
-                    }
-                ],
-                Style: [
-                    {
-                        name: 'Surface type',
-                        type: 'select',
-                        values: [
-                            'surface',
-                            'mesh'
-                        ],
-                        selected: 'surface'
-                    }
-                ],
-                Plot: [
-                    {
-                        name: 'width',
-                        type: 'select',
-                        values: [
-                            'auto',
-                            '100%',
-                            '50%'
-                        ],
-                        selected: 'auto'
-                    },
-                    {
-                        name: 'height',
-                        type: 'select',
-                        values: [
-                            'auto',
-                            '100%',
-                            '80%',
-                            '50%'
-                        ],
-                        selected: '80%'
-                    }
-                ]
+                xMin: {
+                    displayName: 'min',
+                    value: -5
+                },
+                xMax: {
+                    displayName: 'max',
+                    value: 5
+                },
+                yMin: {
+                    displayName: 'min',
+                    value: -5
+                },
+                yMax: {
+                    displayName: 'max',
+                    value: 5
+                },
+                zMin: {
+                    displayName: 'min',
+                    value: -5
+                },
+                zMax: {
+                    displayName: 'max',
+                    value: 5
+                },
+                surfaceType: {
+                    displayName: 'Plot Type',
+                    value: 'surface',
+                    values: [
+                        'surface',
+                        'mesh'
+                    ]
+                }
+                plotWidth: {
+                    displayName: 'width',
+                    value: 'auto',
+                    values: [
+                        'auto'
+                        '100%',
+                        '80%',
+                        '50%'
+                    ]
+                },
+                plotHeight: {
+                    displayName: 'height',
+                    value: '80%',
+                    values: [
+                        'auto',
+                        '100%',
+                        '80%',
+                        '50%'
+                    ]
+                }
+            }
+            this.groups = {
+                axes: {
+                    displayName: 'Axes',
+                    children: [
+                        this.state.xMin,
+                        this.state.xMax,
+                        this.state.yMin,
+                        this.state.yMax,
+                        this.state.zMin,
+                        this.state.zMax
+                    ]
+                },
+                style: {
+                    displayName: 'Style',
+                    children: [
+                        this.state.surfaceType
+                    ]
+                },
+                plot: {
+                    displayName: 'Plot',
+                    children: [
+                        this.state.plotWidth,
+                        this.state.plotHeight
+                    ]
+                }
             }
         };
 
@@ -176,6 +200,7 @@ export default class Plotter extends Component {
                     Toggle the OptionBar
                 </button>
                 <OptionBar isCollapsed={this.state.isOptionBarCollapsed}
+                    groups={this.groups}
                     options={this.state.options}
                     handleChange={this.handleOptionChange} />
 
