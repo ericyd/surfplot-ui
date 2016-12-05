@@ -43,6 +43,7 @@ export default class OptionGroup extends Component {
                                 return (
                                     <li key={option.name}>
                                         <Option name={option.name}
+                                            handleChange={this.props.handleChange}
                                             data={option} />
                                     </li>
                                 );
