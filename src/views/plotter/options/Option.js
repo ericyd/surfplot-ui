@@ -13,7 +13,7 @@ export default class Option extends Component {
 
     componentWillMount () {
         // the state will be determined by the type of Option passed to this component.
-        this.setState(this.props.data.value);
+        this.setState({ value: this.props.data.value });
     }
 
     handleChange (e) {
@@ -30,7 +30,7 @@ export default class Option extends Component {
 
                 {this.props.values ? (
                     // select
-                    select
+                    <span>select</span>
                 ) : (
                     // input
                     <label htmlFor={this.props.id}>{this.props.name}
@@ -41,7 +41,7 @@ export default class Option extends Component {
                     </label>
                 )}
             </div>
-        )
+        );
         // return (
         //     <span>
         //         <label htmlFor='min'>Min:
