@@ -46,7 +46,8 @@ export default class Plotter extends Component {
                         values: [
                             'surface',
                             'mesh'
-                        ]
+                        ],
+                        selected: 'surface'
                     }
                 ]
             }
