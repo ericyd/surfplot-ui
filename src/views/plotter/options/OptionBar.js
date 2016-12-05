@@ -18,12 +18,12 @@ export default class OptionBar extends Component {
             ].join(' ')}>
 
                 {
-                    Object.keys(this.props.options).map((group, i) => {
+                    Object.keys(this.props.groups).map((group, i) => {
                         return (
-                            <OptionGroup title={group}
+                            <OptionGroup title={this.props.groups[group].displayName}
                                 index={i}
                                 key={group}
-                                options={this.props.options[group]}
+                                options={this.props.groups[group].children}
                                 handleChange={this.props.handleChange} />
                         );
                     })
@@ -36,6 +36,9 @@ export default class OptionBar extends Component {
 
 OptionBar.propTypes = {
     isCollapsed: React.PropTypes.bool.isRequired,
-    options: React.PropTypes.object,
+    options: React.PropTypes.oneOfType([
+        React.PropTypes.array,
+        React.PropTypes.object
+    ]),
     handleChange: React.PropTypes.func
 };
