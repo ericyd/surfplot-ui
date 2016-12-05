@@ -13,7 +13,7 @@ export default class Option extends Component {
 
     componentWillMount () {
         // the state will be determined by the type of Option passed to this component.
-        this.setState({ value: this.props.data.value });
+        this.setState({ value: this.props.value });
     }
 
     handleChange (e) {

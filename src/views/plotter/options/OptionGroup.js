@@ -41,10 +41,10 @@ export default class OptionGroup extends Component {
                         {
                             this.props.options.map((option, i, opts) => {
                                 return (
-                                    <li key={option.name}>
+                                    <li key={option.id}>
                                         <Option name={option.name}
                                             handleChange={this.props.handleChange}
-                                            data={option} />
+                                            {...option} />
                                     </li>
                                 );
                             })
