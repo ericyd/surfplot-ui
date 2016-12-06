@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import Group from './Group';
+import Group from '../Group';
 import '../sidebar.scss';
 
 export default class OptionBar extends Component {
