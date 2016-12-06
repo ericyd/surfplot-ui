@@ -9,6 +9,7 @@ export default class Option extends Component {
         super();
         this.state = {};
         this.handleChange = this.handleChange.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
     componentWillMount () {
@@ -16,11 +17,26 @@ export default class Option extends Component {
         this.setState({ value: this.props.value });
     }
 
+    // send updated value to Plotter only when it is valid
+    handleKeyUp (e) {
+        // required due to React's synthetic events
+        e.persist();
+
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+
+        // set a timeout so that the function can be edited without sending multiple updates
+        this.timeout = setTimeout(() => {
+            if (e.target.value !== this.state.value) {
+                this.props.handleChange(e.target.id, e.target.value);
+            }
+        }, 500);
+    }
+
+    // update internal state to allow user interaction
     handleChange (e) {
-        const value = e.target.value;
-        const id = e.target.id;
-        this.setState({ value: value });
-        this.props.handleChange(id, value);
+        this.setState({ value: e.target.value });
     }
 
     render () {
@@ -37,7 +53,8 @@ export default class Option extends Component {
                     <input type='text'
                         value={this.state.value}
                         id={this.props.id}
-                        onChange={this.handleChange} />
+                        onChange={this.handleChange}
+                        onKeyUp={this.handleKeyUp} />
                     </label>
                 )}
             </div>
