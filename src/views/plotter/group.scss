@@ -1,7 +1,7 @@
 @import '../../../global-style-variables.scss';
 
-.option-group {
-    .option-group__header {
+.group {
+    .group__header {
         font-size: 0.6em;
         text-transform: uppercase;
         background-color: $primary;
@@ -27,7 +27,7 @@
         }
     }
 
-    .option-group__options {
+    .group__options {
         li {
             list-style-type: none;
         }

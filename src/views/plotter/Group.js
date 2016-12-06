@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import Option from './Option';
-import './option-group.scss';
+import './group.scss';
 import '../../../icon.scss';
 
 export default class OptionGroup extends Component {
@@ -21,10 +21,10 @@ export default class OptionGroup extends Component {
 
     render () {
         return (
-            <div className='option-group'>
+            <div className='group'>
 
                 {this.props.title &&
-                    (<section className='option-group__header' onClick={this.handleClick}>
+                    (<section className='group__header' onClick={this.handleClick}>
                         <img src='img/icons/iconmonstr-triangle-1.svg'
                             className={['icon',
                                 this.state.isCollapsed ? 'is-collapsed' : 'is-expanded'].join(' ')} />
@@ -33,7 +33,7 @@ export default class OptionGroup extends Component {
                 }
 
                 <section className={[
-                    'option-group__options',
+                    'group__options',
                     this.state.isCollapsed ? 'hide' : 'show'].join(' ')}>
                     <ul>
                         {
