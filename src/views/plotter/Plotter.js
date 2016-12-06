@@ -9,6 +9,9 @@ import './plotter.scss';
 export default class Plotter extends Component {
     constructor () {
         super();
+
+        // state contains only the data that will be changing
+        // a more complete data structure for options is held in this.groups
         this.state = {
             isEquationBarCollapsed: true,
             isOptionBarCollapsed: true,
@@ -18,94 +21,94 @@ export default class Plotter extends Component {
                     value: 'cos(x)-sin(y)'
                 }
             ],
-            // id must be equivalent to the options[key]
-            options: {
-                xMin: {
-                    name: 'X min',
-                    id: 'xMin',
-                    value: -5
-                },
-                xMax: {
-                    name: 'X max',
-                    id: 'xMax',
-                    value: 5
-                },
-                yMin: {
-                    name: 'Y min',
-                    id: 'yMin',
-                    value: -5
-                },
-                yMax: {
-                    name: 'Y max',
-                    id: 'yMax',
-                    value: 5
-                },
-                zMin: {
-                    name: 'Z min',
-                    id: 'zMin',
-                    value: -5
-                },
-                zMax: {
-                    name: 'Z max',
-                    id: 'zMax',
-                    value: 5
-                },
-                surfaceType: {
-                    name: 'Plot Type',
-                    id: 'surfaceType',
-                    value: 'surface',
-                    values: [
-                        'surface',
-                        'mesh'
-                    ]
-                },
-                plotWidth: {
-                    name: 'Width',
-                    id: 'plotWidth',
-                    value: 'auto',
-                    values: [
-                        'auto',
-                        '100%',
-                        '80%',
-                        '50%'
-                    ]
-                },
-                plotHeight: {
-                    name: 'Height',
-                    id: 'plotHeight',
-                    value: '80%',
-                    values: [
-                        'auto',
-                        '100%',
-                        '80%',
-                        '50%'
-                    ]
-                }
-            }
+            // all default values for options are declared here
+            xMin: -5
+            xMax: 5
+            yMin: -5
+            yMax: 5
+            zMin: -5
+            zMax: 5
+            surfaceType: 'surface'
+            plotWidth: '80%'
+            plotHeight: '80%'
         };
+
+        // id values for children must match the corresponding key in this.state
         this.groups = {
             axes: {
                 name: 'Axes',
                 children: [
-                    this.state.options.xMin,
-                    this.state.options.xMax,
-                    this.state.options.yMin,
-                    this.state.options.yMax,
-                    this.state.options.zMin,
-                    this.state.options.zMax
+                    {
+                        name: 'X min',
+                        id: 'xMin',
+                        value: this.state.xMin
+                    },
+                    {
+                        name: 'X max',
+                        id: 'xMax',
+                        value: this.state.xMax
+                    },
+                    {
+                        name: 'Y min',
+                        id: 'yMin',
+                        value: this.state.yMin
+                    },
+                    {
+                        name: 'Y max',
+                        id: 'yMax',
+                        value: this.state.yMax
+                    },
+                    {
+                        name: 'Z min',
+                        id: 'zMin',
+                        value: this.state.zMin
+                    },
+                    {
+                        name: 'Z max',
+                        id: 'zMax',
+                        value: this.state.zMax
+                    }
                 ]
             },
             style: {
                 name: 'Style',
                 children: [
-                    this.state.options.surfaceType
+                    {
+                        name: 'Plot Type',
+                        id: 'surfaceType',
+                        value: this.state.surfaceType,
+                        values: [
+                            'surface',
+                            'mesh'
+                        ]
+                    }
                 ]
             },
             plot: {
                 name: 'Plot',
                 children: [
-                    this.state.options.plotWidth,
-                    this.state.options.plotHeight
+                    {
+                        name: 'Width',
+                        id: 'plotWidth',
+                        value: this.state.plotWidth,
+                        values: [
+                            'auto',
+                            '100%',
+                            '80%',
+                            '50%'
+                        ]
+                    },
+                    {
+                        name: 'Height',
+                        id: 'plotHeight',
+                        value: this.state.plotHeight,
+                        values: [
+                            'auto',
+                            '100%',
+                            '80%',
+                            '50%'
+                        ]
+                    }
                 ]
             }
         };
@@ -157,9 +160,9 @@ export default class Plotter extends Component {
     }
 
     handleOptionChange (key, value) {
-        const options = this.state.options;
-        options[key].value = value;
-        this.setState({ options: options });
+        const newOption = {};
+        newOption[key] = value;
+        this.setState(newOption);
     }
 
     handleEQChange (id, value) {
