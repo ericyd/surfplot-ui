@@ -1,7 +1,6 @@
 'use strict';
 
 import React, { Component } from 'react';
-// import OptionFactory from './OptionFactory';
 import Option from './Option';
 import './option-group.scss';
 import '../../../icon.scss';
@@ -9,14 +8,11 @@ import '../../../icon.scss';
 export default class OptionGroup extends Component {
     constructor () {
         super();
+        // If a title exists, then collapse automatically, otherwise don't
         this.state = {
-            isCollapsed: true
+            isCollapsed: !!this.props.title
         };
         this.handleClick = this.handleClick.bind(this);
-    }
-
-    componentWillUnmount () {
-        console.log('unmounting');
     }
 
     handleClick (e) {
@@ -27,12 +23,14 @@ export default class OptionGroup extends Component {
         return (
             <div className='option-group'>
 
-                <section className='option-group__header' onClick={this.handleClick}>
-                    <img src='img/icons/iconmonstr-triangle-1.svg'
-                        className={['icon',
-                            this.state.isCollapsed ? 'is-collapsed' : 'is-expanded'].join(' ')} />
-                    {this.props.title}
-                </section>
+                {this.props.title &&
+                    (<section className='option-group__header' onClick={this.handleClick}>
+                        <img src='img/icons/iconmonstr-triangle-1.svg'
+                            className={['icon',
+                                this.state.isCollapsed ? 'is-collapsed' : 'is-expanded'].join(' ')} />
+                        {this.props.title}
+                    </section>)
+                }
 
                 <section className={[
                     'option-group__options',

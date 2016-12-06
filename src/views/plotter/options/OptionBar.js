@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import OptionGroup from './OptionGroup';
+import Group from './Group';
 import '../sidebar.scss';
 
 export default class OptionBar extends Component {
@@ -20,7 +20,7 @@ export default class OptionBar extends Component {
                 {
                     Object.keys(this.props.groups).map((group, i) => {
                         return (
-                            <OptionGroup title={this.props.groups[group].name}
+                            <Group title={this.props.groups[group].name}
                                 index={i}
                                 key={group}
                                 options={this.props.groups[group].children}
