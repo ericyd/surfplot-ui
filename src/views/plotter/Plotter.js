@@ -218,7 +218,7 @@ export default class Plotter extends Component {
                     handleChange={this.handleOptionChange} />
 
                 <Plot eq={this.state.equations[0].value}
-                    options={this.state.options} />
+                    options={...this.state} />
             </div>
         );
     }

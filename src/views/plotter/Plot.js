@@ -42,9 +42,9 @@ export default class Plot extends Component {
     // takes an `options` object and turns it into a format accepted by vis.Graph3d
     formatOptions (options) {
         const newOptions = {
-            width: options.plotWidth.value,
-            height: options.plotHeight.value,
-            style: options.surfaceType.value,
+            width: this.props.plotWidth,
+            height: this.props.plotHeight,
+            style: this.props.surfaceType,
             showPerspective: true,
             showGrid: true,
             showShadow: false,
