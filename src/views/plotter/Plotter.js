@@ -22,14 +22,14 @@ export default class Plotter extends Component {
                 }
             ],
             // all default values for options are declared here
-            xMin: -5
-            xMax: 5
-            yMin: -5
-            yMax: 5
-            zMin: -5
-            zMax: 5
-            surfaceType: 'surface'
-            plotWidth: '80%'
+            xMin: -5,
+            xMax: 5,
+            yMin: -5,
+            yMax: 5,
+            zMin: -5,
+            zMax: 5,
+            surfaceType: 'surface',
+            plotWidth: '80%',
             plotHeight: '80%'
         };
 
