@@ -1,8 +1,9 @@
 'use strict';
 
 import React, { Component } from 'react';
-import EquationBar from './equations/EquationBar';
-import OptionBar from './options/OptionBar';
+// import EquationBar from './equations/EquationBar';
+// import OptionBar from './options/OptionBar';
+import Sidebar from './Sidebar';
 import Plot from './Plot';
 import './plotter.scss';
 
@@ -18,6 +19,7 @@ export default class Plotter extends Component {
             equations: [
                 {
                     id: 1,
+                    name: 'z' + this.id,
                     value: 'cos(x)-sin(y)'
                 }
             ],
@@ -37,7 +39,7 @@ export default class Plotter extends Component {
         this.groups = {
             axes: {
                 name: 'Axes',
-                children: [
+                items: [
                     {
                         name: 'X min',
                         id: 'xMin',
@@ -72,7 +74,7 @@ export default class Plotter extends Component {
             },
             style: {
                 name: 'Style',
-                children: [
+                items: [
                     {
                         name: 'Plot Type',
                         id: 'surfaceType',
@@ -86,7 +88,7 @@ export default class Plotter extends Component {
             },
             plot: {
                 name: 'Plot',
-                children: [
+                items: [
                     {
                         name: 'Width',
                         id: 'plotWidth',
@@ -198,13 +200,14 @@ export default class Plotter extends Component {
                     className='toggleButton left'>
                     Toggle the EquationBar
                 </button>
-                <EquationBar
+
+                <Sidebar
                     isCollapsed={this.state.isEquationBarCollapsed}
-                    equations={this.state.equations}
-                    addEquation={this.addEquation}
-                    handleEQChange={this.handleEQChange}
-                    handleEQDelete={this.handleEQDelete}
-                    />
+                    groups={{ equations: { items: this.state.equations } }}
+                    handleItemAdd={this.addEquation}
+                    handleItemChange={this.handleEQChange}
+                    handleItemDelete={this.handleEQDelete}
+                    side='left' />
 
                 <button type='button'
                     name='optionBarToggle'
@@ -212,16 +215,31 @@ export default class Plotter extends Component {
                     className='toggleButton right'>
                     Toggle the OptionBar
                 </button>
-                <OptionBar isCollapsed={this.state.isOptionBarCollapsed}
+
+                <Sidebar
+                    isCollapsed={this.state.isOptionBarCollapsed}
                     groups={this.groups}
-                    options={this.state.options}
-                    handleChange={this.handleOptionChange} />
+                    handleItemChange={this.handleOptionChange}
+                    side='right' />
 
                 <Plot eq={this.state.equations[0].value}
-                    options={...this.state} />
+                    {...this.state} />
             </div>
         );
     }
+    // <EquationBar
+    // isCollapsed={this.state.isEquationBarCollapsed}
+    // equations={this.state.equations}
+    // addEquation={this.addEquation}
+    // handleEQChange={this.handleEQChange}
+    // handleEQDelete={this.handleEQDelete}
+    // />
+
+    // <OptionBar isCollapsed={this.state.isOptionBarCollapsed}
+    // groups={this.groups}
+    // options={this.state.options}
+    // handleChange={this.handleOptionChange} />
+
 }
 
 Plotter.propTypes = {
