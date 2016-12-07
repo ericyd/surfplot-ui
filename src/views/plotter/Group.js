@@ -1,18 +1,21 @@
 'use strict';
 
 import React, { Component } from 'react';
-import Option from './Option';
+import Option from './options/Option';
+// import Equation from './equations/Equation';
 import './group.scss';
-import '../../../icon.scss';
+import '../../icon.scss';
 
-export default class OptionGroup extends Component {
+export default class Group extends Component {
     constructor () {
         super();
         // If a title exists, then collapse automatically, otherwise don't
-        this.state = {
-            isCollapsed: !!this.props.title
-        };
+        this.state = {};
         this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentWillMount () {
+        this.setState({ isCollapsed: !!this.props.title });
     }
 
     handleClick (e) {
@@ -23,7 +26,7 @@ export default class OptionGroup extends Component {
         return (
             <div className='group'>
 
-                {this.props.title &&
+                {!!this.props.title &&
                     (<section className='group__header' onClick={this.handleClick}>
                         <img src='img/icons/iconmonstr-triangle-1.svg'
                             className={['icon',
@@ -33,21 +36,22 @@ export default class OptionGroup extends Component {
                 }
 
                 <section className={[
-                    'group__options',
+                    'group__items',
                     this.state.isCollapsed ? 'hide' : 'show'].join(' ')}>
-                    <ul>
-                        {
-                            this.props.options.map((option, i, opts) => {
-                                return (
-                                    <li key={option.id}>
-                                        <Option name={option.name}
-                                            handleChange={this.props.handleChange}
-                                            {...option} />
-                                    </li>
-                                );
-                            })
-                        }
-                    </ul>
+
+                    {
+                        this.props.items.map((item, i) => {
+                            return (
+                                <Option key={item.id}
+                                    name={item.name}
+                                    id={item.id}
+                                    value={item.value}
+                                    handleChange={this.props.handleChange}
+                                    handleDelete={this.props.handleDelete}
+                                    {...item} />
+                            );
+                        })
+                    }
                 </section>
 
             </div>
@@ -55,8 +59,11 @@ export default class OptionGroup extends Component {
     }
 }
 
-OptionGroup.propTypes = {
-    title: React.PropTypes.string.isRequired,
-    options: React.PropTypes.array.isRequired,
-    handleChange: React.PropTypes.func
+Group.propTypes = {
+    title: React.PropTypes.string,
+    items: React.PropTypes.array.isRequired,
+    handleChange: React.PropTypes.func,
+    handleDelete: React.PropTypes.func,
+    // necessary?
+    index: React.PropTypes.number
 };
