@@ -36,18 +36,6 @@ export default function Sidebar (props) {
 
         </div>
     );
-    // <Equation
-    //     value={eq.value}
-    //     key={eq.id}
-    //     id={eq.id}
-    //     handleChange={props.handleEQChange}
-    //     handleDelete={props.handleEQDelete} />
-
-    // <OptionGroup title={props.groups[group].name}
-    //     index={i}
-    //     key={group}
-    //     options={props.groups[group].children}
-    //     handleChange={props.handleItemChange} />
 }
 
 Sidebar.propTypes = {
