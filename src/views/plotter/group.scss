@@ -1,4 +1,4 @@
-@import '../../../global-style-variables.scss';
+@import '../../global-style-variables.scss';
 
 .group {
     .group__header {
@@ -27,7 +27,7 @@
         }
     }
 
-    .group__options {
+    .group__items {
         li {
             list-style-type: none;
         }
