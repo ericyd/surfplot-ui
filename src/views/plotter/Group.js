@@ -1,8 +1,9 @@
 'use strict';
 
 import React, { Component } from 'react';
-import Option from './options/Option';
+// import Option from './options/Option';
 // import Equation from './equations/Equation';
+import Item from './Item';
 import './group.scss';
 import '../../icon.scss';
 
@@ -42,7 +43,7 @@ export default class Group extends Component {
                     {
                         this.props.items.map((item, i) => {
                             return (
-                                <Option key={item.id}
+                                <Item key={item.id}
                                     name={item.name}
                                     id={item.id}
                                     value={item.value}
