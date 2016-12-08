@@ -24,12 +24,9 @@ export default class Plotter extends Component {
                 }
             ],
             // all default values for options are declared here
-            xMin: -5,
-            xMax: 5,
-            yMin: -5,
-            yMax: 5,
-            zMin: -5,
-            zMax: 5,
+            x: [-5, 5],
+            y: [-5, 5],
+            z: [-5, 5],
             surfaceType: 'surface',
             plotWidth: '80%',
             plotHeight: '80%'
@@ -41,34 +38,19 @@ export default class Plotter extends Component {
                 name: 'Axes',
                 items: [
                     {
-                        name: 'X min',
-                        id: 'xMin',
-                        value: this.state.xMin
+                        name: 'X',
+                        id: 'x',
+                        value: this.state.x
                     },
                     {
-                        name: 'X max',
-                        id: 'xMax',
-                        value: this.state.xMax
+                        name: 'Y',
+                        id: 'y',
+                        value: this.state.y
                     },
                     {
-                        name: 'Y min',
-                        id: 'yMin',
-                        value: this.state.yMin
-                    },
-                    {
-                        name: 'Y max',
-                        id: 'yMax',
-                        value: this.state.yMax
-                    },
-                    {
-                        name: 'Z min',
-                        id: 'zMin',
-                        value: this.state.zMin
-                    },
-                    {
-                        name: 'Z max',
-                        id: 'zMax',
-                        value: this.state.zMax
+                        name: 'Z',
+                        id: 'z',
+                        value: this.state.z
                     }
                 ]
             },
