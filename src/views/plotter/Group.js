@@ -1,11 +1,14 @@
 'use strict';
 
 import React, { Component } from 'react';
-// import Option from './options/Option';
-// import Equation from './equations/Equation';
-import Item from './Item';
 import './group.scss';
 import '../../icon.scss';
+
+/**
+ * Group is a relatively simple container with an optional title
+ * that collapses the group when clicked. It will render the title
+ * if this.props.title exists.
+ */
 
 export default class Group extends Component {
     constructor () {
@@ -39,20 +42,7 @@ export default class Group extends Component {
                 <section className={[
                     'group__items',
                     this.state.isCollapsed ? 'hide' : 'show'].join(' ')}>
-
-                    {
-                        this.props.items.map((item, i) => {
-                            return (
-                                <Item key={item.id}
-                                    name={item.name}
-                                    id={item.id}
-                                    value={item.value}
-                                    handleChange={this.props.handleChange}
-                                    handleDelete={this.props.handleDelete}
-                                    {...item} />
-                            );
-                        })
-                    }
+                    {this.props.children}
                 </section>
 
             </div>
@@ -61,10 +51,5 @@ export default class Group extends Component {
 }
 
 Group.propTypes = {
-    title: React.PropTypes.string,
-    items: React.PropTypes.array.isRequired,
-    handleChange: React.PropTypes.func,
-    handleDelete: React.PropTypes.func,
-    // necessary?
-    index: React.PropTypes.number
+    title: React.PropTypes.string
 };
