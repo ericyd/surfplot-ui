@@ -32,6 +32,9 @@ export default class Plotter extends Component {
             plotHeight: '80%'
         };
 
+        // The values for state must set from this.props.initialState on component mount
+        // however, the constructor is run before, which means this.groups always has the 'default' values
+        // TODO: update this to be...probably a separate function? ... which populates this.groups with the updated state values.
         // id values for children must match the corresponding key in this.state
         this.groups = {
             axes: {
