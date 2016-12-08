@@ -36,8 +36,11 @@ export default class Option extends Component {
 
         // set a timeout so that the function can be edited without sending multiple updates
         this.timeout = setTimeout(() => {
-            if (e.target.value !== this.state.value) {
-                this.props.handleChange(e.target.id, e.target.value);
+            // TODO: Make sure that the values remain as numbers
+            if (e.target.value !== this.props.value[e.target.dataset.isMax]) {
+                const newValue = this.state.value.slice();
+                newValue[e.target.dataset.isMax] = +(e.target.value);
+                this.props.handleChange(e.target.name, newValue);
             }
         }, 500);
     }
@@ -66,7 +69,8 @@ export default class Option extends Component {
                     <label htmlFor={this.props.id + 'min'}>min
                     <input type='text'
                         value={this.state.value[0]}
-                        data-isMax={0}
+                        data-is-max={0}
+                        name={this.props.id}
                         id={this.props.id + 'min'}
                         onChange={this.handleChange}
                         onKeyUp={this.handleKeyUp} />
@@ -74,7 +78,8 @@ export default class Option extends Component {
                     <label htmlFor={this.props.id + 'max'}>max
                     <input type='text'
                         value={this.state.value[1]}
-                        data-isMax={1}
+                        data-is-max={1}
+                        name={this.props.id}
                         id={this.props.id + 'max'}
                         onChange={this.handleChange}
                         onKeyUp={this.handleKeyUp} />
