@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import Equation from './Equation';
-import Group from '../Group';
+// import Group from '../Group';
 import '../sidebar.scss';
 
 export default class EquationBar extends Component {
@@ -26,7 +26,6 @@ export default class EquationBar extends Component {
                         // In this case, Group will only ever render one item, but it will render more for Options
                         // I need to look at the data coming from equations and options and make sure they are similar
                         return (
-                            <Group />
                             <Equation
                                 value={eq.value}
                                 key={eq.id}
