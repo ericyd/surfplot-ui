@@ -12,11 +12,11 @@ export default class Plot extends Component {
         this.plot = this.plot.bind(this);
         this.formatOptions = this.formatOptions.bind(this);
         this.generateData = this.generateData.bind(this);
-        this.updatePlotData = this.updatePlotData(this);
+        this.updatePlotData = this.updatePlotData.bind(this);
     }
 
     componentWillMount () {
-        this.updatePlotDataData();
+        this.updatePlotData();
     }
 
     componentDidMount () {
@@ -24,9 +24,9 @@ export default class Plot extends Component {
     }
 
     shouldComponentUpdate (nextProps) {
-        console.log(`shouldPlotUpdate = ${nextProps.eq !== this.props.eq}, ` +
-            `new EQ: ${nextProps.eq}, old EQ: ${this.props.eq}`);
-        if (nextProps.eq !== this.props.eq) {
+        // console.log(`shouldPlotUpdate = ${nextProps.eq !== this.props.eq}, ` +
+        //     `new EQ: ${nextProps.eq}, old EQ: ${this.props.eq}`);
+        if (nextProps.eq !== this.props.eq && nextProps.plotWidth !== this.props.plotWidth) {
             return true;
         }
         return false;
@@ -37,18 +37,21 @@ export default class Plot extends Component {
     }
 
     updatePlotData () {
+        console.log(this.props);
         this.setState({
-            options: this.formatOptions(this.props.options),
-            data: this.generateData(this.props.data)
+            options: this.formatOptions(this.props),
+            data: this.generateData(this.props.eq)
         });
+        // this.graph3d.setData(this.state.data);
+        // this.graph3d.setOptions(this.state.options);
     }
 
     // takes an `options` object and turns it into a format accepted by vis.Graph3d
     formatOptions (options) {
         const newOptions = {
-            width: this.props.plotWidth,
-            height: this.props.plotHeight,
-            style: this.props.surfaceType,
+            width: options.plotWidth,
+            height: options.plotHeight,
+            style: options.surfaceType,
             showPerspective: true,
             showGrid: true,
             showShadow: false,
@@ -88,7 +91,7 @@ export default class Plot extends Component {
         // Instantiate our graph object.
         const container = document.getElementById('plot');
         /*eslint no-unused-vars: "off" */
-        const graph3d = new vis.Graph3d(container, this.state.data, this.state.options);
+        this.graph3d = new vis.Graph3d(container, this.state.data, this.state.options);
     }
 
     render () {
