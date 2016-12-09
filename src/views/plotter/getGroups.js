@@ -1,31 +1,26 @@
 /**
- * Returns a `groups` object which contains the basic
- * groups used by Plotter. References values from state.
+ * Returns a `groups` object which contains the basic groups used by Plotter.
  *
- * @param {Object} state Contains values used by the groups in the returned object
  * @return {Object} groups Contains key/value pairs of objects and their contained items
  */
 
-export default function getGroups (state) {
+export default function getGroups () {
     return {
-        // id values for children must match the corresponding key in state
+        // id values for children must match the corresponding key in Plotter.state
         axes: {
             name: 'Axes',
             items: [
                 {
                     name: 'X',
-                    id: 'x',
-                    value: state.x
+                    id: 'x'
                 },
                 {
                     name: 'Y',
-                    id: 'y',
-                    value: state.y
+                    id: 'y'
                 },
                 {
                     name: 'Z',
-                    id: 'z',
-                    value: state.z
+                    id: 'z'
                 }
             ]
         },
@@ -35,7 +30,6 @@ export default function getGroups (state) {
                 {
                     name: 'Plot Type',
                     id: 'surfaceType',
-                    value: state.surfaceType,
                     values: [
                         'surface',
                         'mesh'
@@ -49,7 +43,6 @@ export default function getGroups (state) {
                 {
                     name: 'Width',
                     id: 'plotWidth',
-                    value: state.plotWidth,
                     values: [
                         'auto',
                         '100%',
@@ -60,7 +53,6 @@ export default function getGroups (state) {
                 {
                     name: 'Height',
                     id: 'plotHeight',
-                    value: state.plotHeight,
                     values: [
                         'auto',
                         '100%',
