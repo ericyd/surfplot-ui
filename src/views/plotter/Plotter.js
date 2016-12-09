@@ -145,8 +145,7 @@ export default class Plotter extends Component {
                     {...this.state}
                     side='right' />
 
-                <Plot eq={this.state.equations[0].value}
-                    {...this.state} />
+                <Plot {...this.state} />
             </div>
         );
     }
