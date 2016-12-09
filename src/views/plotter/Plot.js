@@ -3,12 +3,12 @@
 import React, { Component } from 'react';
 import vis from 'vis';
 import mathjs from 'mathjs';
+import shallowequal from 'shallowequal';
 import './plot.scss';
 
 export default class Plot extends Component {
     constructor () {
         super();
-        this.state = {};
         this.plot = this.plot.bind(this);
         this.formatOptions = this.formatOptions.bind(this);
         this.generateData = this.generateData.bind(this);
@@ -20,13 +20,14 @@ export default class Plot extends Component {
     }
 
     componentDidMount () {
-        this.plot(this.props.eq);
+        this.plot();
     }
 
     shouldComponentUpdate (nextProps) {
         // console.log(`shouldPlotUpdate = ${nextProps.eq !== this.props.eq}, ` +
         //     `new EQ: ${nextProps.eq}, old EQ: ${this.props.eq}`);
-        if (nextProps.eq !== this.props.eq && nextProps.plotWidth !== this.props.plotWidth) {
+        console.log('will update', !shallowequal(nextProps, this.props));
+        if (!shallowequal(nextProps, this.props)) {
             return true;
         }
         return false;
@@ -36,14 +37,19 @@ export default class Plot extends Component {
         this.updatePlotData();
     }
 
+    /**
+     * If graph3d exists, update it directly.
+     * Otherwise, set properties and the graph will fetch the data in plot()
+     */
     updatePlotData () {
-        console.log(this.props);
-        this.setState({
-            options: this.formatOptions(this.props),
-            data: this.generateData(this.props.eq)
-        });
-        // this.graph3d.setData(this.state.data);
-        // this.graph3d.setOptions(this.state.options);
+        if (this.graph3d !== undefined) {
+            this.graph3d.setOptions(this.formatOptions(this.props));
+            this.graph3d.setData(this.generateData(this.props.eq));
+        } else {
+            this.options = this.formatOptions(this.props);
+            this.data = this.generateData(this.props.eq);
+        }
+        console.log('graph3d updated', this.graph3d !== undefined);
     }
 
     // takes an `options` object and turns it into a format accepted by vis.Graph3d
@@ -87,11 +93,11 @@ export default class Plot extends Component {
         return data;
     }
 
-    plot (eq) {
+    plot () {
         // Instantiate our graph object.
         const container = document.getElementById('plot');
         /*eslint no-unused-vars: "off" */
-        this.graph3d = new vis.Graph3d(container, this.state.data, this.state.options);
+        this.graph3d = new vis.Graph3d(container, this.data, this.options);
     }
 
     render () {
