@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 // import OptionBar from './options/OptionBar';
 import Sidebar from './Sidebar';
 import Plot from './Plot';
+import getGroups from './getGroups';
 import './plotter.scss';
 
 export default class Plotter extends Component {
