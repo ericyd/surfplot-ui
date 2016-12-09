@@ -30,11 +30,15 @@ export default class Equation extends Component {
 
         // set a timeout so that the function can be edited without sending multiple updates
         this.timeout = setTimeout(() => {
-            if (e.target.value !== this.state.value && mathjs.eval(e.target.value, { x: 0, y: 0 })) {
-                // if a new and parse-able value, send back up to Plotter.js
-                this.props.handleChange(parseInt(e.target.id, 10), e.target.value);
+            if (e.target.value !== this.props.value) {
+                if (mathjs.eval(e.target.value, { x: 0, y: 0 })) {
+                    // if a new and parse-able value, send back up to Plotter.js
+                    this.props.handleChange(parseInt(e.target.id, 10), e.target.value);
+                } else {
+                    console.log('couldnt parse ', e.target.value);
+                }
             } else {
-                console.log('couldnt parse ', e.target.value, 'or the values didn\'t change');
+                console.log('value didnt change');
             }
         }, 2000);
     }
