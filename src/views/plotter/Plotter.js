@@ -32,73 +32,8 @@ export default class Plotter extends Component {
             plotHeight: '80%'
         };
 
-        // The values for state must set from this.props.initialState on component mount
-        // however, the constructor is run before, which means this.groups always has the 'default' values
-        // TODO: update this to be...probably a separate function? ... which populates this.groups with the updated state values.
-        // id values for children must match the corresponding key in this.state
-        this.groups = {
-            axes: {
-                name: 'Axes',
-                items: [
-                    {
-                        name: 'X',
-                        id: 'x',
-                        value: this.state.x
-                    },
-                    {
-                        name: 'Y',
-                        id: 'y',
-                        value: this.state.y
-                    },
-                    {
-                        name: 'Z',
-                        id: 'z',
-                        value: this.state.z
-                    }
-                ]
-            },
-            style: {
-                name: 'Style',
-                items: [
-                    {
-                        name: 'Plot Type',
-                        id: 'surfaceType',
-                        value: this.state.surfaceType,
-                        values: [
-                            'surface',
-                            'mesh'
-                        ]
-                    }
-                ]
-            },
-            plot: {
-                name: 'Plot',
-                items: [
-                    {
-                        name: 'Width',
-                        id: 'plotWidth',
-                        value: this.state.plotWidth,
-                        values: [
-                            'auto',
-                            '100%',
-                            '80%',
-                            '50%'
-                        ]
-                    },
-                    {
-                        name: 'Height',
-                        id: 'plotHeight',
-                        value: this.state.plotHeight,
-                        values: [
-                            'auto',
-                            '100%',
-                            '80%',
-                            '50%'
-                        ]
-                    }
-                ]
-            }
-        };
+        // Will be initialized when componentWillMount
+        this.groups = {};
 
         this.handleSidebarToggle = this.handleSidebarToggle.bind(this);
         this.addEquation = this.addEquation.bind(this);
@@ -112,6 +47,7 @@ export default class Plotter extends Component {
         if (Object.keys(this.props.initialState).length !== 0 && this.props.initialState.constructor === Object) {
             this.setState(this.props.initialState);
         }
+        this.groups = getGroups(this.state);
     }
 
     componentWillUnmount () {
