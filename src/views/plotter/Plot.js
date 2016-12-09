@@ -19,20 +19,20 @@ export default class Plot extends Component {
         this.updatePlotData();
     }
 
+    // the plot mounts onto the div created in render, thus it must be called after render
     componentDidMount () {
         this.plot();
     }
 
+    // only update if the new props are different from existing props
     shouldComponentUpdate (nextProps) {
-        // console.log(`shouldPlotUpdate = ${nextProps.eq !== this.props.eq}, ` +
-        //     `new EQ: ${nextProps.eq}, old EQ: ${this.props.eq}`);
-        console.log('will update', !shallowequal(nextProps, this.props));
         if (!shallowequal(nextProps, this.props)) {
             return true;
         }
         return false;
     }
 
+    // updating the component doesn't change the rendered output, so you must update manually
     componentDidUpdate () {
         this.updatePlotData();
     }
@@ -44,12 +44,11 @@ export default class Plot extends Component {
     updatePlotData () {
         if (this.graph3d !== undefined) {
             this.graph3d.setOptions(this.formatOptions(this.props));
-            this.graph3d.setData(this.generateData(this.props.eq));
+            this.graph3d.setData(this.generateData(this.props));
         } else {
             this.options = this.formatOptions(this.props);
-            this.data = this.generateData(this.props.eq);
+            this.data = this.generateData(this.props);
         }
-        console.log('graph3d updated', this.graph3d !== undefined);
     }
 
     // takes an `options` object and turns it into a format accepted by vis.Graph3d
@@ -62,24 +61,37 @@ export default class Plot extends Component {
             showGrid: true,
             showShadow: false,
             keepAspectRatio: true,
-            verticalRatio: 0.5
+            verticalRatio: 0.5,
+            // TODO: Keep zMin and zMax as numbers so they can be used directly
+            // zMin: options.z[0], // this is good to include, but zMin/zMax must be numbers.
+            // zMax: options.z[1],
+            yCenter: '50%',
+            xCenter: '50%'
         };
 
         return newOptions;
     }
 
-    generateData (eq) {
+    // takes an `options` object and composes a vis.DataSet
+    generateData (options) {
+        const xMin = options.x[0];
+        const xMax = options.x[1];
+        const yMin = options.y[0];
+        const yMax = options.y[1];
+        const granularity = 50; // number of datapoints will be granularity*granularity
+        const eq = options.equations[0].value;
         // Create and populate a data table.
         const data = new vis.DataSet();
         // create some nice looking data with sin/cos
         let counter = 0;
-        const steps = 50;  // number of datapoints will be steps*steps
-        const axisMax = 10;
-        const axisStep = axisMax / steps;
+        // const steps = granularity;  // number of datapoints will be steps*steps
+        const xStep = (xMax - xMin) / granularity;
+        const yStep = (yMax - yMin) / granularity;
+        // const zStep = (zMax - zMin) / granularity;
         // compile once, evaluate for each point
         const compiledEQ = mathjs.compile(eq);
-        for (let x = 0; x < axisMax; x += axisStep) {
-            for (let y = 0; y < axisMax; y += axisStep) {
+        for (let x = xMin; x < xMax; x += xStep) {
+            for (let y = yMin; y < yMax; y += yStep) {
                 const value = compiledEQ.eval({ x: x, y: y });
                 data.add({
                     id: counter++,
@@ -96,7 +108,6 @@ export default class Plot extends Component {
     plot () {
         // Instantiate our graph object.
         const container = document.getElementById('plot');
-        /*eslint no-unused-vars: "off" */
         this.graph3d = new vis.Graph3d(container, this.data, this.options);
     }
 
@@ -108,5 +119,8 @@ export default class Plot extends Component {
 }
 
 Plot.propTypes = {
-    eq: React.PropTypes.string.isRequired
+    x: React.PropTypes.array.isRequired,
+    y: React.PropTypes.array.isRequired,
+    plotWidth: React.PropTypes.string.isRequired,
+    plotHeight: React.PropTypes.string.isRequired
 };
