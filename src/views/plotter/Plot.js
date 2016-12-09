@@ -11,15 +11,12 @@ export default class Plot extends Component {
         this.state = {};
         this.plot = this.plot.bind(this);
         this.formatOptions = this.formatOptions.bind(this);
+        this.generateData = this.generateData.bind(this);
+        this.updatePlotData = this.updatePlotData(this);
     }
 
     componentWillMount () {
-        const options = this.formatOptions(this.props.options);
-        const data = this.generateData(this.props.eq);
-        this.setState({
-            options: options,
-            data: data
-        });
+        this.updatePlotDataData();
     }
 
     componentDidMount () {
@@ -36,7 +33,14 @@ export default class Plot extends Component {
     }
 
     componentDidUpdate () {
-        this.plot(this.props.eq);
+        this.updatePlotData();
+    }
+
+    updatePlotData () {
+        this.setState({
+            options: this.formatOptions(this.props.options),
+            data: this.generateData(this.props.data)
+        });
     }
 
     // takes an `options` object and turns it into a format accepted by vis.Graph3d
