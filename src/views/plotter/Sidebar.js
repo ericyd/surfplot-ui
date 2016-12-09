@@ -44,9 +44,12 @@ export default function Sidebar (props) {
                                         return (
                                             <Option
                                                 key={item.id}
+                                                id={item.id}
                                                 name={item.name}
                                                 handleChange={props.handleItemChange}
-                                                {...item} />
+                                                value={props[item.id]}
+                                                values={item.values}
+                                                {...props} />
                                         );
                                     }
                                 })
