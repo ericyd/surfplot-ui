@@ -28,11 +28,7 @@ export default function Sidebar (props) {
                     const group = props.groups[groupName];
                     return (
                         <Group title={group.name}
-                            index={i}
-                            key={groupName}
-                            items={group.items}
-                            handleChange={props.handleItemChange}
-                            handleDelete={props.handleItemDelete}>
+                            key={groupName}>
                             {
                                 group.items.map((item, i) => {
                                     if (props.handleItemDelete) {
