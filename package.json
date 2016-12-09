@@ -40,6 +40,7 @@
     "open": "0.0.5",
     "react-addons-test-utils": "^15.4.1",
     "sass-loader": "^4.0.2",
+    "shallowequal": "^0.2.2",
     "style-loader": "^0.13.1",
     "stylelint-config-standard": "^15.0.0",
     "stylelint-webpack-plugin": "^0.4.0",
