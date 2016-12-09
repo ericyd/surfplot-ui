@@ -48,7 +48,7 @@ export default class Plotter extends Component {
         if (Object.keys(this.props.initialState).length !== 0 && this.props.initialState.constructor === Object) {
             this.setState(this.props.initialState);
         }
-        this.groups = getGroups(this.state);
+        this.groups = getGroups();
     }
 
     componentWillUnmount () {
@@ -142,6 +142,7 @@ export default class Plotter extends Component {
                     isCollapsed={this.state.isOptionBarCollapsed}
                     groups={this.groups}
                     handleItemChange={this.handleOptionChange}
+                    {...this.state}
                     side='right' />
 
                 <Plot eq={this.state.equations[0].value}
@@ -149,19 +150,6 @@ export default class Plotter extends Component {
             </div>
         );
     }
-    // <EquationBar
-    // isCollapsed={this.state.isEquationBarCollapsed}
-    // equations={this.state.equations}
-    // addEquation={this.addEquation}
-    // handleEQChange={this.handleEQChange}
-    // handleEQDelete={this.handleEQDelete}
-    // />
-
-    // <OptionBar isCollapsed={this.state.isOptionBarCollapsed}
-    // groups={this.groups}
-    // options={this.state.options}
-    // handleChange={this.handleOptionChange} />
-
 }
 
 Plotter.propTypes = {
