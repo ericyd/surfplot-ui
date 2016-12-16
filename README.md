@@ -1,4 +1,4 @@
-# surfplotjs
+# SurfPlot UI
 Surface plotting for visualizing mathematical surfaces
 
 This app is under development.  The end goal is to basically create a modern, javascript-based 
