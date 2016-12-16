@@ -31,14 +31,13 @@ export default function Sidebar (props) {
                             key={groupName}>
                             {
                                 group.items.map((item, i) => {
-                                    if (props.handleItemDelete) {
+                                    if (item.id === 'equation') {
                                         return (
                                             <Equation
-                                                value={item.value}
+                                                value={props[item.id]}
                                                 key={item.id}
                                                 id={item.id}
-                                                handleChange={props.handleItemChange}
-                                                handleDelete={props.handleItemDelete} />
+                                                handleChange={props.handleItemChange} />
                                         );
                                     } else {
                                         return (

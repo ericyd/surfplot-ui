@@ -7,6 +7,15 @@
 export default function getGroups () {
     return {
         // id values for children must match the corresponding key in Plotter.state
+        equations: {
+            name: 'Equation',
+            items: [
+                {
+                    name: 'z = ',
+                    id: 'equation'
+                }
+            ]
+        },
         axes: {
             name: 'Axes',
             items: [

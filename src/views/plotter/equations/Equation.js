@@ -74,6 +74,4 @@ export default class Equation extends Component {
 Equation.propTypes = {
     value: React.PropTypes.string.isRequired,
     handleChange: React.PropTypes.func,
-    handleDelete: React.PropTypes.func,
-    id: React.PropTypes.number
 };
