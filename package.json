@@ -1,5 +1,5 @@
 {
-  "name": "SurfPlotJS",
+  "name": "SurfPlot UI",
   "version": "0.0.1",
   "description": "boilerplate for basic app setup",
   "main": "src/index.js",
@@ -55,7 +55,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ericyd/surfplotjs.git"
+    "url": "https://github.com/ericyd/surfplot-ui.git"
   },
   "keywords": [
     "surface",
@@ -64,6 +64,6 @@
     "calculus"
   ],
   "bugs": {
-    "url": "https://github.com/ericyd/surfplotjs/issues"
+    "url": "https://github.com/ericyd/surfplot-ui/issues"
   }
 }
