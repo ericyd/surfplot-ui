@@ -15,7 +15,7 @@
 import React, { Component } from 'react';
 import './validated-input.scss';
 
-export default class Equation extends Component {
+export default class ValidatedInput extends Component {
     constructor () {
         super();
         this.handleChange = this.handleChange.bind(this);
@@ -60,25 +60,19 @@ export default class Equation extends Component {
 
     render () {
         return (
-            <div className='equation'>
+            <div className='validated-block'>
                 <input type='text'
                     value={this.state.value}
                     id={this.props.id}
                     onKeyUp={this.handleKeyUp}
                     onChange={this.handleChange}
-                    className='equation__input' />
-                <button type='button'
-                    className='equation__delete'
-                    data-forEQ={this.props.id}
-                    onClick={this.handleDelete} >
-                    &times;
-                </button>
+                    className='validated-block__input' />
             </div>
         );
     }
 }
 
-Equation.propTypes = {
+ValidatedInput.propTypes = {
     value: React.PropTypes.string.isRequired,
     handleChange: React.PropTypes.func,
     validate: React.PropTypes.func
