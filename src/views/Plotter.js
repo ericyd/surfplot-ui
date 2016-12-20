@@ -32,16 +32,20 @@ export default class Plotter extends Component {
     }
 
     componentWillMount () {
-        // if this.props.initialState is not empty, set as original state
-        if (Object.keys(this.props.initialState).length !== 0 && this.props.initialState.constructor === Object) {
-            this.setState(this.props.initialState);
+        // console.log(props.route);
+        // this.props.route.handleMount();
+        // if this.props.route.initialState is not empty, set as original state
+        const init = this.props.route.initialState;
+        console.log(this.props.route.initialState);
+        if (init !== undefined && Object.keys(init).length !== 0 && init.constructor === Object) {
+            this.setState(init);
         }
         this.groups = getGroups();
     }
 
     componentWillUnmount () {
         // save the state in the parent before it unmounts so it is still here when it returns
-        this.props.handleUnmount(this.state);
+        this.props.route.handleUnmount(this.state);
     }
 
     handleSidebarToggle () {
@@ -77,7 +81,9 @@ export default class Plotter extends Component {
     }
 }
 
-Plotter.propTypes = {
-    handleUnmount: React.PropTypes.func.isRequired,
-    initialState: React.PropTypes.object.isRequired
-};
+// Plotter.propTypes = {
+//     route: {
+//         handleUnmount: React.PropTypes.func,
+//         initialState: React.PropTypes.object
+//     }
+// };

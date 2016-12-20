@@ -1,34 +1,43 @@
 'use strict';
 
 import React, { Component } from 'react';
-import Header from './header/Header';
-import ViewContainer from './views/ViewContainer';
-
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+// import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
+import Container from './views/Container';
+import Plotter from './views/Plotter';
+import About from './views/About';
+import Credits from './views/Credits';
+import NotFound from './views/404';
 
 class App extends Component {
     constructor () {
         super();
-
-        this.state = {
-            view: 'Plotter',
-            test: 'testing'
-        };
-
-        this.handleViewChange = this.handleViewChange.bind(this);
+        this.state = { test: 'true' };
+        this.handlePlotterUnmount = this.handlePlotterUnmount.bind(this);
     }
 
-    handleViewChange (view) {
-        this.setState({
-            view: view
-        });
+    componentWillUpdate () {
+        console.log(this.state);
     }
+
+    handlePlotterUnmount (state) {
+        this.setState(state);
+    }
+
 
     render () {
         return (
             <div className='App'>
-                <Header handleViewChange={this.handleViewChange}
-                    view={this.state.view} />
-                <ViewContainer view={this.state.view} />
+                <Router history={hashHistory}>
+                    <Route path='/' component={Container}>
+                        <IndexRoute component={Plotter}
+                            handleUnmount={this.handlePlotterUnmount}
+                            initialState={this.state} />
+                        <Route path='/about' component={About} />
+                        <Route path='/credits' component={Credits} />
+                        <Route path='*' component={NotFound} />
+                    </Route>
+                </Router>
             </div>
         );
     }
