@@ -62,9 +62,8 @@ export default class Plot extends Component {
             showShadow: false,
             keepAspectRatio: true,
             verticalRatio: 0.5,
-            // TODO: Keep zMin and zMax as numbers so they can be used directly
-            // zMin: options.z[0], // this is good to include, but zMin/zMax must be numbers.
-            // zMax: options.z[1],
+            zMin: options.z[0],
+            zMax: options.z[1],
             yCenter: '50%',
             xCenter: '50%'
         };
