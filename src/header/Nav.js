@@ -1,33 +1,28 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router';
 import './Nav.scss';
 
 export default function Nav (props) {
-    const buttons = ['Plotter', 'About', 'Credits'];
-
-    function handleViewChange (e) {
-        props.handleViewChange(e.target.name);
-    }
+    const buttons = [
+        { title: 'Plotter', href: '' },
+        { title: 'About', href: 'about' },
+        { title: 'Credits', href: 'credits' }];
 
     return (
         <nav className='nav'>
             {
                 buttons.map((btn) => {
-                    return (<button type='button'
-                                key={btn}
-                                name={btn}
-                                className={props.view === btn ? 'nav__btn--active' : 'nav__btn'}
-                                onClick={handleViewChange}>
-                                    {btn}
-                            </button>);
+                    return (<Link to={`/${btn.href}`}
+                                key={btn.title}
+                                name={btn.title}
+                                className='nav__btn'>
+                                {btn.title}
+                            </Link>
+                    );
                 })
             }
         </nav>
     );
 }
-
-Nav.propTypes = {
-    handleViewChange: React.PropTypes.func.isRequired,
-    view: React.PropTypes.string.isRequired
-};
