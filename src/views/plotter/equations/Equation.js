@@ -33,7 +33,7 @@ export default class Equation extends Component {
             if (e.target.value !== this.props.value) {
                 if (mathjs.eval(e.target.value, { x: 0, y: 0 })) {
                     // if a new and parse-able value, send back up to Plotter.js
-                    this.props.handleChange(parseInt(e.target.id, 10), e.target.value);
+                    this.props.handleChange(e.target.id, e.target.value);
                 } else {
                     console.log('couldnt parse ', e.target.value);
                 }
