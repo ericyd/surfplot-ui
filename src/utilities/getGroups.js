@@ -12,7 +12,8 @@ export default function getGroups () {
             items: [
                 {
                     name: 'z = ',
-                    id: 'equation'
+                    id: 'equation',
+                    isValidated: true
                 }
             ]
         },
@@ -21,15 +22,18 @@ export default function getGroups () {
             items: [
                 {
                     name: 'X',
-                    id: 'x'
+                    id: 'x',
+                    isValidated: true
                 },
                 {
                     name: 'Y',
-                    id: 'y'
+                    id: 'y',
+                    isValidated: true
                 },
                 {
                     name: 'Z',
-                    id: 'z'
+                    id: 'z',
+                    isValidated: true
                 }
             ]
         },
@@ -42,7 +46,8 @@ export default function getGroups () {
                     values: [
                         'surface',
                         'mesh'
-                    ]
+                    ],
+                    isValidated: false
                 }
             ]
         },
@@ -57,7 +62,8 @@ export default function getGroups () {
                         '100%',
                         '80%',
                         '50%'
-                    ]
+                    ],
+                    isValidated: false
                 },
                 {
                     name: 'Height',
@@ -67,7 +73,8 @@ export default function getGroups () {
                         '100%',
                         '80%',
                         '50%'
-                    ]
+                    ],
+                    isValidated: false
                 }
             ]
         }
