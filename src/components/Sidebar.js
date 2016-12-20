@@ -2,15 +2,15 @@
 
 import React from 'react';
 import Group from './Group';
-import Option from './options/Option';
-import Equation from './equations/Equation';
+import DirectInput from './DirectInput';
+import ValidatedInput from './ValidatedInput';
 import './sidebar.scss';
 
 /**
  * The Sidebar renders any groups and items of the group that are passed to it.
- * It will render two major item types: Options or Equations
+ * It will render two major item types: DirectInputs or ValidatedInputs
  * It decides between the two based on the presence of props.handleItemDelete,
- * which is only a property passed with the Equation group.
+ * which is only a property passed with the ValidatedInput group.
  *
  * If it is passed a handleItemAdd function, it will render an Add button below all groups.
  */
@@ -31,9 +31,9 @@ export default function Sidebar (props) {
                             key={groupName}>
                             {
                                 group.items.map((item, i) => {
-                                    if (item.id === 'equation') {
+                                    if (item.id === 'ValidatedInput') {
                                         return (
-                                            <Equation
+                                            <ValidatedInput
                                                 value={props[item.id]}
                                                 key={item.id}
                                                 id={item.id}
@@ -41,7 +41,7 @@ export default function Sidebar (props) {
                                         );
                                     } else {
                                         return (
-                                            <Option
+                                            <DirectInput
                                                 key={item.id}
                                                 id={item.id}
                                                 name={item.name}
@@ -60,7 +60,7 @@ export default function Sidebar (props) {
 
             {!!props.handleItemAdd &&
                 <button type='button'
-                    className='addEquation'
+                    className='addValidatedInput'
                     onClick={props.handleItemAdd}>
                     +
                 </button>
@@ -72,7 +72,7 @@ export default function Sidebar (props) {
 
 Sidebar.propTypes = {
     isCollapsed: React.PropTypes.bool.isRequired,
-    options: React.PropTypes.oneOfType([
+    DirectInputs: React.PropTypes.oneOfType([
         React.PropTypes.array,
         React.PropTypes.object
     ]),
