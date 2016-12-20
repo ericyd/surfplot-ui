@@ -15,15 +15,8 @@ export default class Plotter extends Component {
         // state contains only the data that will be changing
         // a more complete data structure for options is held in this.groups
         this.state = {
-            isEquationBarCollapsed: true,
-            isOptionBarCollapsed: true,
-            equations: [
-                {
-                    id: 1,
-                    name: 'z' + this.id,
-                    value: 'cos(x)-sin(y)'
-                }
-            ],
+            isCollapsed: true,
+            equation: 'cos(x)-sin(y)',
             // all default values for options are declared here
             x: [-5, 5],
             y: [-5, 5],
@@ -37,10 +30,7 @@ export default class Plotter extends Component {
         this.groups = {};
 
         this.handleSidebarToggle = this.handleSidebarToggle.bind(this);
-        this.addEquation = this.addEquation.bind(this);
-        this.handleEQChange = this.handleEQChange.bind(this);
-        this.handleEQDelete = this.handleEQDelete.bind(this);
-        this.handleOptionChange = this.handleOptionChange.bind(this);
+        this.handleItemChange = this.handleItemChange.bind(this);
     }
 
     componentWillMount () {
@@ -56,94 +46,32 @@ export default class Plotter extends Component {
         this.props.handleUnmount(this.state);
     }
 
-    handleSidebarToggle (e) {
-        switch (e.target.name) {
-            case 'equationBarToggle':
-                this.setState({ isEquationBarCollapsed: !this.state.isEquationBarCollapsed });
-                break;
-
-            case 'optionBarToggle':
-                this.setState({ isOptionBarCollapsed: !this.state.isOptionBarCollapsed });
-                break;
-
-            default:
-                break;
-        }
+    handleSidebarToggle () {
+        this.setState({ isCollapsed: !this.state.isCollapsed });
     }
 
-    addEquation () {
-        const equations = this.state.equations;
-        // get max id for next id
-        const ids = equations.map((value) => {
-            return value.id;
-        });
-        equations.push({ id: Math.max(...ids) + 1, value: '' });
-        this.setState({
-            equations: equations
-        });
-    }
-
-    handleOptionChange (key, value) {
+    handleItemChange (key, value) {
         const newOption = {};
         newOption[key] = value;
         this.setState(newOption);
-    }
-
-    handleEQChange (id, value) {
-        const equations = this.state.equations;
-        const newEquations = equations.map((eq) => {
-            if (eq.id === id) {
-                eq.value = value;
-                return eq;
-            }
-            return eq;
-        });
-        this.setState({ equations: newEquations });
-    }
-
-    handleEQDelete (id) {
-        if (this.state.equations.length === 1) {
-            console.log('Must have at least one function');
-            return;
-        }
-        const equations = this.state.equations;
-        const newEquations = equations.filter((eq) => {
-            if (eq.id !== id) return eq;
-        });
-        this.setState({ equations: newEquations });
     }
 
     render () {
         return (
             <div className='plotter'>
                 <button type='button'
-                    name='equationBarToggle'
+                    name='sidebarToggle'
                     onClick={this.handleSidebarToggle}
                     className='toggleButton left'>
-                    Toggle the EquationBar
+                    Toggle the Sidebar
                 </button>
 
                 <Sidebar
-                    isCollapsed={this.state.isEquationBarCollapsed}
-                    groups={{ equations: { items: this.state.equations } }}
-                    handleItemAdd={this.addEquation}
-                    handleItemChange={this.handleEQChange}
-                    handleItemDelete={this.handleEQDelete}
-                    side='left' />
-
-                <button type='button'
-                    name='optionBarToggle'
-                    onClick={this.handleSidebarToggle}
-                    className='toggleButton right'>
-                    Toggle the OptionBar
-                </button>
-
-                <Sidebar
-                    isCollapsed={this.state.isOptionBarCollapsed}
+                    isCollapsed={this.state.isCollapsed}
                     groups={this.groups}
-                    handleItemChange={this.handleOptionChange}
+                    handleItemChange={this.handleItemChange}
                     {...this.state}
-                    side='right' />
+                    side='left' />
 
                 <Plot {...this.state} />
             </div>

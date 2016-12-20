@@ -79,7 +79,7 @@ export default class Plot extends Component {
         const yMin = options.y[0];
         const yMax = options.y[1];
         const granularity = 50; // number of datapoints will be granularity*granularity
-        const eq = options.equations[0].value;
+        const eq = options.equation;
         // Create and populate a data table.
         const data = new vis.DataSet();
         // create some nice looking data with sin/cos

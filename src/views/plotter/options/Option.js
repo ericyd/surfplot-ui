@@ -39,7 +39,9 @@ export default class Option extends Component {
             // TODO: Make sure that the values remain as numbers
             if (e.target.value !== this.props.value[e.target.dataset.isMax]) {
                 const newValue = this.state.value.slice();
-                newValue[e.target.dataset.isMax] = +(e.target.value);
+                newValue[e.target.dataset.isMax] = e.target.value;
+                newValue[0] = +(newValue[0]);
+                newValue[1] = +(newValue[1]);
                 this.props.handleChange(e.target.name, newValue);
             }
         }, 500);
