@@ -20,7 +20,6 @@ export default class ValidatedInput extends Component {
         super();
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
         this.timeout = false;
         this.state = {
             value: ''
@@ -73,7 +72,10 @@ export default class ValidatedInput extends Component {
 }
 
 ValidatedInput.propTypes = {
-    value: React.PropTypes.string.isRequired,
+    value: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.array
+    ]).isRequired,
     handleChange: React.PropTypes.func,
     validate: React.PropTypes.func
 };
