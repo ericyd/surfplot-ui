@@ -1,8 +1,19 @@
+/**
+ * ValidatedInput provides a controlled input element that is validated
+ * against a validator prop before calling the handleChange prop.
+ *
+ * This pattern is used for inputs which must meet certain criteria before
+ * their values are passed up the state chain and shared with sibling components.
+ *
+ * They are related to DirectInput components, with the difference that ValidatedInput
+ * components check the input type or value, and only send it up the state chain if it meets
+ * pre-determined criteria
+ */
+
 'use strict';
 
 import React, { Component } from 'react';
-import mathjs from 'mathjs';
-import './equation.scss';
+import './validated-input.scss';
 
 export default class Equation extends Component {
     constructor () {
@@ -31,7 +42,7 @@ export default class Equation extends Component {
         // set a timeout so that the function can be edited without sending multiple updates
         this.timeout = setTimeout(() => {
             if (e.target.value !== this.props.value) {
-                if (mathjs.eval(e.target.value, { x: 0, y: 0 })) {
+                if (this.props.validate(e.target.value)) {
                     // if a new and parse-able value, send back up to Plotter.js
                     this.props.handleChange(e.target.id, e.target.value);
                 } else {
@@ -45,10 +56,6 @@ export default class Equation extends Component {
 
     handleChange (e) {
         this.setState({ value: e.target.value });
-    }
-
-    handleDelete (e) {
-        this.props.handleDelete(parseInt(e.target.getAttribute('data-forEQ'), 10));
     }
 
     render () {
@@ -74,4 +81,5 @@ export default class Equation extends Component {
 Equation.propTypes = {
     value: React.PropTypes.string.isRequired,
     handleChange: React.PropTypes.func,
+    validate: React.PropTypes.func
 };
