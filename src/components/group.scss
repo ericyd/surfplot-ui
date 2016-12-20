@@ -1,4 +1,4 @@
-@import '../../global-style-variables.scss';
+@import '../global-style-variables.scss';
 
 .group {
     .group__header {
@@ -15,15 +15,15 @@
         }
 
         .is-collapsed {
-            -ms-transform: rotate(90deg); /* IE 9 */
-            -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-            transform: rotate(90deg);
+            // -ms-transform: rotate(90deg); /* IE 9 */
+            // -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+            // transform: rotate(90deg);
         }
 
         .is-expanded {
-            -ms-transform: rotate(180deg); /* IE 9 */
-            -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
-            transform: rotate(180deg);
+            -ms-transform: rotate(90deg); /* IE 9 */
+            -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+            transform: rotate(90deg);
         }
     }
 

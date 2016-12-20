@@ -1,8 +1,8 @@
 'use strict';
 
 import React, { Component } from 'react';
+import Arrow from '../icons/Arrow';
 import './group.scss';
-import '../../icon.scss';
 
 /**
  * Group is a relatively simple container with an optional title
@@ -32,9 +32,8 @@ export default class Group extends Component {
 
                 {!!this.props.title &&
                     (<section className='group__header' onClick={this.handleClick}>
-                        <img src='img/icons/iconmonstr-triangle-1.svg'
-                            className={['icon',
-                                this.state.isCollapsed ? 'is-collapsed' : 'is-expanded'].join(' ')} />
+                        <Arrow className={['icon',
+                            this.state.isCollapsed ? 'is-collapsed' : 'is-expanded'].join(' ')} />
                         {this.props.title}
                     </section>)
                 }
