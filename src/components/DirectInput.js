@@ -1,15 +1,20 @@
+/**
+ * DirectInput provides a controlled input element that immediately
+ * passes changes in value up the state chain.
+ *
+ * This pattern is used for inputs which have a pre-determined set of values
+ * (primarily select elements, checkboxes, or radio buttons)
+ * and whose value is deemed safe to use immediately in sibling components.
+ *
+ * They are related to ValidatedInput components, with the difference that DirectInput
+ * components do not check the input type or value before sending it up the state chain.
+ */
+
 'use strict';
 
 import React, { Component } from 'react';
-import './option.scss';
+import './direct-input.scss';
 import '../../../icon.scss';
-
-/**
- * Option will render one of three types of inputs:
- * 1. A component with two text inputs representing a range of values (if this.props.value is an array)
- * 2. A checkbox (if this.props.value is a boolean)
- * 3. A select (if this.props.value is a string) with this.props.values as <option>s
- */
 
 export default class Option extends Component {
     constructor () {
