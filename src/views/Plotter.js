@@ -1,11 +1,9 @@
 'use strict';
 
 import React, { Component } from 'react';
-// import EquationBar from './equations/EquationBar';
-// import OptionBar from './options/OptionBar';
-import Sidebar from './Sidebar';
-import Plot from './Plot';
-import getGroups from './getGroups';
+import Sidebar from '../components/Sidebar';
+import Plot from '../components/Plot';
+import getGroups from '../utilities/getGroups';
 import './plotter.scss';
 
 export default class Plotter extends Component {
