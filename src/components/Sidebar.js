@@ -4,6 +4,7 @@ import React from 'react';
 import Group from './Group';
 import DirectInput from './DirectInput';
 import ValidatedInput from './ValidatedInput';
+import { isNumeric, isParsable } from '../utilities/validators';
 import './sidebar.scss';
 
 /**
@@ -31,13 +32,14 @@ export default function Sidebar (props) {
                             key={groupName}>
                             {
                                 group.items.map((item, i) => {
-                                    if (item.id === 'ValidatedInput') {
+                                    if (item.isValidated) {
                                         return (
                                             <ValidatedInput
                                                 value={props[item.id]}
                                                 key={item.id}
                                                 id={item.id}
-                                                handleChange={props.handleItemChange} />
+                                                handleChange={props.handleItemChange}
+                                                validate={item.id === 'equation' ? isParsable : isNumeric} />
                                         );
                                     } else {
                                         return (
@@ -47,8 +49,7 @@ export default function Sidebar (props) {
                                                 name={item.name}
                                                 handleChange={props.handleItemChange}
                                                 value={props[item.id]}
-                                                values={item.values}
-                                                {...props} />
+                                                values={item.values} />
                                         );
                                     }
                                 })
