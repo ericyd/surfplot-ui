@@ -30,6 +30,12 @@ export default class ValidatedInput extends Component {
         this.setState({ value: this.props.value });
     }
 
+    /**
+     * while handleChange sets the component's state for every keystroke,
+     * handleKeyUp is used to validate the input before sending it up the scope chain.
+     * A timeout is used to allow the user to make several changes before attempting to process it;
+     * this is to save unnecessary overhead when redrawing the plot figure.
+     */
     handleKeyUp (e) {
         // required due to React's synthetic events
         e.persist();
@@ -40,9 +46,14 @@ export default class ValidatedInput extends Component {
 
         // set a timeout so that the function can be edited without sending multiple updates
         this.timeout = setTimeout(() => {
-            if (e.target.value !== this.props.value) {
+            if (Array.isArray(this.state.value) && e.target.value !== this.props.value[e.target.dataset.isMax]) {
+                const newValue = this.state.value.slice();
+                newValue[e.target.dataset.isMax] = e.target.value;
+                newValue[0] = +(newValue[0]);
+                newValue[1] = +(newValue[1]);
+                this.props.handleChange(e.target.name, newValue);
+            } else if (e.target.value !== this.props.value) {
                 if (this.props.validate(e.target.value)) {
-                    // if a new and parse-able value, send back up to Plotter.js
                     this.props.handleChange(e.target.id, e.target.value);
                 } else {
                     console.log('couldnt parse ', e.target.value);
@@ -50,24 +61,62 @@ export default class ValidatedInput extends Component {
             } else {
                 console.log('value didnt change');
             }
-        }, 2000);
+        }, 1000);
     }
 
     handleChange (e) {
+        if (Array.isArray(this.state.value)) {
+            // create a copy of the value, and update the relevant value
+            const newValue = this.state.value.slice();
+            newValue[e.target.dataset.isMax] = e.target.value;
+            this.setState({ value: newValue });
+            return;
+        }
         this.setState({ value: e.target.value });
     }
 
     render () {
-        return (
-            <div className='validated-block'>
-                <input type='text'
-                    value={this.state.value}
-                    id={this.props.id}
-                    onKeyUp={this.handleKeyUp}
-                    onChange={this.handleChange}
-                    className='validated-block__input' />
-            </div>
-        );
+        if (Array.isArray(this.state.value)) {
+            return (
+                <div className='validated-block'>
+                    {this.props.name}
+                    <label htmlFor={this.props.id + 'min'}>min
+                    <input type='text'
+                        value={this.state.value[0]}
+                        data-is-max={0}
+                        name={this.props.id}
+                        id={this.props.id + 'min'}
+                        onChange={this.handleChange}
+                        onKeyUp={this.handleKeyUp}
+                        className='validated-block__input' />
+                    </label>
+                    <label htmlFor={this.props.id + 'max'}>max
+                    <input type='text'
+                        value={this.state.value[1]}
+                        data-is-max={1}
+                        name={this.props.id}
+                        id={this.props.id + 'max'}
+                        onChange={this.handleChange}
+                        onKeyUp={this.handleKeyUp}
+                        className='validated-block__input' />
+                    </label>
+                </div>
+            );
+        } else {
+            return (
+                <div className='validated-block'>
+                    <label htmlFor={this.props.id}>{this.props.name}
+                    <input type='text'
+                        value={this.state.value}
+                        id={this.props.id}
+                        name={this.props.name}
+                        onChange={this.handleChange}
+                        onKeyUp={this.handleKeyUp}
+                        className='validated-block__input' />
+                    </label>
+                </div>
+            );
+        }
     }
 }
 

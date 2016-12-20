@@ -20,7 +20,6 @@ export default class DirectInput extends Component {
         super();
         this.state = {};
         this.handleChange = this.handleChange.bind(this);
-        this.handleKeyUp = this.handleKeyUp.bind(this);
         this.renderInput = this.renderInput.bind(this);
     }
 
@@ -29,70 +28,14 @@ export default class DirectInput extends Component {
         this.setState({ value: this.props.value });
     }
 
-    // send updated value to Plotter only when it is valid
-    handleKeyUp (e) {
-        // required due to React's synthetic events
-        e.persist();
-
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-        }
-
-        // set a timeout so that the function can be edited without sending multiple updates
-        this.timeout = setTimeout(() => {
-            // TODO: Make sure that the values remain as numbers
-            if (e.target.value !== this.props.value[e.target.dataset.isMax]) {
-                const newValue = this.state.value.slice();
-                newValue[e.target.dataset.isMax] = e.target.value;
-                newValue[0] = +(newValue[0]);
-                newValue[1] = +(newValue[1]);
-                this.props.handleChange(e.target.name, newValue);
-            }
-        }, 500);
-    }
-
     // update internal state to allow user interaction
     handleChange (e) {
-        if (Array.isArray(this.state.value)) {
-            // create a copy of the value, and update the relevant value
-            const newValue = this.state.value.slice();
-            newValue[e.target.dataset.isMax] = e.target.value;
-            this.setState({ value: newValue });
-
-            // Updates for ranges are validated before calling passed in functions.
-            // Booleans and selects don't need validation, so they can be updated immediately
-            return;
-        }
         this.setState({ value: e.target.value });
         this.props.handleChange(e.target.id, e.target.value);
     }
 
     renderInput (value) {
-        if (Array.isArray(value)) {
-            return (
-                <span>
-                    {this.props.name}
-                    <label htmlFor={this.props.id + 'min'}>min
-                    <input type='text'
-                        value={this.state.value[0]}
-                        data-is-max={0}
-                        name={this.props.id}
-                        id={this.props.id + 'min'}
-                        onChange={this.handleChange}
-                        onKeyUp={this.handleKeyUp} />
-                    </label>
-                    <label htmlFor={this.props.id + 'max'}>max
-                    <input type='text'
-                        value={this.state.value[1]}
-                        data-is-max={1}
-                        name={this.props.id}
-                        id={this.props.id + 'max'}
-                        onChange={this.handleChange}
-                        onKeyUp={this.handleKeyUp} />
-                    </label>
-                </span>
-            );
-        } else if (typeof value === 'boolean') {
+        if (typeof value === 'boolean') {
             return (
                 <label htmlFor={this.props.id}>{this.props.name}
                 <input type='text'
