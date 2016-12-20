@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import Plotter from './plotter/Plotter';
+import Plotter from './Plotter';
 import About from './About';
 import Credits from './Credits';
 
