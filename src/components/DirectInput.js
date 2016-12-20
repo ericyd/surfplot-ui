@@ -14,19 +14,18 @@
 
 import React, { Component } from 'react';
 import './direct-input.scss';
-import '../../../icon.scss';
 
-export default class Option extends Component {
+export default class DirectInput extends Component {
     constructor () {
         super();
         this.state = {};
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
-        this.renderOption = this.renderOption.bind(this);
+        this.renderInput = this.renderInput.bind(this);
     }
 
     componentWillMount () {
-        // the state will be determined by the type of Option passed to this component.
+        // the state will be determined by the type of Input passed to this component.
         this.setState({ value: this.props.value });
     }
 
@@ -68,7 +67,7 @@ export default class Option extends Component {
         this.props.handleChange(e.target.id, e.target.value);
     }
 
-    renderOption (value) {
+    renderInput (value) {
         if (Array.isArray(value)) {
             return (
                 <span>
@@ -127,14 +126,14 @@ export default class Option extends Component {
 
     render () {
         return (
-            <div className='option'>
-                {this.renderOption(this.props.value)}
+            <div className='direct-input'>
+                {this.renderInput(this.props.value)}
             </div>
         );
     }
 }
 
-Option.propTypes = {
+DirectInput.propTypes = {
     name: React.PropTypes.string,
     handleChange: React.PropTypes.func,
     parent: React.PropTypes.string,
