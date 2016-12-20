@@ -1,9 +1,9 @@
 /**
  * Contains validator functions to use with validated inputs
- * 
+ *
  * Each validator is a function that takes an input and returns a boolean.
  * Each validator checks for different criteria, but their basic argument and return structure is shared:
- * 
+ *
  * @param {any} value The value to validate
  * @return {boolean} The result of the validation
  */
@@ -13,7 +13,7 @@ import mathjs from 'mathjs';
 // a pared-down version of https://github.com/jquery/jquery/blob/1b9575b9d14399e9426b9eacdd92b3717846c3f2/src/core.js#L222
 export function isNumeric (value) {
     const type = typeof value;
-    return ( type === "number" || type === "string" ) && !isNaN( value - parseFloat( value ) );
+    return (type === 'number' || type === 'string') && !isNaN(value - parseFloat(value));
 }
 
 export function isParsable (value) {
@@ -36,5 +36,5 @@ export function isAll (...validators) {
             }
         }
         return true;
-    }
+    };
 }
