@@ -38,6 +38,7 @@ export default function Sidebar (props) {
                                                 value={props[item.id]}
                                                 key={item.id}
                                                 id={item.id}
+                                                name={item.name}
                                                 handleChange={props.handleItemChange}
                                                 validate={item.id === 'equation' ? isParsable : isNumeric} />
                                         );
