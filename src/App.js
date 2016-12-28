@@ -1,37 +1,25 @@
 'use strict';
 
-import React, { Component } from 'react';
-import Header from './header/Header';
-import ViewContainer from './views/ViewContainer';
+import React from 'react';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+// import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
+import Container from './Container';
+import Plotter from './views/Plotter';
+import About from './views/About';
+import Credits from './views/Credits';
+import NotFound from './views/404';
 
-
-class App extends Component {
-    constructor () {
-        super();
-
-        this.state = {
-            view: 'Plotter',
-            test: 'testing'
-        };
-
-        this.handleViewChange = this.handleViewChange.bind(this);
-    }
-
-    handleViewChange (view) {
-        this.setState({
-            view: view
-        });
-    }
-
-    render () {
-        return (
-            <div className='App'>
-                <Header handleViewChange={this.handleViewChange}
-                    view={this.state.view} />
-                <ViewContainer view={this.state.view} />
-            </div>
-        );
-    }
+export default function App (props) {
+    return (
+        <div className='App'>
+            <Router history={hashHistory}>
+                <Route path='/' component={Container}>
+                    <IndexRoute component={Plotter} />
+                    <Route path='/about' component={About} />
+                    <Route path='/credits' component={Credits} />
+                    <Route path='*' component={NotFound} />
+                </Route>
+            </Router>
+        </div>
+    );
 }
-
-export default App;

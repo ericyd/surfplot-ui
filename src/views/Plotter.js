@@ -33,8 +33,9 @@ export default class Plotter extends Component {
 
     componentWillMount () {
         // if this.props.initialState is not empty, set as original state
-        if (Object.keys(this.props.initialState).length !== 0 && this.props.initialState.constructor === Object) {
-            this.setState(this.props.initialState);
+        const init = this.props.initialState;
+        if (init !== undefined && Object.keys(init).length !== 0 && init.constructor === Object) {
+            this.setState(init);
         }
         this.groups = getGroups();
     }
@@ -77,7 +78,9 @@ export default class Plotter extends Component {
     }
 }
 
-Plotter.propTypes = {
-    handleUnmount: React.PropTypes.func.isRequired,
-    initialState: React.PropTypes.object.isRequired
-};
+// Plotter.propTypes = {
+//     route: {
+//         handleUnmount: React.PropTypes.func,
+//         initialState: React.PropTypes.object
+//     }
+// };

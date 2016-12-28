@@ -12,8 +12,3 @@ export default function Header (props) {
         </header>
     );
 }
-
-Header.propTypes = {
-    handleViewChange: React.PropTypes.func.isRequired,
-    view: React.PropTypes.string.isRequired
-};
