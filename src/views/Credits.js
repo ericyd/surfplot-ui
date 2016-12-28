@@ -1,11 +1,11 @@
 'use strict';
 
 import React from 'react';
-import './text-doc.scss';
+import './article.scss';
 
 export default function Credits () {
     return (
-        <main className='doc'>
+        <article className='article'>
             <h1>Credits</h1>
 
             <h2>Inspiration</h2>
@@ -45,6 +45,6 @@ export default function Credits () {
                     : Testing
                 </li>
             </ol>
-        </main>
+        </article>
     );
 }

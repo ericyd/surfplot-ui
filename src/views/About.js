@@ -1,12 +1,12 @@
 'use strict';
 
 import React from 'react';
-import './text-doc.scss';
+import './article.scss';
 
 export default function About () {
     return (
-        <main className='doc'>
+        <article className='article'>
             This is the about section
-        </main>
+        </article>
     );
 }
