@@ -32,11 +32,8 @@ export default class Plotter extends Component {
     }
 
     componentWillMount () {
-        // console.log(props.route);
-        // this.props.route.handleMount();
-        // if this.props.route.initialState is not empty, set as original state
-        const init = this.props.route.initialState;
-        console.log(this.props.route.initialState);
+        // if this.props.initialState is not empty, set as original state
+        const init = this.props.initialState;
         if (init !== undefined && Object.keys(init).length !== 0 && init.constructor === Object) {
             this.setState(init);
         }
@@ -45,7 +42,7 @@ export default class Plotter extends Component {
 
     componentWillUnmount () {
         // save the state in the parent before it unmounts so it is still here when it returns
-        this.props.route.handleUnmount(this.state);
+        this.props.handleUnmount(this.state);
     }
 
     handleSidebarToggle () {
