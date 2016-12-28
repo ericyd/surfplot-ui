@@ -12,6 +12,7 @@ import Credits from '../src/views/Credits';
 
 should();
 
+// TODO: Write tests to verify that the props are being passed and saved to the child components correctly
 xdescribe('<Container />', function () {
     it('should render a default view of "Plotter"', () => {
         const wrapper = shallow(<Container />);
