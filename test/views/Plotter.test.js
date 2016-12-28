@@ -3,7 +3,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { should } from 'chai';
-import Plotter from '../src/views/plotter/Plotter';
+import Plotter from '../../src/views/Plotter';
 
 should();
 

@@ -4,7 +4,7 @@
   "description": "boilerplate for basic app setup",
   "main": "src/index.js",
   "scripts": {
-    "test": "eslint -c config/.eslintrc \"test/**\" && mocha --compilers js:babel-core/register --require ignore-styles --require test/setup.js",
+    "test": "eslint -c config/.eslintrc \"test/**\" && mocha \"test/**/*.test.js\" --compilers js:babel-core/register --require ignore-styles --require test/setup.js",
     "build": "node scripts/build --compilers js:babel-core/register",
     "copy-public": "node scripts/copy-public --compilers js:babel-core/register",
     "start": "node scripts/start",

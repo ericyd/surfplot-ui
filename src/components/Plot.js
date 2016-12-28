@@ -112,7 +112,9 @@ export default class Plot extends Component {
 
     render () {
         return (
-            <div className='plot' id='plot' />
+            <div className='plot' id='plot' >
+                loading
+            </div>
         );
     }
 }

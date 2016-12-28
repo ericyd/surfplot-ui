@@ -3,7 +3,7 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
 import { should } from 'chai';
-import Nav from '../src/header/Nav';
+import Nav from '../../src/header/Nav';
 
 should();
 
