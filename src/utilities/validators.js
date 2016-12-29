@@ -23,20 +23,20 @@ export function isParsable (value) {
         value !== null &&
         value.length > 0 &&
         typeof value === 'string') {
-            try {
-                let e = mathjs.parse(value);
+        try {
+            let e = mathjs.parse(value);
 
-                // http://mathjs.org/docs/expressions/expression_trees.html
-                if ((e.type === 'ConstantNode' && e.value !== undefined) ||
-                    e.type === 'OperatorNode' ||
-                    e.type === 'FunctionNode' ||
-                    e.type === 'ParenthesisNode' ||
-                    e.type === 'SymbolNode') {
-                        return true;
-                }
-            } catch (e) {
-                return false;
+            // http://mathjs.org/docs/expressions/expression_trees.html
+            if ((e.type === 'ConstantNode' && e.value !== undefined) ||
+                e.type === 'OperatorNode' ||
+                e.type === 'FunctionNode' ||
+                e.type === 'ParenthesisNode' ||
+                e.type === 'SymbolNode') {
+                return true;
             }
+        } catch (e) {
+            return false;
+        }
     }
     return false;
 }
@@ -61,4 +61,4 @@ export default {
     isNumeric: isNumeric,
     isParsable: isParsable,
     isAll: isAll
-}
+};
