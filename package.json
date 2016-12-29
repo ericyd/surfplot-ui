@@ -4,11 +4,12 @@
   "description": "boilerplate for basic app setup",
   "main": "src/index.js",
   "scripts": {
-    "test": "eslint -c config/.eslintrc \"test/**\" && mocha \"test/**/*.test.js\" --compilers js:babel-core/register --require ignore-styles --require test/setup.js",
+    "test": "mocha \"test/**/*.test.js\" --compilers js:babel-core/register --require ignore-styles --require test/setup.js",
     "build": "node scripts/build --compilers js:babel-core/register",
     "copy-public": "node scripts/copy-public --compilers js:babel-core/register",
     "start": "node scripts/start",
-    "lint": "eslint -c config/.eslintrc \"test/**/*.js\" \"src/**/*.js\" && stylelint \"src/**/*.scss\" --config config/stylelint.config.js --syntax scss"
+    "lint": "eslint -c config/.eslintrc \"test/**/*.js\" \"src/**/*.js\" && stylelint \"src/**/*.scss\" --config config/stylelint.config.js --syntax scss",
+    "precommit": "npm run lint && npm run test && npm run build"
   },
   "author": "Eric Dauenhauer",
   "license": "GPL-3.0",
