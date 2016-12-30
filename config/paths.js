@@ -17,7 +17,9 @@ function resolveApp(relativePath) {
 
 module.exports = {
   appBuild: resolveApp('build'),
+  appDesktopBuild: resolveApp('desktop'),
   appPublic: resolveApp('public'),
   appIndexJs: resolveApp('src/index.js'),
+  appDesktopJs: resolveApp('src/desktop/index.js'),
   appSrc: resolveApp('src'),
 };
