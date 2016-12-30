@@ -3,6 +3,12 @@ const paths = require('../config/paths');
 const webpack = require('webpack');
 const fs = require('fs');
 
+// set environment variable based on which `build` script was run
+if (process.argv[2] === 'desktop') {
+    process.env.NODE_ENV = 'desktop'
+} else {
+    process.env.NODE_ENV = 'development'
+}
 
 console.log(`Building ${process.env.npm_package_name}\n`)
 
