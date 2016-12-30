@@ -1,17 +1,15 @@
-const webpackConfig = require('../config/webpack.config.js');
-const paths = require('../config/paths');
-const copyFolder = require('./copy-folder');
-const webpack = require('webpack');
-const fs = require('fs');
-
 // set environment variable based on which `build` script was run
-// TODO: Figure out why the bundle isn't being built to the correct directory
-//      >> see line 42 in webpack.config.prod.js in hello-world and /config/env.js
 if (process.argv[2] === 'desktop') {
     process.env.NODE_ENV = 'desktop';
 } else {
     process.env.NODE_ENV = 'development';
 }
+
+const webpackConfig = require('../config/webpack.config.js');
+const paths = require('../config/paths');
+const copyFolder = require('./copy-folder');
+const webpack = require('webpack');
+const fs = require('fs');
 
 console.log(`Building ${process.env.npm_package_name} for ${process.env.NODE_ENV} environment\n`);
 
