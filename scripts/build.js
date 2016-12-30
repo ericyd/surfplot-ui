@@ -5,13 +5,15 @@ const webpack = require('webpack');
 const fs = require('fs');
 
 // set environment variable based on which `build` script was run
+// TODO: Figure out why the bundle isn't being built to the correct directory
+//      >> see line 42 in webpack.config.prod.js in hello-world and /config/env.js
 if (process.argv[2] === 'desktop') {
     process.env.NODE_ENV = 'desktop';
 } else {
     process.env.NODE_ENV = 'development';
 }
 
-console.log(`Building ${process.env.npm_package_name}\n`);
+console.log(`Building ${process.env.npm_package_name} for ${process.env.NODE_ENV} environment\n`);
 
 function build () {
     webpack(webpackConfig).run((err, stats) => {

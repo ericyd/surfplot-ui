@@ -2,6 +2,19 @@
  * Mostly copied from
  * https://github.com/electron/electron-quick-start/blob/f8ae670ce85ce7329580b1085e37abb62ea3566b/main.js
  */
+
+// Check that desktop version has been built
+const paths = require('../config/paths');
+const fs = require('fs');
+try {
+    fs.statSync(paths.appDesktopBuild, (err, stat) => err);
+} catch (e) {
+    // TODO: customize the colors in the output with https://nodejs.org/api/console.html#console_console_dir_obj_options
+    console.log(`Please build the desktop version with 'npm run build:desktop', then try again.`);
+    process.exit(1);
+}
+
+
 const electron = require('electron');
 // Module to control application life.
 const app = electron.app;
@@ -10,6 +23,7 @@ const BrowserWindow = electron.BrowserWindow;
 
 const path = require('path');
 const url = require('url');
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
