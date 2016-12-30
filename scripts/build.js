@@ -1,5 +1,6 @@
 const webpackConfig = require('../config/webpack.config.js');
 const paths = require('../config/paths');
+const copyFolder = require('./copy-folder');
 const webpack = require('webpack');
 const fs = require('fs');
 
@@ -26,9 +27,10 @@ function build() {
 build();
 
 function copyPublic() {
-    // only copy public if /build doesn't exist
-    fs.stat(paths.appBuild, (err, stat) => {
-        if (err) require('./copy-public'); // this will run on require
+    // only copy public if /build or /desktop doesn't exist
+    const copyTo = process.env.NODE_ENV === 'development' ? paths.appBuild : paths.appDesktopBuild;
+    fs.stat(copyTo, (err, stat) => {
+        if (err) copyFolder(paths.appPublic, copyTo);
     });
 }
 
