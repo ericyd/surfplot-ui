@@ -6,27 +6,27 @@ const fs = require('fs');
 
 // set environment variable based on which `build` script was run
 if (process.argv[2] === 'desktop') {
-    process.env.NODE_ENV = 'desktop'
+    process.env.NODE_ENV = 'desktop';
 } else {
-    process.env.NODE_ENV = 'development'
+    process.env.NODE_ENV = 'development';
 }
 
-console.log(`Building ${process.env.npm_package_name}\n`)
+console.log(`Building ${process.env.npm_package_name}\n`);
 
-function build() {
+function build () {
     webpack(webpackConfig).run((err, stats) => {
         if (err) throw err;
         if (stats.compilation.errors.length) {
             console.error(`Failed to compile. ${stats.compilation.errors}`);
             process.exit(1);
         }
-        console.log(`√ Bundle Complete!\nBundling took ${(stats.endTime - stats.startTime)/1000} seconds to bundle with Webpack`);
+        console.log(`√ Bundle Complete!\nBundling took ${(stats.endTime - stats.startTime) / 1000} seconds to bundle with Webpack`);
     });
 }
 
 build();
 
-function copyPublic() {
+function copyPublic () {
     // only copy public if /build or /desktop doesn't exist
     const copyTo = process.env.NODE_ENV === 'development' ? paths.appBuild : paths.appDesktopBuild;
     fs.stat(copyTo, (err, stat) => {

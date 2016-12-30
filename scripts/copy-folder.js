@@ -4,7 +4,7 @@ const path = require('path');
 
 // always pass it relative path names
 
-function copyFolder(source, destination) {
+function copyFolder (source, destination) {
     // get absolute paths from the relative paths passed in
     const cwd = fs.realpathSync(process.cwd());
     const resolvedDestination = path.resolve(cwd, destination);
@@ -33,18 +33,18 @@ function copyFolder(source, destination) {
                                 fs.writeFile(destinationPath, fileContents, (err) => {
                                     if (err) throw err;
                                     console.log(`√ saved ${sourcePath} to ${destinationPath}\n`);
-                                })
-                            })
+                                });
+                            });
                         }
-                    })
-                })
-            })
+                    });
+                });
+            });
         } else {
             throw err;
         }
-    })
+    });
 }
 
-module.exports = (function() {
-    return copyFolder
+module.exports = (function () {
+    return copyFolder;
 })();
