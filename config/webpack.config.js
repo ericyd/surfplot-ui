@@ -8,14 +8,17 @@ const paths = require('./paths');
 const path = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
+const entryScript = process.env.NODE_ENV === 'development' ? paths.appIndexJs : paths.appDesktopJs;
+const buildPath = process.env.NODE_ENV === 'development' ? paths.appBuild : paths.appDesktopBuild;
+
 module.exports = {
   entry: [
     require.resolve('./polyfills'),
-    paths.appIndexJs
+    entryScript
   ],
   output: {
     filename: `bundle.js`,
-    path: paths.appBuild,
+    path: buildPath,
     publicPath: "/",
   },
   devServer: { 
