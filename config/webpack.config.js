@@ -9,8 +9,8 @@ const path = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 // process.env.NODE_ENV is set in scripts/build.js
-const entryScript = process.env.NODE_ENV === 'development' ? paths.appIndexJs : paths.appDesktopJs;
-const buildPath = process.env.NODE_ENV === 'development' ? paths.appBuild : paths.appDesktopBuild;
+const entryScript = process.env.NODE_ENV === 'desktop' ? paths.appDesktopJs : paths.appIndexJs;
+const buildPath = process.env.NODE_ENV === 'desktop' ? paths.appDesktopBuild : paths.appBuild;
 
 module.exports = {
   entry: [
