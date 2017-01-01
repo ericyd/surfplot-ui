@@ -10,7 +10,7 @@ try {
     fs.statSync(paths.appDesktopBuild, (err, stat) => err);
 } catch (e) {
     // TODO: customize the colors in the output with https://nodejs.org/api/console.html#console_console_dir_obj_options
-    console.log(`Please build the desktop version with 'npm run build:desktop', then try again.`);
+    console.log('Please build the desktop version with \'npm run build:desktop\', then try again.');
     process.exit(1);
 }
 
@@ -20,6 +20,8 @@ const electron = require('electron');
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
+// Module to create the application menu
+const Menu = electron.Menu;
 
 const path = require('path');
 const url = require('url');
@@ -28,6 +30,118 @@ const url = require('url');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+
+let menuTemplate = [{
+    label: 'File',
+    submenu: [{
+        label: 'Quit',
+        role: 'quit'
+    }]
+}, {
+    label: 'View',
+    submenu: [{
+        label: 'Toggle Full Screen',
+        accelerator: (function () {
+            if (process.platform === 'darwin') {
+                return 'Ctrl+Command+F';
+            } else {
+                return 'F11';
+            }
+        })(),
+        click: function (item, focusedWindow) {
+            if (focusedWindow) {
+                focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
+            }
+        }
+    }, {
+        label: 'Toggle Developer Tools',
+        accelerator: (function () {
+            if (process.platform === 'darwin') {
+                return 'Alt+Command+I';
+            } else {
+                return 'Ctrl+Shift+I';
+            }
+        })(),
+        click: function (item, focusedWindow) {
+            if (focusedWindow) {
+                focusedWindow.toggleDevTools();
+            }
+        }
+    }]
+}, {
+    label: 'Help',
+    role: 'help',
+    submenu: [{
+        label: 'Web app',
+        click: function () {
+            electron.shell.openExternal('http://github.com/ericyd/surfplot-ui');
+        }
+    }, {
+        label: 'About',
+        click: function () {
+            // TODO: find a way to either transpile About.js during the build:desktop task, OR
+            //      refactor the text of About and Credits into a markdown file, then process that within the components.
+            //      That way would add more flexibility, because then I could just import that markdown into this page.
+            const modalPath = path.join('file://', __dirname, '../src/desktop/article.html');
+            let win = new BrowserWindow({ width: 400, height: 320 });
+            win.on('close', function () { win = null; });
+            win.loadURL(modalPath);
+            win.show();
+        }
+    }, {
+        label: 'Credits',
+        click: function () {
+            electron.shell.openExternal('http://github.com/ericyd/surfplot-ui');
+        }
+    }]
+}];
+
+if (process.platform === 'darwin') {
+    const name = electron.app.getName();
+    menuTemplate.unshift({
+        label: name,
+        submenu: [{
+            label: `About ${name}`,
+            role: 'about'
+        }, {
+            type: 'separator'
+        }, {
+            label: 'Services',
+            role: 'services',
+            submenu: []
+        }, {
+            type: 'separator'
+        }, {
+            label: `Hide ${name}`,
+            accelerator: 'Command+H',
+            role: 'hide'
+        }, {
+            label: 'Hide Others',
+            accelerator: 'Command+Alt+H',
+            role: 'hideothers'
+        }, {
+            label: 'Show All',
+            role: 'unhide'
+        }, {
+            type: 'separator'
+        }, {
+            label: 'Quit',
+            accelerator: 'Command+Q',
+            click: function () {
+                app.quit();
+            }
+        }]
+    });
+
+  // Window menu.
+    menuTemplate[3].submenu.push({
+        type: 'separator'
+    }, {
+        label: 'Bring All to Front',
+        role: 'front'
+    });
+}
+
 
 function createWindow () {
     // Create the browser window.
@@ -48,12 +162,17 @@ function createWindow () {
         // when you should delete the corresponding element.
         mainWindow = null;
     });
+
+    const menu = Menu.buildFromTemplate(menuTemplate);
+    Menu.setApplicationMenu(menu);
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
