@@ -33,7 +33,7 @@ export default class Group extends Component {
                 {!!this.props.title &&
                     (<section className='group__header' onClick={this.handleClick}>
                         <Arrow className={['icon',
-                            this.state.isCollapsed ? 'is-collapsed' : 'is-expanded'].join(' ')} />
+                            this.state.isCollapsed ? '' : 'is-expanded'].join(' ')} />
                         {this.props.title}
                     </section>)
                 }
