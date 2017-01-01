@@ -1,9 +1,14 @@
-const paths = require('../config/paths');
+/**
+ * Function that copies a folder recursively from source to destination.
+ *
+ * @param {string} source A **relative** path to the directory to copy
+ * @param {string} destination A **relative** path to the directory to copy to.
+ *      If destination does not exist, it will be created.
+ */
 const fs = require('fs');
 const path = require('path');
 
-// always pass it relative path names
-
+/*eslint max-nested-callbacks: off */
 function copyFolder (source, destination) {
     // get absolute paths from the relative paths passed in
     const cwd = fs.realpathSync(process.cwd());

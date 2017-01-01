@@ -5,7 +5,6 @@
  */
 
 const paths = require('./paths');
-const path = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 // process.env.NODE_ENV is set in scripts/build.js
