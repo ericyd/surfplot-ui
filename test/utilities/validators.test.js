@@ -8,7 +8,7 @@ import validators from '../../src/utilities/validators';
 
 should();
 
-describe.only('Validators', function () {
+describe('Validators', function () {
     it('should validate numbers', () => {
         //true
         validators.isNumeric(4).should.be.true;
