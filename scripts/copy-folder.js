@@ -50,6 +50,4 @@ function copyFolder (source, destination) {
     });
 }
 
-module.exports = (function () {
-    return copyFolder;
-})();
+module.exports = copyFolder;
