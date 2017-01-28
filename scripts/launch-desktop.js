@@ -78,23 +78,50 @@ let menuTemplate = [{
         }
     }, {
         label: 'About',
-        click: function () {
-            // TODO: find a way to either transpile About.js during the build:desktop task, OR
-            //      refactor the text of About and Credits into a markdown file, then process that within the components.
-            //      That way would add more flexibility, because then I could just import that markdown into this page.
-            const modalPath = path.join('file://', __dirname, '../src/desktop/article.html');
-            let win = new BrowserWindow({ width: 400, height: 320 });
-            win.on('close', function () { win = null; });
-            win.loadURL(modalPath);
-            win.show();
-        }
+        click: function () {openPage('about');}
     }, {
         label: 'Credits',
-        click: function () {
-            electron.shell.openExternal('http://github.com/ericyd/surfplot-ui');
-        }
+        click: function () {openPage('credits');}
     }]
 }];
+
+function openPage (page) {
+    // path.dirname(__dirname) will return the parent folder
+    const modalPath = path.join(path.dirname(__dirname), 'desktop', `${page}.html`);
+
+    let win = new BrowserWindow({
+        parent: mainWindow,
+        width: 700,
+        height: 500,
+        // frame: false, // this looks better, but causes some oddities when handling external links
+        webPreferences: {
+            defaultFontFamily: {
+                standard: 'Open Sans',
+                sansSerif: 'Open Sans'
+            },
+            preload: path.join(path.dirname(__dirname), 'desktop', 'openLinksExternally.js')
+        }
+    });
+    // because it is frameless, just close it on blur
+    win.on('close', function () { win = null; });
+    win.on('blur', function () {
+        // When the window blurs, it could be from focusing on the mainWindow
+        // or it could be from opening an external link.
+        // Only close the modal window if no other electron windows currently
+        // have focus.
+        const windows = BrowserWindow.getAllWindows();
+        for (let i = 0; i < windows.length; i++) {
+            if (!windows[i].isDestroyed() && windows[i].isFocused()) {
+                win.close();
+            }
+        }
+    });
+    win.loadURL(modalPath);
+    win.setMenu(null);
+    win.once('ready-to-show', () => {
+        win.show();
+    });
+}
 
 if (process.platform === 'darwin') {
     const name = electron.app.getName();
@@ -162,6 +189,8 @@ function createWindow () {
         // when you should delete the corresponding element.
         mainWindow = null;
     });
+
+    mainWindow.maximize();
 
     const menu = Menu.buildFromTemplate(menuTemplate);
     Menu.setApplicationMenu(menu);
