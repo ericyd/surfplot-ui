@@ -15,9 +15,11 @@ const groups = getGroups();
 
 describe('<Sidebar />', function () {
     it('should default to hidden', () => {
+        const plotter = new Plotter();
         const wrapper = shallow(<Sidebar
             isCollapsed
             groups={groups}
+            {...plotter.state}
             side='left' />);
         wrapper.prop('className').indexOf('hide').should.equal(0);
         wrapper.prop('className').indexOf('show').should.equal(-1);
@@ -26,7 +28,8 @@ describe('<Sidebar />', function () {
     it('should change classes based on isCollapsed property', () => {
         const wrapper = shallow(<Sidebar
             isCollapsed={false}
-            groups={groups}
+            groups={[]}
+            {...{}}
             side='left' />);
         wrapper.prop('className').indexOf('hide').should.equal(-1);
         wrapper.prop('className').indexOf('show').should.equal(0);

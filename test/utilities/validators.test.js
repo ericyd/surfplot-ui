@@ -57,7 +57,7 @@ describe('Validators', function () {
         isAll(['4']).should.be.false;
     });
 
-    xit('example mathjs output', () => {
+    xit('NOT A TEST: just example mathjs output', () => {
         console.log(mathjs.parse('cos(x) + sin(y)').type);
         console.log(mathjs.parse('4').type);
         console.log(mathjs.parse('sqrt(cos(x)+ sin(y))').type);
