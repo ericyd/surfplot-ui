@@ -8,8 +8,11 @@ if (process.argv[2] === 'desktop') {
 const webpackConfig = require('../config/webpack.config.js');
 const paths = require('../config/paths');
 const copyFolder = require('./copy-folder');
+const markdown = require('markdown-it')();
 const webpack = require('webpack');
 const fs = require('fs');
+// using odd naming to distinguish from local module 'paths'
+const path_node = require('path');
 
 console.log(`Building ${process.env.npm_package_name} for ${process.env.NODE_ENV} environment\n`);
 
@@ -35,3 +38,24 @@ function copyPublic () {
 }
 
 copyPublic();
+
+
+/**
+ * If in desktop version, create html files from markdown and credits
+ * Also copy the script that electron uses to set links as external.
+ */
+if (process.env.NODE_ENV === 'desktop') {
+    fs.readFile('./src/views/about.md', (err, file) => {
+        if (err) throw err;
+        fs.writeFile(path_node.join(paths.appDesktopBuild, 'about.html'), markdown.render(file.toString()));
+    });
+    fs.readFile('./src/views/credits.md', (err, file) => {
+        if (err) throw err;
+        fs.writeFile(path_node.join(paths.appDesktopBuild, 'credits.html'), markdown.render(file.toString()));
+    });
+    fs.readFile('./scripts/openLinksExternally.js', (err, file) => {
+        if (err) throw err;
+        fs.writeFile(path_node.join(paths.appDesktopBuild, 'openLinksExternally.js'), file.toString());
+    });
+
+}
