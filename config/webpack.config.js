@@ -5,63 +5,73 @@
  */
 
 const paths = require('./paths');
-const path = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
+// Set up build paths for desktop and dev (i.e. web) builds
+// process.env.NODE_ENV is set in scripts/build.js
+let entryScript = process.env.NODE_ENV === 'desktop' ? paths.appDesktopIndexJs : paths.appIndexJs;
+let buildPath = process.env.NODE_ENV === 'desktop' ? paths.appDesktopBuild : paths.appBuild;
+
 module.exports = {
-  entry: [
-    require.resolve('./polyfills'),
-    paths.appIndexJs
-  ],
-  output: {
-    filename: `bundle.js`,
-    path: paths.appBuild,
-    publicPath: "/",
-  },
-  devServer: { 
-    inline: true 
-  },
-  devtool: 'eval',
+    entry: {
+        index: [
+            require.resolve('./polyfills'),
+            entryScript
+        ]
+    },
+    output: {
+        path: buildPath,
+        filename: '[name].js',
+        publicPath: '/'
+    },
+    devServer: {
+        inline: true
+    },
+    devtool: 'eval',
   // devtool: 'source-map',
-  plugins: [
-    new StyleLintPlugin({
-      configFile: './config/stylelint.config.js',
-      syntax: 'scss',
-      failOnError: false
-    }),
-  ],
-  eslint: {
-    configFile: 'config/.eslintrc'
-  },
-  module: {
-    preLoaders: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'eslint-loader',
-        include: paths.appSrc,
-      }
+    plugins: [
+        new StyleLintPlugin({
+            configFile: './config/stylelint.config.js',
+            syntax: 'scss',
+            failOnError: false
+        })
     ],
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        include: paths.appSrc,
-        exclude: [/node_modules/],
-      },
-      {
-        test: /\.(sc|sa|c)ss$/,
-        loaders: ["style", "css", "sass"]
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
+    eslint: {
+        configFile: 'config/.eslintrc'
+    },
+    module: {
+        preLoaders: [
+            {
+                test: /\.(js|jsx)$/,
+                loader: 'eslint-loader',
+                include: paths.appSrc
+            }
+        ],
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
+                include: paths.appSrc,
+                exclude: [/node_modules/]
+            },
+            {
+                test: /\.(sc|sa|c)ss$/,
+                loaders: ['style', 'css', 'sass']
+            },
+            {
+                test: /\.md$/,
+                loader: 'html!markdown?gfm=false'
+            }
+        ]
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    },
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
-  node: {
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty'
-  }
+    node: {
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
+    }
 };

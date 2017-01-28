@@ -23,10 +23,12 @@ export default class Container extends Component {
 
     render () {
         const self = this;
-        const children = React.Children.map(this.props.children, function (child) {
+        const children = React.Children.map(self.props.children, function (child) {
+            console.log(child);
             return React.cloneElement(child, {
                 initialState: self.state,
-                handleUnmount: self.handlePlotterUnmount
+                handleUnmount: self.handlePlotterUnmount,
+                page: child.props.route.page
             });
         });
 

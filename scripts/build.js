@@ -1,29 +1,60 @@
+// set environment variable based on which `build` script was run
+if (process.argv[2] === 'desktop') {
+    process.env.NODE_ENV = 'desktop';
+} else {
+    process.env.NODE_ENV = 'development';
+}
+
 const webpackConfig = require('../config/webpack.config.js');
 const paths = require('../config/paths');
+const copyFolder = require('./copy-folder');
+const markdown = require('markdown-it')();
 const webpack = require('webpack');
 const fs = require('fs');
+// using odd naming to distinguish from local module 'paths'
+const pathNode = require('path');
 
+console.log(`Building ${process.env.npm_package_name} for ${process.env.NODE_ENV} environment\n`);
 
-console.log(`Building ${process.env.npm_package_name}\n`)
-
-function build() {
+function build () {
     webpack(webpackConfig).run((err, stats) => {
         if (err) throw err;
         if (stats.compilation.errors.length) {
             console.error(`Failed to compile. ${stats.compilation.errors}`);
             process.exit(1);
         }
-        console.log(`√ Bundle Complete!\nBundling took ${(stats.endTime - stats.startTime)/1000} seconds to bundle with Webpack`);
+        console.log(`√ Bundle Complete!\nBundling took ${(stats.endTime - stats.startTime) / 1000} seconds to bundle with Webpack`);
     });
 }
 
 build();
 
-function copyPublic() {
-    // only copy public if /build doesn't exist
-    fs.stat(paths.appBuild, (err, stat) => {
-        if (err) require('./copy-public'); // this will run on require
+function copyPublic () {
+    // only copy public if /build or /desktop doesn't exist
+    const copyTo = process.env.NODE_ENV === 'development' ? paths.appBuild : paths.appDesktopBuild;
+    fs.stat(copyTo, (err, stat) => {
+        if (err) copyFolder(paths.appPublic, copyTo);
     });
 }
 
 copyPublic();
+
+
+/**
+ * If in desktop version, create html files from markdown and credits
+ * Also copy the script that electron uses to set links as external.
+ */
+if (process.env.NODE_ENV === 'desktop') {
+    fs.readFile('./src/views/about.md', (err, file) => {
+        if (err) throw err;
+        fs.writeFile(pathNode.join(paths.appDesktopBuild, 'about.html'), markdown.render(file.toString()));
+    });
+    fs.readFile('./src/views/credits.md', (err, file) => {
+        if (err) throw err;
+        fs.writeFile(pathNode.join(paths.appDesktopBuild, 'credits.html'), markdown.render(file.toString()));
+    });
+    fs.readFile('./scripts/openLinksExternally.js', (err, file) => {
+        if (err) throw err;
+        fs.writeFile(pathNode.join(paths.appDesktopBuild, 'openLinksExternally.js'), file.toString());
+    });
+}
