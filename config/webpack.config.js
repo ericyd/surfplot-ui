@@ -7,18 +7,21 @@
 const paths = require('./paths');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
+// Set up build paths for desktop and dev (i.e. web) builds
 // process.env.NODE_ENV is set in scripts/build.js
-const entryScript = process.env.NODE_ENV === 'desktop' ? paths.appDesktopJs : paths.appIndexJs;
-const buildPath = process.env.NODE_ENV === 'desktop' ? paths.appDesktopBuild : paths.appBuild;
+let entryScript = process.env.NODE_ENV === 'desktop' ? paths.appDesktopIndexJs : paths.appIndexJs;
+let buildPath = process.env.NODE_ENV === 'desktop' ? paths.appDesktopBuild : paths.appBuild;
 
 module.exports = {
-    entry: [
-        require.resolve('./polyfills'),
-        entryScript
-    ],
+    entry: {
+        index: [
+            require.resolve('./polyfills'),
+            entryScript
+        ]
+    },
     output: {
-        filename: 'bundle.js',
         path: buildPath,
+        filename: '[name].js',
         publicPath: '/'
     },
     devServer: {
@@ -55,8 +58,9 @@ module.exports = {
                 test: /\.(sc|sa|c)ss$/,
                 loaders: ['style', 'css', 'sass']
             },
-            {   test: /\.md$/,
-                loader: "html!markdown?gfm=false"
+            {
+                test: /\.md$/,
+                loader: 'html!markdown?gfm=false'
             }
         ]
     },
