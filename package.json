@@ -1,6 +1,6 @@
 {
   "name": "SurfPlot-UI",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "boilerplate for basic app setup",
   "main": "src/index.js",
   "scripts": {
