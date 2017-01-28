@@ -20,6 +20,6 @@ module.exports = {
     appDesktopBuild: resolveApp('desktop'),
     appPublic: resolveApp('public'),
     appIndexJs: resolveApp('src/index.js'),
-    appDesktopIndexJs: resolveApp('src/desktop/index.js'),
+    appDesktopIndexJs: resolveApp('src/desktop-index.js'),
     appSrc: resolveApp('src')
 };
