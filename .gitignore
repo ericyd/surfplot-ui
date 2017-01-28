@@ -38,6 +38,7 @@ jspm_packages
 
 # production folder
 build
+desktop
 
 # editor settings files
 .vscode
