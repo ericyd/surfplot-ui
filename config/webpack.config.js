@@ -54,6 +54,9 @@ module.exports = {
             {
                 test: /\.(sc|sa|c)ss$/,
                 loaders: ['style', 'css', 'sass']
+            },
+            {   test: /\.md$/,
+                loader: "html!markdown?gfm=false"
             }
         ]
     },
