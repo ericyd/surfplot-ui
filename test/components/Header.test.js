@@ -3,8 +3,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { should } from 'chai';
-import Header from '../src/header/Header';
-import Nav from '../src/header/Nav';
+import Header from '../../src/header/Header';
+import Nav from '../../src/header/Nav';
 
 should();
 

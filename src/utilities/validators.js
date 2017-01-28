@@ -17,8 +17,26 @@ export function isNumeric (value) {
 }
 
 export function isParsable (value) {
-    if (mathjs.eval(value, { x: 0, y: 0 })) {
-        return true;
+    // mathjs throws an error if no argument is passed, and returns undefined if length == 0
+    // mathjs supports arrays, but there will be no valid way to pass an array through this application, so must be a string
+    if (value !== undefined &&
+        value !== null &&
+        value.length > 0 &&
+        typeof value === 'string') {
+        try {
+            let e = mathjs.parse(value);
+
+            // http://mathjs.org/docs/expressions/expression_trees.html
+            if ((e.type === 'ConstantNode' && e.value !== undefined) ||
+                e.type === 'OperatorNode' ||
+                e.type === 'FunctionNode' ||
+                e.type === 'ParenthesisNode' ||
+                e.type === 'SymbolNode') {
+                return true;
+            }
+        } catch (e) {
+            return false;
+        }
     }
     return false;
 }
@@ -38,3 +56,9 @@ export function isAll (...validators) {
         return true;
     };
 }
+
+export default {
+    isNumeric: isNumeric,
+    isParsable: isParsable,
+    isAll: isAll
+};
