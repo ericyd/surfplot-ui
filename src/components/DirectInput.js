@@ -13,7 +13,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import './direct-input.scss';
+import './inputs.scss';
 
 export default class DirectInput extends Component {
     constructor () {

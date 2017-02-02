@@ -13,7 +13,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import './validated-input.scss';
+import './inputs.scss';
 
 export default class ValidatedInput extends Component {
     constructor () {
