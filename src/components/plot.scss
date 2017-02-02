@@ -1,8 +1,23 @@
 @import '../global-style-variables';
 
 .plot {
-    width: 100%;
+    // width: 100%;
     height: $body-height;
     padding: 1em;
     box-sizing: border-box;
+}
+
+// see src/components/sidebar.scss for the corresponding sidebar styling
+.push-body {
+    @extend %default-transition;
+    overflow-x: hidden;
+    position: relative;
+
+    &.collapsed {
+        left: 0;
+    }
+
+    &.expanded {
+        left: $sidebar-width;
+    }
 }

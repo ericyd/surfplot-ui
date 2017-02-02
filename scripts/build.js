@@ -47,14 +47,26 @@ copyPublic();
 if (process.env.NODE_ENV === 'desktop') {
     fs.readFile('./src/views/about.md', (err, file) => {
         if (err) throw err;
-        fs.writeFile(pathNode.join(paths.appDesktopBuild, 'about.html'), markdown.render(file.toString()));
+        fs.writeFile(pathNode.join(paths.appDesktopBuild, 'about.html'),
+            markdown.render(file.toString()),
+            (err) => {
+                if (err) console.log(err)
+            });
     });
     fs.readFile('./src/views/credits.md', (err, file) => {
         if (err) throw err;
-        fs.writeFile(pathNode.join(paths.appDesktopBuild, 'credits.html'), markdown.render(file.toString()));
+        fs.writeFile(pathNode.join(paths.appDesktopBuild,'credits.html'),
+            markdown.render(file.toString()),
+            (err) => {
+                if (err) console.log(err)
+            });
     });
     fs.readFile('./scripts/openLinksExternally.js', (err, file) => {
         if (err) throw err;
-        fs.writeFile(pathNode.join(paths.appDesktopBuild, 'openLinksExternally.js'), file.toString());
+        fs.writeFile(pathNode.join(paths.appDesktopBuild, 'openLinksExternally.js'),
+            file.toString(),
+            (err) => {
+                if (err) console.log(err)
+            });
     });
 }

@@ -112,7 +112,8 @@ export default class Plot extends Component {
 
     render () {
         return (
-            <div className='plot' id='plot' >
+            <div id='plot'
+                className={['plot', 'push-body', this.props.isCollapsed ? 'collapsed' : 'expanded'].join(' ')} >
                 loading
             </div>
         );

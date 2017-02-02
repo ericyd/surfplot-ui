@@ -1,18 +1,47 @@
+@import '../global-style-variables.scss';
+
 .plotter {
     position: relative;
     margin: 0;
     padding: 0;
+}
 
-    .toggleButton {
-        position: absolute;
-        top: 0;
+// see src/components/sidebar.scss for the corresponding sidebar styling
+.push-body {
+    overflow-x: hidden;
+}
 
-        &.right {
-            right: 0;
-        }
+.toggleButton {
+    display: block;
+    height: 4em;
+    width: 4em;
+    background: $primary--light;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 1em;
+    left: 1em;
 
-        &.left {
-            left: 0;
-        }
+    &:hover {
+        background: $primary--dark;
+    }
+
+    &.float-right {
+        float: right;
+        top: -1.5em;
+        left: -1em;
+    }
+
+    // reset annoying default button styling
+    &:focus,
+    &:active,
+    &:link,
+    &:hover {
+        outline: 0;
+    }
+
+    &::-moz-focus-inner {
+        border: 0;
     }
 }

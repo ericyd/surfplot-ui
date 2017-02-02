@@ -23,3 +23,11 @@ $border-radius:     0;
 /// Layout
 $header-height:     10vh;
 $body-height:       100vh - $header-height;
+$sidebar-width:     320px;
+
+/// Transitions
+%default-transition {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}

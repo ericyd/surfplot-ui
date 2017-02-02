@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import Sidebar from '../components/Sidebar';
 import Plot from '../components/Plot';
+import ToggleSidebarBtn from '../components/ToggleSidebarBtn';
 import getGroups from '../utilities/getGroups';
 import './plotter.scss';
 
@@ -55,24 +56,21 @@ export default class Plotter extends Component {
         this.setState(newOption);
     }
 
+    // className={['plot', 'push-body', this.props.isCollapsed ? 'collapsed' : 'expanded'].join(' ')}
     render () {
         return (
-            <div className='plotter'>
-                <button type='button'
-                    name='sidebarToggle'
-                    onClick={this.handleSidebarToggle}
-                    className='toggleButton left'>
-                    Toggle the Sidebar
-                </button>
+            <div className='plotter push-body'>
+                <ToggleSidebarBtn onClick={this.handleSidebarToggle}/>
 
                 <Sidebar
                     isCollapsed={this.state.isCollapsed}
                     groups={this.groups}
                     handleItemChange={this.handleItemChange}
-                    {...this.state}
-                    side='left' />
+                    toggleCollapsed={this.handleSidebarToggle}
+                    {...this.state} />
 
-                <Plot {...this.state} />
+                <Plot {...this.state}
+                    isCollapsed={this.state.isCollapsed} />
             </div>
         );
     }
