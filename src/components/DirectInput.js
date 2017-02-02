@@ -37,12 +37,14 @@ export default class DirectInput extends Component {
     renderInput (value) {
         if (typeof value === 'boolean') {
             return (
-                <label htmlFor={this.props.id}>{this.props.name}
-                <input type='text'
-                    value={this.state.value}
-                    id={this.props.id}
-                    onChange={this.handleChange} />
-                </label>
+                <span>
+                    <label htmlFor={this.props.id}>{this.props.name}
+                    <input type='text'
+                        value={this.state.value}
+                        id={this.props.id}
+                        onChange={this.handleChange} />
+                    </label>
+                </span>
             );
         } else {
             return (
@@ -69,7 +71,7 @@ export default class DirectInput extends Component {
 
     render () {
         return (
-            <div className='direct-input'>
+            <div className='input direct'>
                 {this.renderInput(this.props.value)}
             </div>
         );

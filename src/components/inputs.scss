@@ -1,20 +1,30 @@
 @import '../global-style-variables';
 
-.validated-block {
-    display: block;
-    padding: 1em;
-    background-color: lighten($primary, 20%);
+.input {
+    font-size: 0.5em;
+}
 
-    .validated-block__input {
-        height: 1em;
+.validated {
+    %validated__input {
+        height: 1.5em;
+        font-size: 1em;
         border: 1px solid $primary;
         border-radius: $border-radius;
-        padding: 0.1em;
+        padding: 0.25em;
         margin: 0.2em;
+    }
+
+    .validated__range {
+        @extend %validated__input;
+        width: 4em;
+    }
+
+    .validated__equation {
+        @extend %validated__input;
         width: auto;
     }
 }
 
-.direct-input {
+.direct {
     font-size: 0.6em;
 }

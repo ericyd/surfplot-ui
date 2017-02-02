@@ -13,6 +13,10 @@
     }
 
     .group__items {
+        background-color: $primary--light;
+        display: block;
+        padding: 1em;
+
         li {
             list-style-type: none;
         }

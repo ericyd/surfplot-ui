@@ -34,7 +34,6 @@
 
 .is-expanded svg {
     @extend %active-svg;
-
     transform-origin: 0px 75px;
     -ms-transform: rotate(45deg); /* IE 9 */
     -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
