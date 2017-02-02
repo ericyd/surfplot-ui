@@ -1,11 +1,5 @@
 @import '../global-style-variables.scss';
 
-$icon-color: darken($primary, 50%);
-
-%active-svg {
-    fill: $icon-color;
-}
-
 .group {
     .group__header {
         font-size: 0.6em;
@@ -15,25 +9,7 @@ $icon-color: darken($primary, 50%);
         border: 0;
         padding-top: 0.25em;
         padding-bottom: 0.25em;
-
-        .icon {
-            margin: 0 0.5em 0 0.25em;
-            stroke: $icon-color;
-            fill: none;
-        }
-
-        svg.is-expanded {
-            @extend %active-svg;
-
-            transform-origin: 0px 15px;
-            -ms-transform: rotate(45deg); /* IE 9 */
-            -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-            transform: rotate(45deg);
-        }
-
-        &:hover svg {
-            @extend %active-svg;
-        }
+        padding-left: 1em;
     }
 
     .group__items {

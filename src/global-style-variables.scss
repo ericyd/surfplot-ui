@@ -9,7 +9,8 @@ $body-font-size:    30px;
 
 /// Colors
 $primary:           #63a8bf;
-$primary--dark:     darken($primary, 10%);
+$primary--dark:     darken($primary, 20%);
+$primary--darkest:  darken($primary, 50%);
 $secondary:         #b891c4;
 $body-bg:           rgb(240, 240, 240);
 $header-bg:           darken($body-bg, 5%);

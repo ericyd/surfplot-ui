@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import Arrow from '../icons/Arrow';
+// used for adding hover effect to group__header
+import '../icons/icon.scss';
 import './group.scss';
 
 /**
@@ -31,9 +33,8 @@ export default class Group extends Component {
             <div className='group'>
 
                 {!!this.props.title &&
-                    (<section className='group__header' onClick={this.handleClick}>
-                        <Arrow className={['icon',
-                            this.state.isCollapsed ? '' : 'is-expanded'].join(' ')} />
+                    (<section className='group__header hoverable' onClick={this.handleClick}>
+                        <Arrow className={this.state.isCollapsed ? '' : 'is-expanded'} />
                         {this.props.title}
                     </section>)
                 }
