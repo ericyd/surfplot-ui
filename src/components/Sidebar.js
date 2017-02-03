@@ -4,6 +4,7 @@ import React from 'react';
 import Group from './Group';
 import DirectInput from './DirectInput';
 import ValidatedInput from './ValidatedInput';
+import ToggleSidebarBtn from './ToggleSidebarBtn';
 import { isNumeric, isParsable } from '../utilities/validators';
 import './sidebar.scss';
 
@@ -18,11 +19,8 @@ import './sidebar.scss';
 
 export default function Sidebar (props) {
     return (
-        <div className={[
-            props.isCollapsed ? 'hide' : 'show',
-            'sidebar',
-            props.side
-        ].join(' ')}>
+        <div className={['sidebar', props.isCollapsed ? 'collapsed' : 'expanded'].join(' ')}>
+            <ToggleSidebarBtn onClick={props.toggleCollapsed} className='float-right' />
 
             {
                 Object.keys(props.groups).map((groupName, i) => {

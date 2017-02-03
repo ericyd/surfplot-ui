@@ -78,10 +78,22 @@ let menuTemplate = [{
         }
     }, {
         label: 'About',
-        click: function () {openPage('about');}
+        click: function () {
+            if (process.platform !== 'win32') {
+                electron.shell.openExternal('https://github.com/ericyd/surfplot-ui/blob/master/src/views/about.md');
+            } else {
+                openPage('about');
+            }
+        }
     }, {
         label: 'Credits',
-        click: function () {openPage('credits');}
+        click: function () {
+            if (process.platform !== 'win32') {
+                electron.shell.openExternal('https://github.com/ericyd/surfplot-ui/blob/master/src/views/credits.md');
+            } else {
+                openPage('credits');
+            }
+        }
     }]
 }];
 

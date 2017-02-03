@@ -13,7 +13,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import './validated-input.scss';
+import './inputs.scss';
 
 export default class ValidatedInput extends Component {
     constructor () {
@@ -78,9 +78,8 @@ export default class ValidatedInput extends Component {
     render () {
         if (Array.isArray(this.state.value)) {
             return (
-                <div className='validated-block'>
-                    {this.props.name}
-                    <label htmlFor={this.props.id + 'min'}>min
+                <div className='input validated'>
+                    <label htmlFor={this.props.id + 'min'}>{this.props.name} min
                     <input type='text'
                         value={this.state.value[0]}
                         data-is-max={0}
@@ -88,9 +87,9 @@ export default class ValidatedInput extends Component {
                         id={this.props.id + 'min'}
                         onChange={this.handleChange}
                         onKeyUp={this.handleKeyUp}
-                        className='validated-block__input' />
+                        className='validated__range' />
                     </label>
-                    <label htmlFor={this.props.id + 'max'}>max
+                    <label htmlFor={this.props.id + 'max'}>{this.props.name} max
                     <input type='text'
                         value={this.state.value[1]}
                         data-is-max={1}
@@ -98,21 +97,21 @@ export default class ValidatedInput extends Component {
                         id={this.props.id + 'max'}
                         onChange={this.handleChange}
                         onKeyUp={this.handleKeyUp}
-                        className='validated-block__input' />
+                        className='validated__range' />
                     </label>
                 </div>
             );
         } else {
             return (
-                <div className='validated-block'>
-                    <label htmlFor={this.props.id}>{this.props.name}
+                <div className='input validated'>
+                    <label htmlFor={this.props.id}>{this.props.name}&nbsp;
                     <input type='text'
                         value={this.state.value}
                         id={this.props.id}
                         name={this.props.name}
                         onChange={this.handleChange}
                         onKeyUp={this.handleKeyUp}
-                        className='validated-block__input' />
+                        className='validated__equation' />
                     </label>
                 </div>
             );

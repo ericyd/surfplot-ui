@@ -1,7 +1,50 @@
+// thanks for this awesome write up on svg icons
+// https://blog.prototypr.io/align-svg-icons-to-text-and-say-goodbye-to-font-icons-d44b3d7b26b4#.nzkfdtyk1
+
+@import '../global-style-variables.scss';
+
+%active-svg {
+    fill: $primary--darkest;
+}
+
 .icon {
-    width: 0.8em;
-    height: 0.8em;
+    width: 1em;
+    height: 1em;
     padding: 0;
     margin: 0;
     vertical-align: middle;
+    position: relative;
+    bottom: 0.125em;
+    stroke: $primary--darkest;
+    fill: none;
+
+    // The inner SVG is just a container to provide easy layout and visual weight.
+    // Setting the overflow prevents any accidental cutoff of overlapping stroke
+    > svg {
+        overflow: visible;
+    }
+}
+
+.hoverable {
+    &:hover,
+    &:hover svg {
+        @extend %active-svg;
+    }
+}
+
+.is-expanded svg {
+    @extend %active-svg;
+    transform-origin: 0px 75px;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+}
+
+.menu {
+    width: 2em;
+    height: 2em;
+}
+
+.menu-bar {
+    fill: $primary--dark;
 }

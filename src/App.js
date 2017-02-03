@@ -1,3 +1,7 @@
+/**
+ * App provides a container for the react router and loads those routes
+ */
+
 'use strict';
 
 import React from 'react';

@@ -1,25 +1,24 @@
 @import '../global-style-variables';
 
-.show {
-    display: block;
-}
-
-.hide {
-    display: none;
-}
-
 .sidebar {
-    width: 200px;
-    height: $body-height;
+    // thanks to jPushMenu for this inspiration
+    // https://github.com/takien/jPushMenu/blob/1e960b77fb3666434a580eb6980403b049f79355/css/jPushMenu.css
+    @extend %default-transition;
     border: 0;
     background-color: $primary;
     padding: 1em 0 0;
+    position: absolute;
+    top: 0;
+    width: $sidebar-width;
+    height: $body-height;
+    z-index: 1000;
+    overflow-y: scroll;
 
-    &.left {
-        float: left;
+    &.collapsed {
+        left: -$sidebar-width;
     }
 
-    &.right {
-        float: right;
+    &.expanded {
+        left: 0;
     }
 }

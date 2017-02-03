@@ -8,7 +8,7 @@ import validators from '../../src/utilities/validators';
 
 should();
 
-describe.only('Validators', function () {
+describe('Validators', function () {
     it('should validate numbers', () => {
         //true
         validators.isNumeric(4).should.be.true;
@@ -57,7 +57,7 @@ describe.only('Validators', function () {
         isAll(['4']).should.be.false;
     });
 
-    xit('example mathjs output', () => {
+    xit('NOT A TEST: just example mathjs output', () => {
         console.log(mathjs.parse('cos(x) + sin(y)').type);
         console.log(mathjs.parse('4').type);
         console.log(mathjs.parse('sqrt(cos(x)+ sin(y))').type);

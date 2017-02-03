@@ -11,7 +11,7 @@ export default function getGroups () {
             name: 'Equation',
             items: [
                 {
-                    name: 'z = ',
+                    name: 'Z = ',
                     id: 'equation',
                     isValidated: true
                 }

@@ -1,10 +1,13 @@
+/**
+ * Icon uses a 100x100 grid for layout
+ */
 import React from 'react';
-import './icon.scss';
+import Icon from './Icon';
 
-export default function Arrow (props) {
-    return (
-        <svg viewBox='0 0 30 30' {...props} >
-            <path d='M0 5 L30 15 L0 25'/>
-        </svg>
-    );
-}
+const Arrow = props => (
+    <Icon className={props.className}>
+        <path d='M0 10 L40 50 L0 90 L0 10'/>
+    </Icon>
+);
+
+export default Arrow;

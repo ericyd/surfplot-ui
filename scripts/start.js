@@ -1,4 +1,4 @@
-var config = require('../config/webpack.config');
+var config = require('../config/webpack.config.dev');
 const paths = require('../config/paths');
 const webpack = require('webpack');
 const open = require('open');

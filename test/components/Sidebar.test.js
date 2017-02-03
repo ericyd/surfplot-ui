@@ -15,21 +15,24 @@ const groups = getGroups();
 
 describe('<Sidebar />', function () {
     it('should default to hidden', () => {
+        const plotter = new Plotter();
         const wrapper = shallow(<Sidebar
             isCollapsed
             groups={groups}
+            {...plotter.state}
             side='left' />);
-        wrapper.prop('className').indexOf('hide').should.equal(0);
-        wrapper.prop('className').indexOf('show').should.equal(-1);
+        wrapper.prop('className').indexOf('collapsed').should.be.greaterThan(0);
+        wrapper.prop('className').indexOf('expanded').should.equal(-1);
     });
 
     it('should change classes based on isCollapsed property', () => {
         const wrapper = shallow(<Sidebar
             isCollapsed={false}
-            groups={groups}
+            groups={[]}
+            {...{}}
             side='left' />);
-        wrapper.prop('className').indexOf('hide').should.equal(-1);
-        wrapper.prop('className').indexOf('show').should.equal(0);
+        wrapper.prop('className').indexOf('collapsed').should.equal(-1);
+        wrapper.prop('className').indexOf('expanded').should.be.greaterThan(0);
     });
 
     it('should render the correct number of <ValidatedInput> and <DirectInput>', () => {

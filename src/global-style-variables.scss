@@ -9,7 +9,9 @@ $body-font-size:    30px;
 
 /// Colors
 $primary:           #63a8bf;
-$primary--dark:     darken($primary, 10%);
+$primary--dark:     darken($primary, 20%);
+$primary--darkest:  darken($primary, 50%);
+$primary--light:    lighten($primary, 20%);
 $secondary:         #b891c4;
 $body-bg:           rgb(240, 240, 240);
 $header-bg:           darken($body-bg, 5%);
@@ -21,3 +23,11 @@ $border-radius:     0;
 /// Layout
 $header-height:     10vh;
 $body-height:       100vh - $header-height;
+$sidebar-width:     320px;
+
+/// Transitions
+%default-transition {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
