@@ -52,6 +52,7 @@ there isn't really much to be gained by contributing to this repository.
 If you decide to contribute, please run `npm run precommit` before submitting a pull
 request to make sure that your script passes all the linters and tests.
 
+![Image](https://travis-ci.org/ericyd/surfplot-ui.svg?branch=master)
 
 [calcplot]: http://web.monroecc.edu/manila/webfiles/pseeburger/CalcPlot3D/
 [electron]: http://electron.atom.io/
