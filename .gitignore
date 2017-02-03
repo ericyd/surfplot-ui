@@ -42,3 +42,6 @@ desktop
 
 # editor settings files
 .vscode
+
+# for gh-pages branch
+index.js.map

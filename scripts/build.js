@@ -33,7 +33,7 @@ function copyPublic () {
     // only copy public if /build or /desktop doesn't exist
     const copyTo = process.env.NODE_ENV === 'desktop' ? paths.appDesktopBuild : paths.appBuild;
     fs.stat(copyTo, (err, stat) => {
-        if (err) copyFolder(paths.appPublic, copyTo);
+        if (err || process.env.NODE_ENV === 'production') copyFolder(paths.appPublic, copyTo);
     });
 }
 
