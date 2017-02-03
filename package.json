@@ -1,7 +1,7 @@
 {
   "name": "SurfPlot-UI",
-  "version": "0.0.6",
-  "description": "boilerplate for basic app setup",
+  "version": "0.0.7",
+  "description": "A simple UI for visualizing mathematical surfaces",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha \"test/**/*.test.js\" --compilers js:babel-core/register --require ignore-styles --require test/setup.js",
