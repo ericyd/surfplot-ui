@@ -11,7 +11,7 @@ The current version of the app can be found online at <http://ericyd.github.io/s
 Alternatively, you can run an offline version of the app (powered by [Electron][electron]) on your own computer.
 This might be more responsive in some cases.
 
-To build and run the offline version, you will need [Nodejs](node) and [Git][git]*.  Then run the following commands:
+To build and run the offline version, you will need [Nodejs](node) (version 4.x or higher) and [Git][git]*.  Then run the following commands:
 
 ```
 git clone https://github.com/ericyd/surfplot-ui.git
