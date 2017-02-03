@@ -21,8 +21,8 @@ describe('<Sidebar />', function () {
             groups={groups}
             {...plotter.state}
             side='left' />);
-        wrapper.prop('className').indexOf('hide').should.equal(0);
-        wrapper.prop('className').indexOf('show').should.equal(-1);
+        wrapper.prop('className').indexOf('collapsed').should.be.greaterThan(0);
+        wrapper.prop('className').indexOf('expanded').should.equal(-1);
     });
 
     it('should change classes based on isCollapsed property', () => {
@@ -31,8 +31,8 @@ describe('<Sidebar />', function () {
             groups={[]}
             {...{}}
             side='left' />);
-        wrapper.prop('className').indexOf('hide').should.equal(-1);
-        wrapper.prop('className').indexOf('show').should.equal(0);
+        wrapper.prop('className').indexOf('collapsed').should.equal(-1);
+        wrapper.prop('className').indexOf('expanded').should.be.greaterThan(0);
     });
 
     it('should render the correct number of <ValidatedInput> and <DirectInput>', () => {
