@@ -5,7 +5,8 @@
 /// Fonts
 $sans-serif:        "Source Sans Pro", Tahoma, Arial, Verdana, sans-serif;
 $serif:             Times New Roman, Georgia, serif;
-$body-font-size:    30px;
+// TODO: Set up breakpoints so this isn't so small in very small view heights
+$body-font-size:    3.5vh;
 
 /// Colors
 $primary:           #63a8bf;
@@ -21,7 +22,7 @@ $body-color:        rgb(40, 40, 40);
 $border-radius:     0;
 
 /// Layout
-$header-height:     10vh;
+$header-height:     2 * $body-font-size;
 $body-height:       100vh - $header-height;
 $sidebar-width:     320px;
 

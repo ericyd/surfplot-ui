@@ -21,7 +21,7 @@ import './sidebar.scss';
 export default function Sidebar (props) {
     return (
         <div className={['sidebar', props.isCollapsed ? 'collapsed' : 'expanded'].join(' ')}>
-            <ToggleSidebarBtn onClick={props.toggleCollapsed} className='float-right' />
+            <ToggleSidebarBtn onClick={props.toggleCollapsed} className='toggleBtn--float-right' />
 
             {
                 Object.keys(props.groups).map((groupName, i) => {

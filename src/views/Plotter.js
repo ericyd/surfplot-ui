@@ -60,7 +60,7 @@ export default class Plotter extends Component {
     render () {
         return (
             <div className='plotter push-body'>
-                <ToggleSidebarBtn onClick={this.handleSidebarToggle}/>
+                <ToggleSidebarBtn className='toggleBtn--body' onClick={this.handleSidebarToggle}/>
 
                 <Sidebar
                     isCollapsed={this.state.isCollapsed}

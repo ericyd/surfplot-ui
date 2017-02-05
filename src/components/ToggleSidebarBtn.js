@@ -11,7 +11,7 @@ const ToggleSidebarBtn = props => (
     <button type='button'
         name='sidebarToggle'
         onClick={props.onClick}
-        className={['toggleButton', props.className].join(' ')}>
+        className={['toggleBtn', props.className].join(' ')}>
         <Menu />
     </button>
 );
