@@ -14,7 +14,7 @@
     margin: 0;
     vertical-align: middle;
     position: relative;
-    bottom: 0.125em;
+    bottom: 0.07em;
     stroke: $primary--darkest;
     fill: none;
 
@@ -38,11 +38,6 @@
     -ms-transform: rotate(45deg); /* IE 9 */
     -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
     transform: rotate(45deg);
-}
-
-.menu {
-    width: 2em;
-    height: 2em;
 }
 
 .menu-bar {

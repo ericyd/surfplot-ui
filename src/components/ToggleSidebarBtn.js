@@ -3,6 +3,7 @@
  *
  * Styling found in src/views/plotter.scss
  */
+
 import React from 'react';
 import Menu from '../icons/Menu';
 
