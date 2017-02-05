@@ -45,7 +45,7 @@ module.exports = {
                 comments: false,
                 screw_ie8: true
             }
-        }),
+        })
     ],
     eslint: {
         configFile: 'config/.eslintrc'

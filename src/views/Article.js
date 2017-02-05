@@ -13,3 +13,7 @@ export default function Article (props) {
         </article>
     );
 }
+
+Article.propTypes = {
+    page: React.PropTypes.string
+};

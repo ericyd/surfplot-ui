@@ -76,9 +76,7 @@ export default class Plotter extends Component {
     }
 }
 
-// Plotter.propTypes = {
-//     route: {
-//         handleUnmount: React.PropTypes.func,
-//         initialState: React.PropTypes.object
-//     }
-// };
+Plotter.propTypes = {
+    handleUnmount: React.PropTypes.func,
+    initialState: React.PropTypes.object
+};

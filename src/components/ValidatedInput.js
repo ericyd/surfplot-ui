@@ -125,5 +125,7 @@ ValidatedInput.propTypes = {
         React.PropTypes.array
     ]).isRequired,
     handleChange: React.PropTypes.func,
-    validate: React.PropTypes.func
+    validate: React.PropTypes.func,
+    id: React.PropTypes.string,
+    name: React.PropTypes.string
 };

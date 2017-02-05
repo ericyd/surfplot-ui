@@ -12,4 +12,8 @@ const Menu = props => (
     </Icon>
 );
 
+Menu.propTypes = {
+    className: React.PropTypes.string
+};
+
 export default Menu;

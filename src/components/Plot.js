@@ -124,5 +124,6 @@ Plot.propTypes = {
     x: React.PropTypes.array.isRequired,
     y: React.PropTypes.array.isRequired,
     plotWidth: React.PropTypes.string.isRequired,
-    plotHeight: React.PropTypes.string.isRequired
+    plotHeight: React.PropTypes.string.isRequired,
+    isCollapsed: React.PropTypes.bool
 };

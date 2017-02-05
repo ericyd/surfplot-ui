@@ -79,5 +79,6 @@ Sidebar.propTypes = {
     handleItemChange: React.PropTypes.func,
     handleItemDelete: React.PropTypes.func,
     handleItemAdd: React.PropTypes.func,
-    side: React.PropTypes.string
+    groups: React.PropTypes.object,
+    toggleCollapsed: React.PropTypes.func
 };

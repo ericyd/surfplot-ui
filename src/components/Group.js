@@ -50,6 +50,13 @@ export default class Group extends Component {
     }
 }
 
+// eslint-plugin-react complains about missing 'children' in propTypes
+// but react docs explicitly state that 'children' should be treated as an opaque data type
+// (https://facebook.github.io/react/docs/react-api.html#react.children),
+// and eslint-plugin-react doesn't allow you to declare "any".
+// So there is no way to not get a warning for components that use props.children.
+// I would open an issue, but the rules that are being enforced are for good reason, so I think it's
+// just going to be that way.
 Group.propTypes = {
     title: React.PropTypes.string
 };
