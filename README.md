@@ -1,5 +1,7 @@
 # SurfPlot UI
-Surface plotting for visualizing mathematical surfaces
+A simple UI for visualizing mathematical surfaces
+
+![Image](https://travis-ci.org/ericyd/surfplot-ui.svg?branch=master)
 
 This app is under development.  The end goal is to basically create a modern, javascript-based 
 version of [Calc Plot 3D][calcplot].
@@ -51,8 +53,6 @@ Contributions are encouraged, though you might just want to build your own versi
 there isn't really much to be gained by contributing to this repository.
 If you decide to contribute, please run `npm run precommit` before submitting a pull
 request to make sure that your script passes all the linters and tests.
-
-![Image](https://travis-ci.org/ericyd/surfplot-ui.svg?branch=master)
 
 [calcplot]: http://web.monroecc.edu/manila/webfiles/pseeburger/CalcPlot3D/
 [electron]: http://electron.atom.io/
