@@ -17,7 +17,8 @@ export default function Nav (props) {
                     return (<Link to={`/${btn.href}`}
                                 key={btn.title}
                                 name={btn.title}
-                                className='nav__btn'>
+                                className='nav__btn'
+                                activeClassName='nav__btn--active'>
                                 {btn.title}
                             </Link>
                     );

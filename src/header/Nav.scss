@@ -2,12 +2,13 @@
 
 $btn-size:     2em;
 
-%btn {
+%link {
     font-size: $body-font-size;
     font-family: $sans-serif;
     background-color: $header-bg;
-    border: none;
-    border-color: $primary;
+    border-width: 1px;
+    border-color: transparent;
+    border-style: solid;
     border-radius: $border-radius;
     box-sizing: border-box;
     color: $body-color;
@@ -23,6 +24,7 @@ $btn-size:     2em;
     width: auto;
     position: relative;
     top: -($btn-size / 3);
+    text-decoration: none;
 
     &:focus,
     &:active,
@@ -36,10 +38,10 @@ $btn-size:     2em;
     }
 }
 
-%btn--active {
-    @extend %btn;
+%link--active {
+    @extend %link;
 
-    border-bottom: 1px solid $primary;
+    border-color: $primary;
 }
 
 .nav {
@@ -47,20 +49,20 @@ $btn-size:     2em;
     display: inline-block;
 
     .nav__btn {
-        @extend %btn;
+        @extend %link;
+        @extend %default-transition;
 
         &:hover {
-            @extend %btn--active;
+            @extend %link--active;
+        }
+
+        &:active {
+            @extend %link--active;
         }
     }
 
     .nav__btn--active {
-        @extend %btn--active;
-    }
-
-    [type=button],
-    [type=submit],
-    button {
-        @extend .nav__btn;
+        @extend %link--active;
+        @extend %default-transition;
     }
 }
