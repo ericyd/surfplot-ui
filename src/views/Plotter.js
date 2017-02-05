@@ -41,8 +41,8 @@ export default class Plotter extends Component {
         this.groups = getGroups();
     }
 
+    // save the state in the parent before it unmounts so it is still here when it returns
     componentWillUnmount () {
-        // save the state in the parent before it unmounts so it is still here when it returns
         this.props.handleUnmount(this.state);
     }
 
@@ -50,13 +50,13 @@ export default class Plotter extends Component {
         this.setState({ isCollapsed: !this.state.isCollapsed });
     }
 
+    // update state to reflect the new key: value pair
     handleItemChange (key, value) {
         const newOption = {};
         newOption[key] = value;
         this.setState(newOption);
     }
 
-    // className={['plot', 'push-body', this.props.isCollapsed ? 'collapsed' : 'expanded'].join(' ')}
     render () {
         return (
             <div className='plotter push-body'>

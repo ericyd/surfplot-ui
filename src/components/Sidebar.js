@@ -1,3 +1,12 @@
+/**
+ * The Sidebar renders any groups and items of the group that are passed to it.
+ * It will render two major item types: DirectInputs or ValidatedInputs
+ * It decides between the two based on the presence of props.handleItemDelete,
+ * which is only a property passed with the ValidatedInput group.
+ *
+ * If it is passed a handleItemAdd function, it will render an Add button below all groups.
+ */
+
 'use strict';
 
 import React from 'react';
@@ -8,14 +17,6 @@ import ToggleSidebarBtn from './ToggleSidebarBtn';
 import { isNumeric, isParsable } from '../utilities/validators';
 import './sidebar.scss';
 
-/**
- * The Sidebar renders any groups and items of the group that are passed to it.
- * It will render two major item types: DirectInputs or ValidatedInputs
- * It decides between the two based on the presence of props.handleItemDelete,
- * which is only a property passed with the ValidatedInput group.
- *
- * If it is passed a handleItemAdd function, it will render an Add button below all groups.
- */
 
 export default function Sidebar (props) {
     return (

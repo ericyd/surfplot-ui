@@ -1,3 +1,9 @@
+/**
+ * Plot holds the vis.js Graph3d object which displays the 3d surface.
+ * It is passed relatively minimal data in the props and calculates the formatting
+ * and surface data internally.
+ */
+
 'use strict';
 
 import React, { Component } from 'react';

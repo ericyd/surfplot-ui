@@ -1,3 +1,9 @@
+/**
+ * Group is a relatively simple container with an optional title
+ * that collapses the group when clicked. It will render the title
+ * if this.props.title exists.
+ */
+
 'use strict';
 
 import React, { Component } from 'react';
@@ -6,11 +12,6 @@ import Arrow from '../icons/Arrow';
 import '../icons/icon.scss';
 import './group.scss';
 
-/**
- * Group is a relatively simple container with an optional title
- * that collapses the group when clicked. It will render the title
- * if this.props.title exists.
- */
 
 export default class Group extends Component {
     constructor () {
