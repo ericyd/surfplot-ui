@@ -12,8 +12,8 @@ import Icon from './Icon';
 // http://codepen.io/lingtalfi/pen/yaLWJG
 
 const Spinner = props => (
-    <Icon className={props.className}>
-        <path d="M0 50 A 50 50 0 0 0 50 100" />
+    <Icon className={['spinner', props.className].join(' ')}>
+        <path d='M0 50 A 50 50 0 0 0 50 100' />
     </Icon>
 );
 

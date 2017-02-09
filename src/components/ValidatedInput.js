@@ -13,6 +13,9 @@
 'use strict';
 
 import React, { Component } from 'react';
+import Spinner from 'icons/Spinner';
+import Times from 'icons/Times';
+import Checkmark from 'icons/Checkmark';
 import './inputs.scss';
 
 export default class ValidatedInput extends Component {
@@ -20,9 +23,13 @@ export default class ValidatedInput extends Component {
         super();
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
+        this.renderInput = this.renderInput.bind(this);
+        this.renderIndicatorIcon = this.renderIndicatorIcon.bind(this);
         this.timeout = false;
         this.state = {
-            value: ''
+            value: '',
+            isValidated: true,
+            isValidating: false
         };
     }
 
@@ -44,23 +51,39 @@ export default class ValidatedInput extends Component {
             clearTimeout(this.timeout);
         }
 
+        this.setState({ isValidating: true });
+
         // set a timeout so that the function can be edited without sending multiple updates
         this.timeout = setTimeout(() => {
+            // check if value has changed.  Handle arrays a bit differently
             if (Array.isArray(this.state.value) && e.target.value !== this.props.value[e.target.dataset.isMax]) {
                 const newValue = this.state.value.slice();
                 newValue[e.target.dataset.isMax] = e.target.value;
-                newValue[0] = +(newValue[0]);
-                newValue[1] = +(newValue[1]);
-                this.props.handleChange(e.target.name, newValue);
+
+                if (this.props.validate(e.target.value)) {
+                    newValue[0] = +(newValue[0]);
+                    newValue[1] = +(newValue[1]);
+                    this.props.handleChange(e.target.name, newValue);
+                    this.setState({ isValidated: true });
+                } else {
+                    this.setState({ isValidated: false });
+                }
+
+            // check if single-value (e.g. equation) has changed
             } else if (e.target.value !== this.props.value) {
+                // validate the result
                 if (this.props.validate(e.target.value)) {
                     this.props.handleChange(e.target.id, e.target.value);
+                    this.setState({ isValidated: true });
                 } else {
-                    console.log('couldnt parse ', e.target.value);
+                    this.setState({ isValidated: false });
                 }
             } else {
-                console.log('value didnt change');
+                this.setState({ isValidated: true });
             }
+
+            // reset state to correct indicator icon
+            this.setState({ isValidating: false });
         }, 1000);
     }
 
@@ -75,7 +98,7 @@ export default class ValidatedInput extends Component {
         this.setState({ value: e.target.value });
     }
 
-    render () {
+    renderInput () {
         if (Array.isArray(this.state.value)) {
             return (
                 <div className='input validated'>
@@ -116,6 +139,27 @@ export default class ValidatedInput extends Component {
                 </div>
             );
         }
+    }
+
+    renderIndicatorIcon () {
+        if (this.state.isValidating) {
+            return <Spinner />;
+        } else if (this.state.isValidated) {
+            return <Checkmark />;
+        } else {
+            return <Times />;
+        }
+    }
+
+    render () {
+        const input = this.renderInput();
+        const indicatorIcon = this.renderIndicatorIcon();
+        return (
+            <div>
+                {input}
+                {indicatorIcon}
+            </div>
+        );
     }
 }
 

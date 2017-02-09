@@ -43,3 +43,22 @@
 .menu-bar {
     fill: $primary--dark;
 }
+
+.spinner {
+    animation-name: spin;
+    animation-delay: 0;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    // the default timing function is kind of interesting, sort of a material design thing
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(359deg);
+    }
+}
