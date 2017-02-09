@@ -16,13 +16,16 @@ const webpack = require('webpack');
 // ... so I'm a sheep
 const env = { 'process.env': { NODE_ENV: '"production"', PUBLIC_URL: '""' } };
 
+let entryScript = process.env.NODE_ENV === 'desktop' ? paths.appDesktopIndexJs : paths.appIndexJs;
+let buildPath = process.env.NODE_ENV === 'desktop' ? paths.appDesktopBuild : paths.appBuild;
+
 module.exports = {
     entry: [
         require.resolve('./polyfills'),
-        paths.appIndexJs
+        entryScript
     ],
     output: {
-        path: paths.appBuild,
+        path: buildPath,
         filename: 'index.js',
         publicPath: '/'
     },

@@ -74,7 +74,7 @@ let menuTemplate = [{
     submenu: [{
         label: 'Web app',
         click: function () {
-            electron.shell.openExternal('http://github.com/ericyd/surfplot-ui');
+            electron.shell.openExternal('http://ericyd.github.io/surfplot-ui');
         }
     }, {
         label: 'About',
