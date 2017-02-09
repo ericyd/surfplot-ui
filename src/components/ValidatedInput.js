@@ -13,9 +13,9 @@
 'use strict';
 
 import React, { Component } from 'react';
-import Spinner from 'icons/Spinner';
-import Times from 'icons/Times';
-import Checkmark from 'icons/Checkmark';
+import Spinner from '../icons/Spinner';
+import Times from '../icons/Times';
+import Checkmark from '../icons/Checkmark';
 import './inputs.scss';
 
 export default class ValidatedInput extends Component {
