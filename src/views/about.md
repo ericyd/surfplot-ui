@@ -2,14 +2,13 @@
 
 This app provides a simple and (hopefully) intuitive user interface to visualize mathematical
 surfaces. It is inspired by [Calc Plot 3D][CalcPlot], which I used when learning multivariable
-calculus. I hope to provide an interface that is more universal (no Java applet to download),
+calculus. I hope to provide an interface that is slightly more user friendly
 and utilizes modern Javascript technologies. It is also my first project using React, so part
 of the goal was simply to familiarize myself with React and modern Javascript build tools.
 
 ## Roadmap
 
-I hope to add several features to this app that would make it more fully featured as a learning
-tool for calculus. Most of these are already available in [Calc Plot 3D][CalcPlot]:
+It is unlikely that this UI will ever be developed to the point of being comparable with [Calc Plot 3D][CalcPlot]. However, any future development would likely follow this general roadmap. Note that many of these features are already available in [Calc Plot 3D][CalcPlot]:
 
 1. Support for multiple surfaces in the same plot
 2. Ability to add lines (traces) or points on the surface and adjust with sliders
@@ -21,7 +20,7 @@ tool for calculus. Most of these are already available in [Calc Plot 3D][CalcPlo
 
 ## Offline access
 
-If online access is limited, you can launch an offline versio of the application.  The offline
+If online access is limited, you can launch an offline version of the application.  The offline
 version is powered by [Electron][electron].  Hopefully I will eventually figure out how to bundle
 it into a cross-platform executable.  Currently in order to use the offline version, you need to
 have [Nodejs][node] installed. It is also a bit simpler if you have [Git][git] installed, though it
