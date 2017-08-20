@@ -19,10 +19,12 @@ export function isNumeric (value) {
 export function isParsable (value) {
     // mathjs throws an error if no argument is passed, and returns undefined if length == 0
     // mathjs supports arrays, but there will be no valid way to pass an array through this application, so must be a string
+    // don't include an ampersand - it will parse but will try to perform bitwise operations
     if (value !== undefined &&
         value !== null &&
         value.length > 0 &&
-        typeof value === 'string') {
+        typeof value === 'string' &&
+        value.indexOf('&') === -1) {
         try {
             let e = mathjs.parse(value);
 
@@ -34,7 +36,7 @@ export function isParsable (value) {
                 e.type === 'SymbolNode') {
                 return true;
             }
-        } catch (e) {
+        } catch (err) {
             return false;
         }
     }

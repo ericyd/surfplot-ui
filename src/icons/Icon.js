@@ -23,4 +23,8 @@ const Icon = props => (
     </svg>
 );
 
+Icon.propTypes = {
+    className: React.PropTypes.string
+};
+
 export default Icon;

@@ -1,7 +1,7 @@
 {
   "name": "SurfPlot-UI",
-  "version": "0.0.6",
-  "description": "boilerplate for basic app setup",
+  "version": "0.0.7",
+  "description": "A simple UI for visualizing mathematical surfaces",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha \"test/**/*.test.js\" --compilers js:babel-core/register --require ignore-styles --require test/setup.js",
@@ -22,6 +22,7 @@
     ]
   },
   "devDependencies": {
+    "autoprefixer": "^6.7.2",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
@@ -37,6 +38,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.1",
     "eslint-plugin-react": "^6.6.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "html-loader": "^0.4.4",
     "ignore-styles": "^5.0.1",
     "jsdom": "^9.8.3",
@@ -45,9 +47,9 @@
     "mocha": "^3.1.2",
     "node-sass": "^3.11.2",
     "open": "0.0.5",
+    "postcss-loader": "^1.2.2",
     "react-addons-test-utils": "^15.4.1",
     "sass-loader": "^4.0.2",
-    "shallowequal": "^0.2.2",
     "style-loader": "^0.13.1",
     "stylelint-config-standard": "^15.0.0",
     "stylelint-webpack-plugin": "^0.4.0",
@@ -59,6 +61,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^3.0.0",
+    "shallowequal": "^0.2.2",
     "vis": "^4.17.0"
   },
   "repository": {

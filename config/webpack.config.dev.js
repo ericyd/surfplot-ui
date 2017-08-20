@@ -65,7 +65,10 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx'],
+        // this allows imports to start at ./src, avoiding ../../icons/Icon.js
+        // thanks https://simonsmith.io/using-webpack-to-build-react-components-and-their-assets/
+        modulesDirectories: ['node_modules', './src']
     },
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

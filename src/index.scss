@@ -1,9 +1,10 @@
-@import 'global-style-variables';
+@import 'global-style-variables.scss';
 
 * {
     font-family: inherit;
     line-height: inherit;
     color: inherit;
+    box-sizing: border-box;
 }
 
 body {

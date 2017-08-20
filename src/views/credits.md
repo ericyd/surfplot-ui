@@ -23,7 +23,7 @@ JavaScript implementation for the UI and plotting tools.
 4. [Babel][babel], [Webpack][webpack]: Build tools
 5. [ESlint][eslint], [Stylelint][stylelint]: Styling linting for JS and SCSS
 6. [Mocha][mocha], [Enzyme][enzyme], [Chai][chai]: Testing
-
+7. [Electron][electron]: "Offline" version of the app.
 
 [CalcPlot]: http://web.monroecc.edu/manila/webfiles/pseeburger/CalcPlot3D/
 [visjs]: http://visjs.org/
@@ -36,3 +36,4 @@ JavaScript implementation for the UI and plotting tools.
 [mocha]: https://mochajs.org/
 [enzyme]: http://airbnb.io/enzyme/
 [chai]: http://chaijs.com/
+[electron]: http://electron.atom.io/

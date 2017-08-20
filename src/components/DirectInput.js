@@ -86,5 +86,11 @@ DirectInput.propTypes = {
         React.PropTypes.string,
         React.PropTypes.array,
         React.PropTypes.bool
-    ])
+    ]),
+    values: React.PropTypes.oneOfType([
+        // TODO: is string really a possible option? Remove if no.
+        React.PropTypes.string,
+        React.PropTypes.array
+    ]),
+    id: React.PropTypes.string
 };

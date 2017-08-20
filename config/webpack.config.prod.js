@@ -6,6 +6,8 @@
 
 const paths = require('./paths');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 
 // I'm really not sure of the purpose of this variable,
@@ -14,13 +16,16 @@ const webpack = require('webpack');
 // ... so I'm a sheep
 const env = { 'process.env': { NODE_ENV: '"production"', PUBLIC_URL: '""' } };
 
+let entryScript = process.env.NODE_ENV === 'desktop' ? paths.appDesktopIndexJs : paths.appIndexJs;
+let buildPath = process.env.NODE_ENV === 'desktop' ? paths.appDesktopBuild : paths.appBuild;
+
 module.exports = {
     entry: [
         require.resolve('./polyfills'),
-        paths.appIndexJs
+        entryScript
     ],
     output: {
-        path: paths.appBuild,
+        path: buildPath,
         filename: 'index.js',
         publicPath: '/'
     },
@@ -46,6 +51,7 @@ module.exports = {
                 screw_ie8: true
             }
         }),
+        new ExtractTextPlugin('app.css')
     ],
     eslint: {
         configFile: 'config/.eslintrc'
@@ -67,7 +73,7 @@ module.exports = {
             },
             {
                 test: /\.(sc|sa|c)ss$/,
-                loaders: ['style', 'css', 'sass']
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader!postcss-loader')
             },
             {
                 test: /\.md$/,
@@ -76,10 +82,14 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx'],
+        modulesDirectories: ['node_modules', './src']
     },
-  // Some libraries import Node modules but don't use them in the browser.
-  // Tell Webpack to provide empty mocks for them so importing them works.
+    postcss: [
+        autoprefixer()
+    ],
+    // Some libraries import Node modules but don't use them in the browser.
+    // Tell Webpack to provide empty mocks for them so importing them works.
     node: {
         fs: 'empty',
         net: 'empty',

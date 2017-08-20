@@ -1,3 +1,9 @@
+/**
+ * Group is a relatively simple container with an optional title
+ * that collapses the group when clicked. It will render the title
+ * if this.props.title exists.
+ */
+
 'use strict';
 
 import React, { Component } from 'react';
@@ -6,11 +12,6 @@ import Arrow from '../icons/Arrow';
 import '../icons/icon.scss';
 import './group.scss';
 
-/**
- * Group is a relatively simple container with an optional title
- * that collapses the group when clicked. It will render the title
- * if this.props.title exists.
- */
 
 export default class Group extends Component {
     constructor () {
@@ -50,6 +51,13 @@ export default class Group extends Component {
     }
 }
 
+// eslint-plugin-react complains about missing 'children' in propTypes
+// but react docs explicitly state that 'children' should be treated as an opaque data type
+// (https://facebook.github.io/react/docs/react-api.html#react.children),
+// and eslint-plugin-react doesn't allow you to declare "any".
+// So there is no way to not get a warning for components that use props.children.
+// I would open an issue, but the rules that are being enforced are for good reason, so I think it's
+// just going to be that way.
 Group.propTypes = {
     title: React.PropTypes.string
 };

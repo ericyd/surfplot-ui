@@ -10,4 +10,8 @@ const Arrow = props => (
     </Icon>
 );
 
+Arrow.propTypes = {
+    className: React.PropTypes.string
+};
+
 export default Arrow;
